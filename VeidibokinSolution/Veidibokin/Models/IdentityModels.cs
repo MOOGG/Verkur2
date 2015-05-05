@@ -32,7 +32,9 @@ namespace Veidibokin.Models
         public DbSet<UserStatus> UserStatuses { get; set; }
         
         // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
-        // UserInfo etc., f.ex. public DbSet<UserStatus> UserStatuses { get; set; }
+        // UserInfo etc., f.ex. "public DbSet<UserStatus> UserStatuses { get; set; }"
+        // muna að tilgreina lykla í entity klösunum, "public int ID ..." automatic key
+        // til að hlutur mappist ofan í töflur þá þarf tagið að vera DbSet !
               
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
