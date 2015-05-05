@@ -155,7 +155,7 @@ namespace Veidibokin.Controllers
                 { 
                     fullName = model.fullName, 
                     postalCode = model.postalCode,
-                    //gender = model.gender,
+                    gender = model.gender,
                     UserName = model.Email,
                     Email = model.Email 
                 };

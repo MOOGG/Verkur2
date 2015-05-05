@@ -72,8 +72,8 @@ namespace Veidibokin.Models
         [Display(Name = "Póstnúmer")]
         public int postalCode { get; set; }
 
-        /*[Display(Name = "Kyn")]
-        public char gender { get; set; }*/
+        [Display(Name = "Kyn")]
+        public string gender { get; set; }
 
 		[Required]
         [EmailAddress]
