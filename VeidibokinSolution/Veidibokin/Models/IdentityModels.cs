@@ -21,11 +21,11 @@ namespace Veidibokin.Models
         }
     }
 
-    // hér koma allir þeir klasar sem representa innihald síðunar (pretty much held ég) eins og t.d.
-    // innlegg, comment, profilepage etc.
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
+        // UserInfo etc., f.ex. public DbSet<UserStatus> UserStatuses { get; set; }
+              
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
