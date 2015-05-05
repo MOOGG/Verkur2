@@ -66,9 +66,14 @@ namespace Veidibokin.Models
     public class RegisterViewModel
     {
 		[Required]
-//		[EmailAddress]
 		[Display(Name = "Fullt nafn")]
 		public string fullName { get; set; }
+
+        [Display(Name = "Póstnúmer")]
+        public int postalCode { get; set; }
+
+        /*[Display(Name = "Kyn")]
+        public char gender { get; set; }*/
 
 		[Required]
         [EmailAddress]

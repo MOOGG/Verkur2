@@ -15,7 +15,7 @@ namespace Veidibokin.Models
         public int postalCode { get; set; }
         public string town { get; set; }
         public int photoID { get; set; }
-        public char gender { get; set; }
+        public string gender { get; set; }
         //public System.DateTime birthday { get; set; } ákveðið að sleppa þessum upplýsingum að sinni
         public string info { get; set; }
 
