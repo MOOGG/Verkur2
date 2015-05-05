@@ -31,6 +31,9 @@ namespace Veidibokin.Models
     {
         public DbSet<UserStatus> UserStatuses { get; set; }
         
+        // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
+        // UserInfo etc., f.ex. public DbSet<UserStatus> UserStatuses { get; set; }
+              
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
