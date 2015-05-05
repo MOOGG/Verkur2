@@ -9,6 +9,9 @@ namespace Veidibokin.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        // hér fara auka property um usera eins og búseta, kyn etc.
+        // public int ShoeSize { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -20,6 +23,9 @@ namespace Veidibokin.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
+        // UserInfo etc., f.ex. public DbSet<UserStatus> UserStatuses { get; set; }
+              
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
