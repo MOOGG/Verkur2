@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Veidibokin.Models
 {
@@ -65,11 +66,11 @@ namespace Veidibokin.Models
     public class RegisterViewModel
     {
 		[Required]
-		//[EmailAddress]
+//		[EmailAddress]
 		[Display(Name = "Fullt nafn")]
 		public string fullName { get; set; }
 
-        [Required]
+		[Required]
         [EmailAddress]
         [Display(Name = "Netfang")]
         public string Email { get; set; }
