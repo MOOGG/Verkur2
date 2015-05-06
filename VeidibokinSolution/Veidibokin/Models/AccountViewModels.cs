@@ -69,14 +69,15 @@ namespace Veidibokin.Models
 		[Display(Name = "Fullt nafn")]
 		public string fullName { get; set; }
 
+		[Required(ErrorMessage = "Vinsamlega settu inn póstnúmer")]
         [Display(Name = "Póstnúmer")]
         public int postalCode { get; set; }
 
-		[Required]
+		[Required(ErrorMessage="Vinsamlega settu inn kyn")]
         [Display(Name = "Kyn")]
         public string gender { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Vinsamlega settu inn netfang")]
         [EmailAddress]
         [Display(Name = "Netfang")]
         public string Email { get; set; }
@@ -101,7 +102,7 @@ namespace Veidibokin.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+		[StringLength(100, ErrorMessage = "{0}ið verður að vera amk {2} stafir.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
