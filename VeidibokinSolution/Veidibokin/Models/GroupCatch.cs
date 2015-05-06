@@ -12,10 +12,15 @@ namespace Veidibokin.Models
     public class GroupCatch
     {
         [Key]
+        [ForeignKey("Group")]
         [Column(Order = 1)]
         public int groupID { get; set; }
         [Key]
+        [ForeignKey("Catch")]
         [Column(Order = 2)]
         public int catchID { get; set; }
+    
+        public virtual Group Group { get; set; }
+        public virtual Catch Catch { get; set; }
     }
 }

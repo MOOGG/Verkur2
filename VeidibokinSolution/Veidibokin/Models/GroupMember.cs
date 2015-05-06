@@ -10,12 +10,17 @@ namespace Veidibokin.Models
     public class GroupMember
     {
         [Key]
+        [ForeignKey("Group")]
         [Column(Order = 1)]
         public int groupID { get; set; }
         [Key]
+        [ForeignKey("User")]
         [Column(Order = 2)]
-        public int userID { get; set; }
+        public string userID { get; set; }
         public bool memberStatus { get; set; }
         public bool isAdmin { get; set; }
+
+        public virtual Group Group { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

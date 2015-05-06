@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Veidibokin.Models
 {
@@ -18,7 +20,7 @@ namespace Veidibokin.Models
         public string gender { get; set; }
         //public System.DateTime birthday { get; set; } ákveðið að sleppa þessum upplýsingum að sinni
         public string info { get; set; }
-    
+ 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

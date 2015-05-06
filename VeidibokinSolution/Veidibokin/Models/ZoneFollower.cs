@@ -12,10 +12,15 @@ namespace Veidibokin.Models
     public class ZoneFollower
     {
         [Key]
+        [ForeignKey("Zone")]
         [Column(Order = 1)]
         public int zoneID { get; set; }
         [Key]
+        [ForeignKey("User")]
         [Column(Order = 2)]
-        public int userID { get; set; }
+        public string userID { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+        public virtual Zone Zone { get; set; }
     }
 }

@@ -12,10 +12,13 @@ namespace Veidibokin.Models
     public class UserFollower
     {
         [Key]
+        [ForeignKey("User")]
         [Column(Order = 1)]
-        public int userID { get; set; }
+        public string userID { get; set; }
         [Key]
         [Column(Order = 2)]
-        public int followerID { get; set; }
+        public string followerID { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }
