@@ -12,32 +12,32 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.fullName, new { @class = "col-xs-2 control-label" }) <!-- Breyttum md í xs, skalanlegt fyrir farsíma, MH -->
+        @Html.LabelFor(m => m.fullName, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.fullName, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-xs-2 control-label" })
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-xs-2 control-label" })
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-xs-2 control-label" })
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             <span class="help-block">Lykilorðið verður að vera amk 6 stafir, <br />innihalda lágstaf eða hástaf ásamt tölustaf og tákni</span>
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.gender, new { @class = "col-xs-2 control-label" })
+        @Html.LabelFor(m => m.gender, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.RadioButtonFor(m => m.gender,true, new {id = "male"})
             @Html.Label("male", "Karl")
@@ -46,13 +46,13 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.postalCode, new { @class = "col-xs-2 control-label" })
+        @Html.LabelFor(m => m.postalCode, new { @class = "col-md-2 control-label" })
         <div class="col-xs-10">
             @Html.TextBoxFor(m => m.postalCode, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
+        <div class="col-md-offset-2 col-md-10 ">
             <input type="submit" class="btn btn-default" value="Stofna notanda" />
         </div>
     </div>
