@@ -150,7 +150,7 @@ namespace Veidibokin.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
+			{
                 var user = new ApplicationUser 
                 { 
                     fullName = model.fullName, 
