@@ -34,7 +34,15 @@ namespace Veidibokin.Models
         public DbSet<Catch> Catches { get; set; }
         public DbSet<FishType> FishTypes { get; set; }
         public DbSet<BaitType> BaitTypes { get; set; }
-        public DbSet<Zone> Zones { get; set; }
+        public DbSet<Zone> Zones { get; set; } 
+        public DbSet<GroupCatch> GroupCatches { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupMember> GroupMembers { get; set; }
+        public DbSet<StatusComment> StatusComments { get; set; }
+        public DbSet<ZoneFollower> ZoneFollowers { get; set; }
+        public DbSet<UserFollower> UserFollowers { get; set; }
+        public DbSet<GroupStatus> GroupStatuses { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         
         // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
         // UserInfo etc., f.ex. "public DbSet<UserStatus> UserStatuses { get; set; }"

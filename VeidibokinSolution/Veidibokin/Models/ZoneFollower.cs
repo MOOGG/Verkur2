@@ -9,13 +9,13 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
-    public class GroupCatch
+    public class ZoneFollower
     {
         [Key]
         [Column(Order = 1)]
-        public int groupID { get; set; }
+        public int zoneID { get; set; }
         [Key]
         [Column(Order = 2)]
-        public int catchID { get; set; }
+        public int userID { get; set; }
     }
 }

@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Data;
-using System.Data.Entity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Veidibokin.Models
 {
-    public class GroupCatch
+    public class GroupMember
     {
         [Key]
         [Column(Order = 1)]
         public int groupID { get; set; }
         [Key]
         [Column(Order = 2)]
-        public int catchID { get; set; }
+        public int userID { get; set; }
+        public bool memberStatus { get; set; }
+        public bool isAdmin { get; set; }
     }
 }

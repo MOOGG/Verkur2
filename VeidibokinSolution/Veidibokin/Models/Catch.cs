@@ -7,7 +7,7 @@ namespace Veidibokin.Models
 {
     public class Catch
     {
-        public int ID { get; set;}
+        public int ID { get; set; }
         public int userId { get; set; }
         public int zoneId { get; set; }
         public int photoId { get; set; }

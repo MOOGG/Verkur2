@@ -6,13 +6,12 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
-    public class Zone
+    public class Group
     {
         public int ID { get; set; }
         public int photoID { get; set; }
         [StringLength(30)]
-        public string name { get; set; }
+        public string groupName { get; set; }
         public string description { get; set; }
-        public string location { get; set; }
     }
 }
