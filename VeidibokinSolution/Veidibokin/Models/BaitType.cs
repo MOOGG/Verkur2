@@ -8,6 +8,6 @@ namespace Veidibokin.Models
     public class BaitType
     {
         public int ID { get; set; }
-        public string name { get; set;}
+        public string name { get; set; }
     }
 }
