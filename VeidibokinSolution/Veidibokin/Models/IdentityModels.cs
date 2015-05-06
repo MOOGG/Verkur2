@@ -31,6 +31,10 @@ namespace Veidibokin.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<UserStatus> UserStatuses { get; set; }
+        public DbSet<Catch> Catches { get; set; }
+        public DbSet<FishType> FishTypes { get; set; }
+        public DbSet<BaitType> BaitTypes { get; set; }
+        public DbSet<Zone> Zones { get; set; }
         
         // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
         // UserInfo etc., f.ex. "public DbSet<UserStatus> UserStatuses { get; set; }"
