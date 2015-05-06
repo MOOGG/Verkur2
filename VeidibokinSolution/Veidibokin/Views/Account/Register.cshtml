@@ -33,6 +33,7 @@
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            <span class="help-block">Lykilorðið verður að vera amk 6 stafir, <br />innihalda lágstaf eða hástaf ásamt tölustaf og tákni</span>
         </div>
     </div>
     <div class="form-group">
@@ -45,7 +46,7 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.postalCode, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.postalCode, new { @class = "col-xs-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.postalCode, new { @class = "form-control" })
         </div>

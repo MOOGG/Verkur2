@@ -72,6 +72,7 @@ namespace Veidibokin.Models
         [Display(Name = "Póstnúmer")]
         public int postalCode { get; set; }
 
+		[Required]
         [Display(Name = "Kyn")]
         public string gender { get; set; }
 
@@ -80,15 +81,15 @@ namespace Veidibokin.Models
         [Display(Name = "Netfang")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required] //The {0} must be at least {2} characters long.
+        [StringLength(100, ErrorMessage = "{0}ið verður að vera amk {2} stafir.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Lykilorð")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Lykilorð aftur")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Lykilorðin eru ekki eins, sláðu þau inn aftur")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -107,7 +108,7 @@ namespace Veidibokin.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[Compare("Password", ErrorMessage = "Lykilorðin eru ekki eins, sláðu þau inn aftur")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
