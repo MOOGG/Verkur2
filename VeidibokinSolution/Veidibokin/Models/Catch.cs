@@ -17,7 +17,7 @@ namespace Veidibokin.Models
         [ForeignKey("Zone")]
         public int zoneId { get; set; }
         [ForeignKey("Photo")]
-        public int photoId { get; set; }
+        public int? photoId { get; set; }
         [ForeignKey("FishType")]
         public int fishTypeId { get; set; }
         [ForeignKey("BaitType")]
