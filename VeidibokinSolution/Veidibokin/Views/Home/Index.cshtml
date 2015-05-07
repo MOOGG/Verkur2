@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Veidibokin.Models.UserStatus
+
+@{
     ViewBag.Title = "Home Page";
 }
 <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
@@ -11,12 +13,21 @@
         
         <section>
             
-            @using (Html.BeginForm("NewUserStatus", "Content"))
+           @using (Html.BeginForm("NewUserStatus", "Content"))
            {
-                <input type="hidden" name="userStatusID" value="" />
+            <input type="hidden" name="userStatusID" value="@Model.ID" />
                 <div class="form-horizontal">
                     <label class="sr-only" for="reviewtext">UserStatus</label>
                     <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
+                    
+                    <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
+                    <select multiple>
+                        <option value="hopur1">Hopur1</option>
+                        <option value="hopur2">Hopur2</option>
+                        <option value="hopur3">Hopur3</option>
+                        <option value="hopur4">Hopur4</option>
+                    </select>
+                        -->
                     <button type="submit" class="btn btn-primary">Birta</button>
                 </div>
                 @Html.ValidationSummary(false)
