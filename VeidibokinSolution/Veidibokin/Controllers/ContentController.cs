@@ -23,15 +23,15 @@ namespace Veidibokin.Controllers
 				return RedirectToAction("Index", "Content", new { id = status });
 			}
 
-			string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+			string userName = User.Identity.Name;
 			int id = Int32.Parse(status);
-			UserStatus user = UserStatus.Instance.GetMovieById(username, id);
+			/*UserStatus user = UserStatus.Instance.GetMovieById(username, id);
 			if (user != null)
 			{
 				UserStatus userStatus = new NewUserStatus { Text = statusText, Username = username, MovieId = id };
 				MovieAppRepository.Instance.AddReview(userStatus);
-				return RedirectToAction("Detail", "MovieApp", new { id = status });
-			}
+				return RedirectToAction("Index", "Content", new { id = status });
+			}*/
 			return View("Error");
 		}
 	}
