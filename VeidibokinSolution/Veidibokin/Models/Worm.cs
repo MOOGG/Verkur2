@@ -20,7 +20,6 @@ namespace Veidibokin.Models
         [Column(Order = 2)]
         public int statusID { get; set; }
         public int wormRating { get; set; }
-        public int type { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual UserStatus UserStatus { get; set; }
