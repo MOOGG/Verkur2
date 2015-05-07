@@ -11,20 +11,20 @@
         
         <section>
             
-            @*@using (Html.BeginForm("ReviewMovie", "MovieApp"))*@
-            @*{*@
-                <input type="hidden" name="movieidis" value="" />
+            @using (Html.BeginForm("NewUserStatus", "Content"))
+           {
+                <input type="hidden" name="userStatusID" value="" />
                 <div class="form-horizontal">
                     <label class="sr-only" for="reviewtext">UserStatus</label>
                     <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
                     <button type="submit" class="btn btn-primary">Birta</button>
                 </div>
                 @Html.ValidationSummary(false)
-            @*}*@
+            }
         </section>
         <section>
             <h4>Nýjustu færslurnar</h4>
-            @* @foreach (var review in Model.Reviews)
+            @* @foreach (var Status in Model.UserStatus)
             {
                 <p>@review.Username | @review.Text</p>
             }*@
