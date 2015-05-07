@@ -5,7 +5,7 @@
 <div>
     <img src="/Content/Images/logo.jpg" alt="Missing logo" />
 </div>
-<hr style="border-color:black;" />
+<hr />
 <div class="row">
     <div class="col-md-4"> 
         
@@ -15,9 +15,14 @@
            {
                 <input type="hidden" name="userStatusID" value="" />
                 <div class="form-horizontal">
-                    <label class="sr-only" for="reviewtext">UserStatus</label>
-                    <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
-                    <button type="submit" class="btn btn-primary">Birta</button>
+                    <div>
+                        <label class="sr-only" for="reviewtext">UserStatus</label>
+                        <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
+                    </div>
+                        <br />
+                    <div>
+                        <button type="submit" class="btn btn-primary">Birta</button>
+                    </div>
                 </div>
                 @Html.ValidationSummary(false)
             }
