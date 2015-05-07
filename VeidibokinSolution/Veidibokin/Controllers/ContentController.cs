@@ -24,14 +24,14 @@ namespace Veidibokin.Controllers
 			}
 
 			string userName = User.Identity.Name;
-			int id = Int32.Parse(statusID);
+			/*int id = Int32.Parse(statusID);
 			UserStatus user = UserStatus.Instance.GetMovieById(userName, id);//TODO fall í repo sem sækir statusinn 
 			if (user != null)
 			{
 				UserStatus userStatus = new UserStatus { statusText = status, userId = userName, ID = id };
 				MovieAppRepository.Instance.AddReview(userStatus);
 				return RedirectToAction("Index", "Content", new { id = statusID });
-			}
+			}*/
 			return View("Error");
 		}
 	}
