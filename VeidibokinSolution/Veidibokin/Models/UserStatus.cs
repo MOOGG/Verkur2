@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
-    public class UserStatus
+    public class UserStatus : Element
     {
         public int ID { get; set; }
         public System.DateTime dateInserted { get; set; }
