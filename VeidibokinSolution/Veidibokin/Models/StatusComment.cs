@@ -13,9 +13,11 @@ namespace Veidibokin.Models
     {
         public int ID { get; set; }
         [ForeignKey("User")]
+        [Required]
         public string userID { get; set; }
         [ForeignKey("Status")]
         public int statusID { get; set; }
+        [Required]
         public string comment { get; set; }
 
         public virtual ApplicationUser User { get; set; }

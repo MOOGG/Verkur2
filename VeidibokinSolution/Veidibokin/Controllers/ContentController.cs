@@ -23,8 +23,8 @@ namespace Veidibokin.Controllers
 				return RedirectToAction("Index", "Content", new { id = statusID });
 			}
 
-			/*string userName = User.Identity.Name;
-			int id = Int32.Parse(statusID);
+			string userName = User.Identity.Name;
+			/*int id = Int32.Parse(statusID);
 			UserStatus user = UserStatus.Instance.GetMovieById(userName, id);//TODO fall í repo sem sækir statusinn 
 			if (user != null)
 			{
