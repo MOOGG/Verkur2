@@ -51,23 +51,18 @@
                     <div class="col-md-offset-2 col-md-10">
                         <!-- Ég breytti class="btn btn-default" í "btn btn-primary", MH -->
                         <input type="submit" value="Innskrá" class="btn btn-primary" /> 
+                            <span class="help-block">
+                                @Html.ActionLink("Ekki með aðgang? Smelltu hér til að stofna aðgang", "Register")
+                            </span>
+                            <span class="help-block">
+                                @* Enable this once you have account confirmation enabled for password reset functionality *@
+                                @Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword")
+                            </span>
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Ekki með aðgang? Smelltu hér til að stofna aðgang", "Register")
-                </p>
-                <p>
-                    @Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword")
-                </p>
-
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
         </section>
     </div>
-    
 </div>
 
 @section Scripts {
