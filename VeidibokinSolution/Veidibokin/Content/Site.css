@@ -18,9 +18,15 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
-textarea {
-    max-width: 280px;
+select
+ {
+
+}
+.UserStatus {
+    width: 300px;
+    height:100px;
+    margin-right:50px;
+    resize:none;
 }
 
 /* Miðjar texta, MH */
