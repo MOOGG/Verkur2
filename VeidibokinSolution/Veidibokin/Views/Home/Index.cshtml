@@ -13,9 +13,9 @@
         
         <section>
             
-           @using (Html.BeginForm("NewUserStatus", "Content"))
+          @* @using (Html.BeginForm("NewUserStatus", "Content"))*@
            {
-            <input type="hidden" name="userStatusID" value="@Model.ID" />
+            <input type="hidden" name="userStatusID" value="" />
                 <div class="form-horizontal">
                     <label class="sr-only" for="reviewtext">UserStatus</label>
                     <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>

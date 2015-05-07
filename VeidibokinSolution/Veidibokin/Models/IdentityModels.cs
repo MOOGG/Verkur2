@@ -37,7 +37,6 @@ namespace Veidibokin.Models
         public DbSet<FishType> FishTypes { get; set; }
         public DbSet<BaitType> BaitTypes { get; set; }
         public DbSet<Zone> Zones { get; set; } 
-        public DbSet<GroupCatch> GroupCatches { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupMember> GroupMembers { get; set; }
         public DbSet<StatusComment> StatusComments { get; set; }

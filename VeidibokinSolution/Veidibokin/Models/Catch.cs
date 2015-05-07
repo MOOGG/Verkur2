@@ -18,8 +18,8 @@ namespace Veidibokin.Models
         public int fishTypeId { get; set; }
         [ForeignKey("BaitType")]
         public int baitTypeID { get; set; }
-        public double length { get; set; }
-        public double weight { get; set; }
+        public double? length { get; set; }
+        public double? weight { get; set; }
 
         public virtual Zone Zone { get; set; }
         public virtual Photo Photo { get; set; }

@@ -13,7 +13,9 @@ namespace Veidibokin.Models
     {
         public int ID { get; set; }
         public System.DateTime dateInserted { get; set; }
+        [Required]
         public string statusText { get; set; }
+        //[Required]
         [ForeignKey("User")]
         public string userId { get; set; }
         [ForeignKey("Photo")]

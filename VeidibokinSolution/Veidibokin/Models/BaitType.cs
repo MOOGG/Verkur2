@@ -10,6 +10,7 @@ namespace Veidibokin.Models
     {
         public int ID { get; set; }
         [StringLength(30)]
+        [Required]
         public string name { get; set; }
     }
 }

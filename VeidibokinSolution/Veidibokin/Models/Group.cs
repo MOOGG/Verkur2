@@ -11,8 +11,9 @@ namespace Veidibokin.Models
     {
         public int ID { get; set; }
        // [ForeignKey("Photo")] Næ ekki að setja þennan foreign Key fæ alltaf villu um multiple cascade paths
-        public int photoID { get; set; }
+        public int? photoID { get; set; }
         [StringLength(30)]
+        [Required]
         public string groupName { get; set; }
         public string description { get; set; }
 

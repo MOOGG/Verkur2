@@ -13,6 +13,7 @@ namespace Veidibokin.Models
     {
         public int ID { get; set; }
         [StringLength(255)]
+        [Required]
         public string photo { get; set; }
     }
 }
