@@ -2,3 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
+
+<div>
+    <img src="/Content/Images/logo.jpg" alt="Missing logo" />
+</div>
+<hr style="border-color:black;" />
+<div class="row">
+    <div class="col-md-4"> 
+        
+        <section>
+            
+            @*@using (Html.BeginForm("ReviewMovie", "MovieApp"))*@
+            @*{*@
+                <input type="hidden" name="movieidis" value="" />
+                <div class="form-horizontal">
+                    <label class="sr-only" for="reviewtext">UserStatus</label>
+                    <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
+                    <button type="submit" class="btn btn-primary">Birta</button>
+                </div>
+                @Html.ValidationSummary(false)
+            @*}*@
+        </section>
+        <section>
+            <h4>Nýjustu færslurnar</h4>
+            @* @foreach (var review in Model.Reviews)
+            {
+                <p>@review.Username | @review.Text</p>
+            }*@
+        </section>
+    </div>
+    <div class="col-md-4"> 
+        <!-- tæint "div, MH"-->
+    </div>
+    <div class="col-md-4"> 
+        <!-- tómt "div", MH -->
+    </div>
+</div>
