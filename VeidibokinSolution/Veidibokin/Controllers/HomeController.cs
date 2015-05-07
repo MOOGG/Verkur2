@@ -15,7 +15,10 @@ namespace Veidibokin.Controllers
 	{
         [AllowAnonymous]
 		public ActionResult Index()
-		{
+        {
+            //var testRepo = new UserRepositoryTest();
+            //testRepo.QueryUserName();
+
 			return View();
 		}
 
@@ -23,27 +26,12 @@ namespace Veidibokin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddStatus(UserStatus status)
-        {
-            // tek inn statusText frá ViewModel-i
-
-            // þarf ég að gera fall sem gerir allt það sem er hér að neðan eins og í UserRepoTest... ???
-
-            // bý til statusinn sem ég ætla að adda
-            var newStatus = new UserStatus()
-            {
-                statusText = status.statusText,
-                isPublic = true,
-                dateInserted = DateTime.Now,
-                userId = User.Identity.GetUserId()
-            };
-
-            var dataContext = new ApplicationDbContext();    
-            var userStatusRepo = new UserRepository<UserStatus>(dataContext);
-            userStatusRepo.Insert(newStatus);
-            dataContext.SaveChanges();
-
-            //insertStatus(model);
+        public async Task<ActionResult> AddStatus(UserStatus Status)
+        {   
+            var userId = User.Identity.GetUserId();
+            var dataContext = new ApplicationDbContext();
+            var userRepo = new UserRepository<UserStatus>(dataContext);
+            userRepo.AddStatus(Status, userId, dataContext);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
@@ -63,22 +51,5 @@ namespace Veidibokin.Controllers
 
 			return View();
 		}
-
-	    public void insertStatus(UserStatus status)
-	    {
-	        using (var dataContext = new ApplicationDbContext())
-	        {
-                var newStatus = new UserStatus()
-                {
-                    statusText = status.statusText,
-                    isPublic = true,
-                    dateInserted = DateTime.Now,
-                    userId = User.Identity.GetUserId()
-                };
-
-	            dataContext.UserStatuses.Add(newStatus);
-	            dataContext.SaveChanges();
-	        }
-	    }
 	}
 }

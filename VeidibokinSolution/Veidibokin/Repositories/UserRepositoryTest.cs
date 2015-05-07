@@ -18,12 +18,14 @@ namespace Veidibokin.Repositories
             {
                 var userStatusRepository = new UserRepository<UserStatus>(dataContext);
 
-                UserStatus newStatus = new UserStatus();
+                var newStatus = new UserStatus()
+                {
+                    statusText = "BLABLABLABLA",
+                    isPublic = true,
+                    dateInserted = DateTime.Now,
+                    userId = "83fcec4c-7340-4f13-8464-09237ffe5aa2"
+                };
 
-                newStatus.statusText = "TYPPI";
-                newStatus.userId = "83fcec4c-7340-4f13-8464-09237ffe5aa2";
-                newStatus.dateInserted = DateTime.Now;
-                newStatus.isPublic = true;
                 userStatusRepository.Insert(newStatus);
 
                 //Debug.WriteLine(userStatusRepository.GetAll());
