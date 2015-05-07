@@ -14,12 +14,12 @@
         <section>
             
           @* @using (Html.BeginForm("NewUserStatus", "Content"))*@
-           {
+          @* { *@
             <input type="hidden" name="userStatusID" value="" />
                 <div class="form-horizontal">
                     <label class="sr-only" for="reviewtext">UserStatus</label>
                     <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
-                    
+                </div>  
                     <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
                     <select multiple>
                         <option value="hopur1">Hopur1</option>
@@ -28,10 +28,12 @@
                         <option value="hopur4">Hopur4</option>
                     </select>
                         -->
+                    <br />
+                <div>
                     <button type="submit" class="btn btn-primary">Birta</button>
                 </div>
                 @Html.ValidationSummary(false)
-            }
+            @* } *@
         </section>
         <section>
             <h4>Nýjustu færslurnar</h4>
