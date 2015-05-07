@@ -17,7 +17,6 @@ namespace Veidibokin.Models
         [ForeignKey("Status")]
         public int statusID { get; set; }
         public string comment { get; set; }
-        public int type { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual UserStatus Status { get; set; }

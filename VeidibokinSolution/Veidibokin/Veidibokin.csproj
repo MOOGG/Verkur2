@@ -167,6 +167,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505071110358_Initial.cs" />
+    <Compile Include="Migrations\201505071110358_Initial.Designer.cs">
+      <DependentUpon>201505071110358_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505071112036_test.cs" />
+    <Compile Include="Migrations\201505071112036_test.Designer.cs">
+      <DependentUpon>201505071112036_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505071113248_photoID.cs" />
+    <Compile Include="Migrations\201505071113248_photoID.Designer.cs">
+      <DependentUpon>201505071113248_photoID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
@@ -339,6 +351,17 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505071110358_Initial.resx">
+      <DependentUpon>201505071110358_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505071112036_test.resx">
+      <DependentUpon>201505071112036_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505071113248_photoID.resx">
+      <DependentUpon>201505071113248_photoID.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

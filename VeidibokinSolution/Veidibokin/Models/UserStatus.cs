@@ -17,10 +17,13 @@ namespace Veidibokin.Models
         [ForeignKey("User")]
         public string userId { get; set; }
         [ForeignKey("Photo")]
-        public int photoId { get; set; }
+        public int? photoId { get; set; }
+        [ForeignKey("Catch")]
+        public int? catchID { get; set; }
         public bool isPublic { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Photo Photo { get; set; }
+        public virtual Catch Catch { get; set; }
     }
 }
