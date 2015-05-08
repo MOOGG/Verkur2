@@ -14,53 +14,48 @@
 
         <section>
 
-            @* @using (Html.BeginForm("NewUserStatus", "Content"))*@
-            @* { *@
-            <input type="hidden" name="userStatusID" value=""/>
-            <div class="form-horizontal">
-                <label class="sr-only" for="reviewtext">UserStatus</label>
-                <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
-            </div>
             <!-- Hvað á að vera í þessu BeginForm ?? -->
+            <div class="statusContainer">
             @using (Html.BeginForm("PostStatus", "Home"))
             {
-                @Html.TextBoxFor(m => m.statusText, new {@class = "form-control"})
+                @Html.TextBoxFor(m => m.statusText, new { @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
 
                 @Html.HiddenFor(m => m.userId)
                 <input class="btn btn-success" id="submit" type="submit" value="Submit" />
             }
-            <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
-            <select multiple>
-                <option value="hopur1">Hopur1</option>
-                <option value="hopur2">Hopur2</option>
-                <option value="hopur3">Hopur3</option>
-                <option value="hopur4">Hopur4</option>
-            </select>
+            </div>
+    <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
+    <select multiple>
+        <option value="hopur1">Hopur1</option>
+        <option value="hopur2">Hopur2</option>
+        <option value="hopur3">Hopur3</option>
+        <option value="hopur4">Hopur4</option>
+    </select>
 
-            <br/>
-            <div>
-                <input type="submit" class="btn btn-primary"></input>
-            </div>
-            -->
-            @Html.ValidationSummary(false)
-            <br />
-            <div>
-                <img src="/Content/Images/worm.png" alt="Missing worm" height="50" width="40" />
-                <img src="/Content/Images/worm1.png" alt="Missing worm1" height="50" width="40" />
-                <img src="/Content/Images/worm2.png" alt="Missing worm2" height="50" width="50" />
-            </div>
-            <br />
-            @Html.ValidationSummary(false)
-            @* } *@
-        </section>
-        <section>
-            <h4>Nýjustu færslurnar</h4>
-            @* @foreach (var Status in Model.UserStatus)
+    <br/>
+    <div>
+        <input type="submit" class="btn btn-primary"></input>
+    </div>
+    -->
+    @Html.ValidationSummary(false)
+    <br />
+    <div>
+        <img src="/Content/Images/worm.png" alt="Missing worm" height="50" width="40" />
+        <img src="/Content/Images/worm1.png" alt="Missing worm1" height="50" width="40" />
+        <img src="/Content/Images/worm2.png" alt="Missing worm2" height="50" width="50" />
+    </div>
+    <br />
+    @Html.ValidationSummary(false)
+    @* } *@
+    </section>
+    <section>
+        <h4>Nýjustu færslurnar</h4>
+        @* @foreach (var Status in Model.UserStatus)
             {
                 <p>@review.Username | @review.Text</p>
             }*@
-        </section>
-    </div>
+    </section>
+</div>
     <div class="col-md-4">
         <!-- tæint "div, MH"-->
     </div>

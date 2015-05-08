@@ -16,9 +16,6 @@ namespace Veidibokin.Controllers
         [AllowAnonymous]
 		public ActionResult Index()
         {
-            //var testRepo = new UserRepositoryTest();
-            //testRepo.QueryUserName();
-
 			return View();
 		}
 
@@ -30,9 +27,6 @@ namespace Veidibokin.Controllers
 
             var myStatusRepo = new StatusRepository();
             myStatusRepo.StatusToDB(status, userId);
-            /*var dataContext = new ApplicationDbContext();
-            var userRepo = new UserRepository<UserStatus>(dataContext);
-            userRepo.AddStatus(Status, userId, dataContext);*/
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");

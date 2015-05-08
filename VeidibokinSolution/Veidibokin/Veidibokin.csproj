@@ -202,7 +202,6 @@
     <Compile Include="Repositories\ParentRepository.cs" />
     <Compile Include="Repositories\StatusRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\UserRepositoryTest.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
