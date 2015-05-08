@@ -4,30 +4,45 @@
     ViewBag.Title = "Home Page";
 }
 <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
+
 <div>
     <img src="/Content/Images/logo.jpg" alt="Missing logo" />
 </div>
 <hr />
 <div class="row">
-    <div class="col-md-4"> 
-        
+    <div class="col-md-4">
+
         <section>
-            
-          @* @using (Html.BeginForm("NewUserStatus", "Content"))*@
-          @* { *@
-            <input type="hidden" name="userStatusID" value="" />
-                <div class="form-horizontal">
-                    <label class="sr-only" for="reviewtext">UserStatus</label>
-                    <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
-                </div>  
-                    <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
-                    <select multiple>
-                        <option value="hopur1">Hopur1</option>
-                        <option value="hopur2">Hopur2</option>
-                        <option value="hopur3">Hopur3</option>
-                        <option value="hopur4">Hopur4</option>
-                    </select>
-                        -->
+
+            @* @using (Html.BeginForm("NewUserStatus", "Content"))*@
+            @* { *@
+            <input type="hidden" name="userStatusID" value=""/>
+            <div class="form-horizontal">
+                <label class="sr-only" for="reviewtext">UserStatus</label>
+                <textarea class="UserStatus" id="UserStatus" name="UserStatus" placeholder="Hvað liggur þér á hjarta?"></textarea>
+            </div>
+            <!-- Hvað á að vera í þessu BeginForm ??? -->
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                @Html.TextBoxFor(m => m.statusText, new {@class = "form-control"})
+
+                @Html.HiddenFor(m => m.userId)
+                <input type="submit" class="btn btn-success" value="Skrá innlegg" />
+            }
+            <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
+            <select multiple>
+                <option value="hopur1">Hopur1</option>
+                <option value="hopur2">Hopur2</option>
+                <option value="hopur3">Hopur3</option>
+                <option value="hopur4">Hopur4</option>
+            </select>
+
+            <br/>
+            <div>
+                <input type="submit" class="btn btn-primary"></input>
+            </div>
+                -->
+            @Html.ValidationSummary(false)
                     <br />
                 <div>
                     <img src="/Content/Images/worm.png" alt="Missing worm" height="50" width="40" />
@@ -35,9 +50,6 @@
                     <img src="/Content/Images/worm2.png" alt="Missing worm2" height="50" width="50" />
                 </div>
                     <br />
-                <div>
-                    <button type="submit" class="btn btn-primary">Birta</button>
-                </div>
                 @Html.ValidationSummary(false)
             @* } *@
         </section>
@@ -49,10 +61,10 @@
             }*@
         </section>
     </div>
-    <div class="col-md-4"> 
+    <div class="col-md-4">
         <!-- tæint "div, MH"-->
     </div>
-    <div class="col-md-4"> 
+    <div class="col-md-4">
         <!-- tómt "div", MH -->
     </div>
 </div>
