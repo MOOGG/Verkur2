@@ -23,15 +23,16 @@ namespace Veidibokin.Controllers
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddStatus(UserStatus Status)
-        {   
+        public ActionResult PostStatus(FormCollection collection)
+        {
+            string status = collection.Get("statusText");
             var userId = User.Identity.GetUserId();
-            var dataContext = new ApplicationDbContext();
+
+            var myStatusRepo = new StatusRepository();
+            myStatusRepo.StatusToDB(status, userId);
+            /*var dataContext = new ApplicationDbContext();
             var userRepo = new UserRepository<UserStatus>(dataContext);
-            userRepo.AddStatus(Status, userId, dataContext);
+            userRepo.AddStatus(Status, userId, dataContext);*/
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");

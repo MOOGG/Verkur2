@@ -40,24 +40,25 @@ namespace Veidibokin.Repositories
             DbSet.Remove(entity);
         }
 
-        public void AddStatus(UserStatus text, string userID, ApplicationDbContext context)
+        /*public void StatusToDB(string status, string thisuserid)
         {
-           // using (var dataContext = new ApplicationDbContext())
-            
-                var userStatusRepository = new UserRepository<UserStatus>(context);
+            //using (var dataContext = new ApplicationDbContext())
+            //{
+                //var userStatusRepository = new UserRepository<UserStatus>(dataContext);
 
                 var newStatus = new UserStatus()
                 {
-                    statusText = text.statusText,
+                    statusText = status,
                     isPublic = true,
                     dateInserted = DateTime.Now,
-                    userId = userID
+                    userId = thisuserid
                 };
 
                 userStatusRepository.Insert(newStatus);
+
                 //Debug.WriteLine(userStatusRepository.GetAll());
-                context.SaveChanges();
-            
-        }
+                dataContext.SaveChanges();
+            //}
+        }*/
     }
 }
