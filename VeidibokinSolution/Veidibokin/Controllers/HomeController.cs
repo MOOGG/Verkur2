@@ -33,6 +33,19 @@ namespace Veidibokin.Controllers
             //return View("Index");
         }
 
+	    public ActionResult GetStatus()
+	    {
+	        var myStatusRepo = new StatusRepository();
+
+	        var list = new List<UserStatus>();
+	        var userId = User.Identity.GetUserId();
+
+	        list = myStatusRepo.ReturnUserStatuses(userId);
+
+            // finna út hvaða view á að vera hér !
+	        return View("Index", "Home");
+	    }
+
 		public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";

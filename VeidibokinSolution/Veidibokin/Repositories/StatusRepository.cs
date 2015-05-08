@@ -42,7 +42,6 @@ namespace Veidibokin.Repositories
                 // þarf að query-a úr statusRepo.GetAll() alla þá sem statusa þar sem id er == userId
 
                 returnList = statusRepo.GetAll().ToList();
-                // muna að gera .ToList() í lokinn
             }
             return returnList;
         }
