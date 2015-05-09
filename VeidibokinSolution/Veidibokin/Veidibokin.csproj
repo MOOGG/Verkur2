@@ -184,6 +184,7 @@
     <Compile Include="Models\BaitType.cs" />
     <Compile Include="Models\Catch.cs" />
     <Compile Include="Models\Element.cs" />
+    <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\FishType.cs" />
     <Compile Include="Models\Group.cs" />

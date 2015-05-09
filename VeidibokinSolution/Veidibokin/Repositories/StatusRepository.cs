@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,20 +31,41 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<UserStatus> ReturnUserStatuses(string userId)
+        public List<Feed> ReturnUserStatuses(string userId)
         {
-            var returnList = new List<UserStatus>();
+            var returnList = new List<Feed>();
 
             using (var dataContext = new ApplicationDbContext())
             {
-                var statusRepo = new UserRepository<UserStatus>(dataContext);
+                //var statusRepo = new UserRepository<Feed>(dataContext);
 
-                // búa til list breytu
-                // þarf að query-a úr statusRepo.GetAll() alla þá sem statusa þar sem id er == userId
+                var Following = (from f in dataContext.UserFollowers
+                                 where f.followerID == userId
+                                 select f.userID);
 
-                returnList = statusRepo.GetAll().ToList();
+                var statuses = (from status in dataContext.UserStatuses
+                                where (Following.Contains(status.userId) || status.userId == userId)
+                                orderby status.dateInserted descending
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+
+                var fishfeed = (from users in dataContext.Users
+                                join status in statuses on users.Id equals status.userId
+                                select new { fullname = users.fullName, status = status.status, date = status.date });
+                
+                foreach (var item in fishfeed)
+                {
+                    returnList.Add(new Feed()
+                    {
+                        fullName = item.fullname,
+                        statusText = item.status,
+                        dateInserted = item.date
+                    });
+                } 
+
             }
             return returnList;
         }
+
+        //public List<UserStatus> returnList { get; set; }
     }
 }

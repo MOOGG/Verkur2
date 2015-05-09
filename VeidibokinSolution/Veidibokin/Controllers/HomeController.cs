@@ -20,7 +20,7 @@ namespace Veidibokin.Controllers
         {
             var myStatusRepo = new StatusRepository();
 
-            var statusList = new List<UserStatus>();
+            var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
 
             statusList = myStatusRepo.ReturnUserStatuses(userId);
