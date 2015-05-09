@@ -31,14 +31,12 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<Feed> ReturnUserStatuses(string userId)
+        public List<Feed> ReturnFeedStatuses(string userId)
         {
             var returnList = new List<Feed>();
 
             using (var dataContext = new ApplicationDbContext())
             {
-                //var statusRepo = new UserRepository<Feed>(dataContext);
-
                 var Following = (from f in dataContext.UserFollowers
                                  where f.followerID == userId
                                  select f.userID);
@@ -65,7 +63,5 @@ namespace Veidibokin.Repositories
             }
             return returnList;
         }
-
-        //public List<UserStatus> returnList { get; set; }
     }
 }

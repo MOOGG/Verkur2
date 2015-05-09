@@ -23,7 +23,7 @@ namespace Veidibokin.Controllers
             var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
 
-            statusList = myStatusRepo.ReturnUserStatuses(userId);
+            statusList = myStatusRepo.ReturnFeedStatuses(userId);
 
             //ViewData["StatusList"] = statusList;
 
