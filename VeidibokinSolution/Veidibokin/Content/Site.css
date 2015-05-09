@@ -33,5 +33,10 @@ select
 .center {
   text-align:center;
 }
+#list-no-style
+{
+    list-style-type: none;
+}
+ 
 
 
