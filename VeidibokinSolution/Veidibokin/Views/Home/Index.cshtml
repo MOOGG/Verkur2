@@ -14,9 +14,26 @@
         <div class="col-md-4">
             <section>
 
-                <!-- Hvað á að vera í þessu BeginForm ?? -->
+
+
+
+
+                <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
+                Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi 
+                    þar niður sem IEnumerable týpu  *************************** -->
+
+
+
+
+
                 <div class="statusContainer">
-                
+                    <!-- using (Html.BeginForm("PostStatus", "Home"))
+                         {
+                             Html.TextBoxFor(m => m.statusText, new {class = "UserStatus", id = "UserStatus", name = "UserStatus", placeholder = "Hvað liggur þér á hjarta?"})
+
+                             Html.HiddenFor(m => m.userId)
+                             <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
+                         }-->
                 </div>
                 <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
                 <select multiple>
