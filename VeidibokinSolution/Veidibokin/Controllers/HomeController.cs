@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -57,6 +58,19 @@ namespace Veidibokin.Controllers
             return RedirectToAction("Index", "Home");
             //return View("Index");
         }
+
+	    [HttpPost]
+	    [Authorize]
+	    [ValidateAntiForgeryToken]
+	    public async Task<ActionResult> PostPicture(UserStatusViewModel model)
+	    {
+
+	        if (model.statusPicture != null)
+	        {
+	            
+	        }
+	        return null;
+	    }
 
 		public ActionResult About()
 		{

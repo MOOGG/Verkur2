@@ -10,5 +10,6 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public string statusText { get; set; }
         public System.DateTime dateInserted { get; set; }
+        public byte[] statusPicture { get; set; }
     }
 }

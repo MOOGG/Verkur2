@@ -10,18 +10,21 @@ namespace Veidibokin.Repositories
 {
     public class StatusRepository
     {
+        // hér þarf að bæta við byte[] picture sem argument
         public void StatusToDB(string status, string thisuserid)
         {
             using (var dataContext = new ApplicationDbContext())
             {
                 var myRepo = new UserRepository<UserStatus>(dataContext);
 
+                // held að það þurfi ekkert að tjekka hvort picture sé null því ef null þá verður statusPicture = null
                 var newStatus = new UserStatus()
                 {
                     statusText = status,
                     isPublic = true,
                     dateInserted = DateTime.Now,
-                    userId = thisuserid
+                    userId = thisuserid,
+
                 };
 
                 myRepo.Insert(newStatus);
