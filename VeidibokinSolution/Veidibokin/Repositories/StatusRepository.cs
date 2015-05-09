@@ -44,12 +44,12 @@ namespace Veidibokin.Repositories
                                  select f.userID);
 
                 var statuses = (from status in dataContext.UserStatuses
-                                where (Following.Contains(status.userId) || status.userId == userId)
-                                orderby status.dateInserted descending
+                                where ((Following.Contains(status.userId) & status.isPublic == true) || status.userId == userId)
                                 select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
 
                 var fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
+                                orderby status.date descending
                                 select new { fullname = users.fullName, status = status.status, date = status.date });
                 
                 foreach (var item in fishfeed)

@@ -50,7 +50,12 @@
                 @foreach (var data in Model)
                 {
                     <li class="well" id="list-no-style"> 
-                        <div>
+                        <div>                         
+                            <b>@data.fullName</b>
+                            <span style="float: right">
+                                @data.dateInserted
+                            </span>
+                            <br />
                             @data.statusText
                         </div>
                         <br />
