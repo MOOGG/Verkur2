@@ -42,6 +42,7 @@ namespace Veidibokin.Controllers
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
         public ActionResult PostStatus(FormCollection collection)
         {
+            // væri ekki best að koma picture hér inn... en getur input þá verið FormCollection ?
             string status = collection.Get("myFeedList");
 
             if (String.IsNullOrEmpty(status))
@@ -59,6 +60,7 @@ namespace Veidibokin.Controllers
             //return View("Index");
         }
 
+        // gæti líka gert nýtt fall sem sér sérstaklega um myndina.... eins og þetta hér f neðan
 	    [HttpPost]
 	    [Authorize]
 	    [ValidateAntiForgeryToken]
