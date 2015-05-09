@@ -1,65 +1,63 @@
-﻿@model Veidibokin.Models.UserStatus
+﻿<!--@using Veidibokin.Models-->
+@model IEnumerable<Veidibokin.Models.UserStatus>
 
-@{
-    ViewBag.Title = "Home Page";
-}
-<!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
 
-<div>
-    <img src="/Content/Images/logo.jpg" alt="Missing logo" />
-</div>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    @{
+        ViewBag.Title = "Home Page";
+    }
+    <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
 
-        <section>
-
-            <!-- Hvað á að vera í þessu BeginForm ?? -->
-            <div class="statusContainer">
-            @using (Html.BeginForm("PostStatus", "Home"))
-            {
-                @Html.TextBoxFor(m => m.statusText, new { @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-
-                @Html.HiddenFor(m => m.userId)
-                <input class="btn btn-success" id="submit" type="submit" value="Submit" />
-            }
-            </div>
-    <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
-    <select multiple>
-        <option value="hopur1">Hopur1</option>
-        <option value="hopur2">Hopur2</option>
-        <option value="hopur3">Hopur3</option>
-        <option value="hopur4">Hopur4</option>
-    </select>
-
-    <br/>
     <div>
-        <input type="submit" class="btn btn-primary"></input>
+        <img src="/Content/Images/logo.jpg" alt="Missing logo" />
     </div>
-    -->
-    @Html.ValidationSummary(false)
-    <br />
-    <div>
-        <img src="/Content/Images/worm.png" alt="Missing worm" height="50" width="40" />
-        <img src="/Content/Images/worm1.png" alt="Missing worm1" height="50" width="40" />
-        <img src="/Content/Images/worm2.png" alt="Missing worm2" height="50" width="50" />
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+
+            <section>
+
+                <!-- Hvað á að vera í þessu BeginForm ?? -->
+                <div class="statusContainer">
+                
+                </div>
+                <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
+                <select multiple>
+                    <option value="hopur1">Hopur1</option>
+                    <option value="hopur2">Hopur2</option>
+                    <option value="hopur3">Hopur3</option>
+                    <option value="hopur4">Hopur4</option>
+                </select>
+
+                <br/>
+                <div>
+                    <input type="submit" class="btn btn-primary"></input>
+                </div>
+                -->
+                @Html.ValidationSummary(false)
+                <br/>
+                <div>
+                    <img src="/Content/Images/worm.png" alt="Missing worm" height="50" width="40"/>
+                    <img src="/Content/Images/worm1.png" alt="Missing worm1" height="50" width="40"/>
+                    <img src="/Content/Images/worm2.png" alt="Missing worm2" height="50" width="50"/>
+                </div>
+                <br/>
+                @Html.ValidationSummary(false)
+                @* } *@
+            </section>
+
+                <h4>Nýjustu færslurnar</h4>
+
+                    <ul>
+                        @foreach (var data in Model)
+                        {
+                            <li>@data.statusText</li>
+                        }
+                    </ul>
+        </div>
+        <div class="col-md-4">
+            <!-- tæint "div, MH"-->
+        </div>
+        <div class="col-md-4">
+            <!-- tómt "div", MH -->
+        </div>
     </div>
-    <br />
-    @Html.ValidationSummary(false)
-    @* } *@
-    </section>
-    <section>
-        <h4>Nýjustu færslurnar</h4>
-        @* @foreach (var Status in Model.UserStatus)
-            {
-                <p>@review.Username | @review.Text</p>
-            }*@
-    </section>
-</div>
-    <div class="col-md-4">
-        <!-- tæint "div, MH"-->
-    </div>
-    <div class="col-md-4">
-        <!-- tómt "div", MH -->
-    </div>
-</div>
