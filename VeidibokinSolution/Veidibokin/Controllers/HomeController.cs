@@ -18,6 +18,7 @@ namespace Veidibokin.Controllers
         [Authorize]
 		public ActionResult Index()
         {
+
             var myStatusRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
@@ -25,18 +26,22 @@ namespace Veidibokin.Controllers
 
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
 
+            UserStatusViewModel temp = new UserStatusViewModel();
+
+            temp.myFeedList = statusList;
+
             //ViewData["StatusList"] = statusList;
 
             //ViewBag.UserStatuses = statusList;
 
             // finna út hvaða view á að vera hér !
-            return View(statusList);
+            return View(temp);
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
-        public ActionResult PostStatusToDb(FormCollection collection)
+        public ActionResult PostStatus(FormCollection collection)
         {
-            string status = collection.Get("statusText");
+            string status = collection.Get("myFeedList");
 
             if (String.IsNullOrEmpty(status))
             {

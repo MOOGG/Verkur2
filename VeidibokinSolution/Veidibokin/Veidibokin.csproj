@@ -196,6 +196,7 @@
     <Compile Include="Models\StatusComment.cs" />
     <Compile Include="Models\UserFollower.cs" />
     <Compile Include="Models\UserStatus.cs" />
+    <Compile Include="Models\UserStatusViewModel.cs" />
     <Compile Include="Models\Worm.cs" />
     <Compile Include="Models\Zone.cs" />
     <Compile Include="Models\ZoneFollower.cs" />

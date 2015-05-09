@@ -31,7 +31,7 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<Feed> ReturnFeedStatuses(string userId)
+        public List<Feed> ReturnProfilStatuses(string userId)
         {
             var returnList = new List<Feed>();
 
@@ -59,6 +59,39 @@ namespace Veidibokin.Repositories
                         dateInserted = item.date
                     });
                 } 
+
+            }
+            return returnList;
+        }
+
+        public List<Feed> ReturnFeedStatuses(string userId)
+        {
+            var returnList = new List<Feed>();
+
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var Following = (from f in dataContext.UserFollowers
+                                 where f.followerID == userId
+                                 select f.userID);
+
+                var statuses = (from status in dataContext.UserStatuses
+                                where ((Following.Contains(status.userId) & status.isPublic == true) || status.userId == userId)
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+
+                var fishfeed = (from users in dataContext.Users
+                                join status in statuses on users.Id equals status.userId
+                                orderby status.date descending
+                                select new { fullname = users.fullName, status = status.status, date = status.date });
+
+                foreach (var item in fishfeed)
+                {
+                    returnList.Add(new Feed()
+                    {
+                        fullName = item.fullname,
+                        statusText = item.status,
+                        dateInserted = item.date
+                    });
+                }
 
             }
             return returnList;

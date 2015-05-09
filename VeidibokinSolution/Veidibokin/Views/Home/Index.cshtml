@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Veidibokin.Models.Feed>
+﻿@model Veidibokin.Models.UserStatusViewModel
 
 
     @{
@@ -18,13 +18,12 @@
                     þar niður sem IEnumerable týpu  *************************** -->
 
                 <div class="statusContainer">
-                    <!-- using (Html.BeginForm("PostStatus", "Home"))
+                    @using (Html.BeginForm("PostStatus", "Home"))
                          {
-                             Html.TextBoxFor(m => m.statusText, new {class = "UserStatus", id = "UserStatus", name = "UserStatus", placeholder = "Hvað liggur þér á hjarta?"})
+                             @Html.TextBoxFor(m => m.myFeedList, new {@class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
 
-                             Html.HiddenFor(m => m.userId)
                              <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
-                         }-->
+                         }
                 </div>
                 <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
                 <select multiple>
@@ -47,7 +46,7 @@
         <div class="col-md-8">
             <h4>Nýjustu færslurnar</h4>
             <ul>
-                @foreach (var data in Model)
+                @foreach (var data in Model.myFeedList)
                 {
                     <li class="well" id="list-no-style"> 
                         <div>                         
