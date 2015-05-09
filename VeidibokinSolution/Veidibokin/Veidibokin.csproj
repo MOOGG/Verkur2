@@ -179,13 +179,28 @@
     <Compile Include="Migrations\201505071113248_photoID.Designer.cs">
       <DependentUpon>201505071113248_photoID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505092032375_photos.cs" />
+    <Compile Include="Migrations\201505092032375_photos.Designer.cs">
+      <DependentUpon>201505092032375_photos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505092037342_photos2.cs" />
+    <Compile Include="Migrations\201505092037342_photos2.Designer.cs">
+      <DependentUpon>201505092037342_photos2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505092051304_photos3.cs" />
+    <Compile Include="Migrations\201505092051304_photos3.Designer.cs">
+      <DependentUpon>201505092051304_photos3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505092105180_photos4.cs" />
+    <Compile Include="Migrations\201505092105180_photos4.Designer.cs">
+      <DependentUpon>201505092105180_photos4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
     <Compile Include="Models\Catch.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\Feed.cs" />
-    <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\FishType.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupCatch.cs" />
@@ -363,6 +378,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505071113248_photoID.resx">
       <DependentUpon>201505071113248_photoID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505092032375_photos.resx">
+      <DependentUpon>201505092032375_photos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505092037342_photos2.resx">
+      <DependentUpon>201505092037342_photos2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505092051304_photos3.resx">
+      <DependentUpon>201505092051304_photos3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505092105180_photos4.resx">
+      <DependentUpon>201505092105180_photos4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

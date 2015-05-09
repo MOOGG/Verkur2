@@ -22,7 +22,6 @@ namespace Veidibokin.Models
         public double? weight { get; set; }
 
         public virtual Zone Zone { get; set; }
-        public virtual Photo Photo { get; set; }
         public virtual FishType FishType { get; set; }
         public virtual BaitType BaitType { get; set; }
     }

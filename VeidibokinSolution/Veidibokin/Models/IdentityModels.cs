@@ -16,9 +16,8 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public int postalCode { get; set; }
         public string town { get; set; }
-        public int photoID { get; set; }
+        public byte[] photo { get; set; }
         public string gender { get; set; }
-        //public System.DateTime birthday { get; set; } ákveðið að sleppa þessum upplýsingum að sinni
         public string info { get; set; }
  
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -43,7 +42,6 @@ namespace Veidibokin.Models
         public DbSet<ZoneFollower> ZoneFollowers { get; set; }
         public DbSet<UserFollower> UserFollowers { get; set; }
         public DbSet<GroupStatus> GroupStatuses { get; set; }
-        public DbSet<Photo> Photos { get; set; }
         public DbSet<Worm> Worms { get; set; }
         
         // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
