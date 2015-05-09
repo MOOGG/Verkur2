@@ -20,7 +20,7 @@
                 <div class="statusContainer">
                     @using (Html.BeginForm("PostStatus", "Home"))
                          {
-                             @Html.TextBoxFor(m => m.myFeedList, new {@class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
+                             @Html.TextBoxFor(m => m.myFeedList, new {@Value ="", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
 
                              <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
                          }
