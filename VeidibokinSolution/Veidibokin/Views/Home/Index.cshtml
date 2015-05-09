@@ -1,29 +1,29 @@
 ﻿@model Veidibokin.Models.UserStatusViewModel
 
-
     @{
         ViewBag.Title = "Home Page";
     }
     <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
-
     <div>
         <img src="/Content/Images/logo.jpg" alt="Missing logo" />
     </div>
     <hr />
     <div class="row">
-        <div class="col-md-4">
-            <section>
+        <div class="col-md-4">      
                 <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
                 Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi 
                     þar niður sem IEnumerable týpu  *************************** -->
-
                 <div class="statusContainer">
                     @using (Html.BeginForm("PostStatus", "Home"))
-                         {
-                             @Html.TextBoxFor(m => m.myFeedList, new {@Value ="", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
-
-                             <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
-                         }
+                    {
+                        <div>
+                            @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                        </div>
+                        <br />    
+                        <div>
+                           <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
+                        </div>
+                    }
                 </div>
                 <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
                 <select multiple>
@@ -39,36 +39,34 @@
                 </div>
                 -->
                 @* } *@
-            </section>
-
+            
+            
 
         </div>
         <div class="col-md-8">
-            <h4>Nýjustu færslurnar</h4>
-            <ul>
-                @foreach (var data in Model.myFeedList)
-                {
-                    <li class="well" id="list-no-style"> 
-                        <div>                         
-                            <b>@data.fullName</b>
-                            <span style="float: right">
-                                @data.dateInserted
-                            </span>
-                            <br />
-                            @data.statusText
-                        </div>
-                        <br />
-                        <div style="float: right">
-                            <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
-                            <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
-                            <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />
-                        </div>
-                        <br />
-                    </li>
-                }
-            </ul>
-        </div>
-        <div class="col-md-0">
-            <!-- tómt "div", MH -->
+            <h3>Nýjustu færslurnar</h3>
+                
+                    @foreach (var data in Model.myFeedList)
+                    {
+                        <ul class="well" id="list-no-style">
+                            <li>
+                                <div>
+                                    <b>@data.fullName</b>
+                                    <span class="float-right">
+                                        @data.dateInserted
+                                    </span>
+                                    <br />
+                                    <p>@data.statusText</p>
+                                </div>
+                                <br />
+                                <div class="float-right">
+                                    <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
+                                    <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
+                                    <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />
+                                </div>
+                                <br />
+                            </li>
+                        </ul>
+                    }
         </div>
     </div>

@@ -33,10 +33,13 @@ select
 .center {
   text-align:center;
 }
-#list-no-style
-{
+/* Tekur punkta fyrir framan ul burt */
+#list-no-style {
     list-style-type: none;
 }
- 
+/* Flæðir til hægri */
+.float-right {
+    float: right;
+} 
 
 
