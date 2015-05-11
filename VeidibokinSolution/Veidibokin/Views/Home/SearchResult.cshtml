@@ -3,12 +3,26 @@
 @{
     ViewBag.Title = "SearchResult";
 }
-@using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
-{
-    <p>
-        @Html.TextBox("searchString")
-        <input id="searchString" type="submit" value="Leita" />
-    </p>
-    
-    @Html.Partial("SearchPartialview")
-}
+<br />
+<div id="searchform">
+    @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
+    {
+        <p>
+            @Html.TextBox("searchString")
+            <input id="searchString" type="submit" value="Leita" />
+        </p>
+    }
+</div>
+    <div id="results">
+        <table class="row">
+            @foreach (var item in Model.mySearchResultList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.searchResultText)
+                    </td>
+                </tr>
+            }
+        </table>
+        
+    </div>
