@@ -21,8 +21,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <!-- Ég breytti class="btn btn-default" í "btn btn-success", MH -->
-                        <input type="submit" value="Nýskráning" class="btn btn-success" />
+@Html.ActionLink("Nýskráning", "Register", null, new { @class = "btn btn-success" }) 
                     </div>
                 </div>           
                 <div class="form-group">
@@ -51,9 +50,6 @@
                     <div class="col-md-offset-2 col-md-10">
                         <!-- Ég breytti class="btn btn-default" í "btn btn-primary", MH -->
                         <input type="submit" value="Innskrá" class="btn btn-primary" /> 
-                            <span class="help-block">
-                                @Html.ActionLink("Ekki með aðgang? Smelltu hér til að stofna aðgang", "Register")
-                            </span>
                             <span class="help-block">
                                 @* Enable this once you have account confirmation enabled for password reset functionality *@
                                 @Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword")

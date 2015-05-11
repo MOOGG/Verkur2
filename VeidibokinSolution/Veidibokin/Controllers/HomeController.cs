@@ -82,6 +82,21 @@ namespace Veidibokin.Controllers
             }
         }*/
 
+		public ActionResult SearchResult(string searchString)
+		{
+			ApplicationDbContext db = new ApplicationDbContext();
+
+			var name = from n in db.Zones
+							select n;
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				name = name.Where(s => s.zoneName.Contains(searchString));
+			}
+
+			return View(name);
+		}
+
 		public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";

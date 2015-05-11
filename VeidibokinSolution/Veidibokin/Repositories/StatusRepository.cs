@@ -34,7 +34,7 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<Feed> ReturnProfilStatuses(string userId)
+        public List<Feed> ReturnProfileStatuses(string userId)
         {
             var returnList = new List<Feed>();
 

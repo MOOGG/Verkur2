@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Veidibokin.Models.Zone>
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>SearchResult</h2>
+
+<table class="table">
+    <tr>
+        @using (Html.BeginForm("SearchResult", "Home", FormMethod.Get))
+        {
+            <p>
+                @Html.TextBox("searchString")
+                <input type="submit" value="Leita" />
+            </p>
+        }
+        <th>
+            Nafn
+        </th>
+        <th>
+            Lýsing
+        </th>
+    </tr>
+     
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+        
+        </tr>
+    }
+    
+
+</table>
