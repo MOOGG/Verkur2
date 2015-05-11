@@ -4,9 +4,21 @@
         ViewBag.Title = "Home Page";
     }
     <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
-    <div>
-        <img src="/Content/Images/logo.jpg" alt="Missing logo" />
-    </div>
+
+<span>
+    <span>
+        <img src="/Content/Images/_logo.jpg" alt="Missing logo" height="80" width="80" />
+    </span>
+</span>
+<span>
+    <span>
+        @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-danger btn-lg active" })
+    </span>
+    <span>
+        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info btn-lg active" })
+    </span>
+</span>
+
     <hr />
     <div class="row">
         <div class="col-md-4">      
