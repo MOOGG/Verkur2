@@ -89,6 +89,23 @@ namespace Veidibokin.Controllers
 			return View(name);
 		}
 
+        public ActionResult ProfilePage()
+        {
+            var myProfileRepo = new StatusRepository();
+
+            var statusList = new List<Feed>();
+            var userId = User.Identity.GetUserId();
+
+            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+
+            //ViewData["StatusList"] = statusList;
+
+            //ViewBag.UserStatuses = statusList;
+
+            // finna út hvaða view á að vera hér !
+            return View(statusList);
+        }
+
 		public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";
