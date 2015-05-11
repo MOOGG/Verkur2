@@ -44,7 +44,8 @@ namespace Veidibokin.Controllers
             string status = collection.myFeedList[0].statusText.ToString();
             HttpPostedFileBase file = collection.myPic;
             string directory = @"~/Content/Images/";
-            string path = null;
+            string path = null; 
+            string fileName = null;
 
             if (String.IsNullOrEmpty(status))
             {
@@ -53,16 +54,15 @@ namespace Veidibokin.Controllers
 
             if (file != null && file.ContentLength > 0)
             {
-                var img = Path.GetFileName(file.FileName);
-                path = Path.Combine(Server.MapPath(directory),
-                           System.IO.Path.GetFileName(file.FileName));
+                fileName = Path.GetFileName(file.FileName);
+                path = Path.Combine(Server.MapPath(directory), fileName);
                 file.SaveAs(path);
             }
 
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId, path);
+            myStatusRepo.StatusToDB(status, userId, fileName);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
