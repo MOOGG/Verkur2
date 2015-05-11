@@ -48,14 +48,16 @@
 
         </div>
         <div class="col-md-8">
-            <h3>Nýjustu færslurnar</h3>
+            <h3>Nýjustu færslurnar þínar og þeirra sem þú fylgir</h3>
                 
                     @foreach (var data in Model.myFeedList)
                     {
                         <ul class="well" id="list-no-style">
                             <li>
                                 <div>
-                                    <b>@data.fullName</b>
+                                    <b> 
+                                        @Html.ActionLink(data.fullName, "ProfilePage")
+                                    </b>
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>
