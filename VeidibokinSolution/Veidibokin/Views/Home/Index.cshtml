@@ -14,16 +14,13 @@
                 Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi 
                     þar niður sem IEnumerable týpu  *************************** -->
                 <div class="statusContainer">
-                    @using (Html.BeginForm("PostStatus", "Home"))
+                    @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
                     {
                         <div>
-                            @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @id = "UserStatus", @style="width: 300px", @placeholder = "Hvað liggur þér á hjarta?"})
-                        </div>
-                        <br />
-                        <div>
-                            @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
-                        </div>
-                        <br />    
+                            @Html.TextBoxFor(m => m.myFeedList[0].statusText, new {@Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
+                            <label for="photo"></label>
+                            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+                        </div>   
                         <div>
                            <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
                         </div>
@@ -48,18 +45,28 @@
 
         </div>
         <div class="col-md-8">
-            <h3>Nýjustu færslurnar</h3>
+            <h3>Nýjustu færslurnar þínar og þeirra sem þú fylgir</h3>
                 
                     @foreach (var data in Model.myFeedList)
                     {
                         <ul class="well" id="list-no-style">
                             <li>
                                 <div>
+<<<<<<< HEAD
+                                      
                                     <b>@data.fullName</b>
+=======
+                                    <b> 
+                                        @Html.ActionLink(data.fullName, "ProfilePage")
+                                    </b>
+>>>>>>> 501b62295886ac88f2ef016fd835848656adabe1
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>
-                                    
+                                    @if (data.statusPicture != null)
+                                    {
+                                        <img src="@Url.Content("~/Content/Images/AP6745.JPG")" alt="Image" />
+                                    }
                                     <div>
                                         @data.statusText
                                     </div>
