@@ -12,7 +12,7 @@ namespace Veidibokin.Repositories
     public class StatusRepository
     {
         // hér þarf að bæta við byte[] picture sem argument
-        public void StatusToDB(string status, string thisuserid, byte[] statusPicture)
+        public void StatusToDB(string status, string thisuserid, string statusPicture)
         {
             using (var dataContext = new ApplicationDbContext())
             {
@@ -34,8 +34,8 @@ namespace Veidibokin.Repositories
                 dataContext.SaveChanges();
             }
         }
-
-        public byte[] returnImageFromDb(string userId)
+        
+        /*public byte[] returnImageFromDb(string userId)
         {
             byte[] returnPic = null;
             using (var dataContext = new ApplicationDbContext())
@@ -45,7 +45,7 @@ namespace Veidibokin.Repositories
 
             }
             return returnPic;
-        }
+        }*/
 
         public List<Feed> ReturnProfileStatuses(string userId)
         {
@@ -92,12 +92,12 @@ namespace Veidibokin.Repositories
 
                 var statuses = (from status in dataContext.UserStatuses
                                 where ((Following.Contains(status.userId) & status.isPublic == true) || status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
                 var fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new { fullname = users.fullName, status = status.status, date = status.date });
+                                select new { fullname = users.fullName, status = status.status, date = status.date, photo = status.photo });
 
                 foreach (var item in fishfeed)
                 {
@@ -105,7 +105,8 @@ namespace Veidibokin.Repositories
                     {
                         fullName = item.fullname,
                         statusText = item.status,
-                        dateInserted = item.date
+                        dateInserted = item.date,
+                        statusPicture = item.photo
                     });
                 }
             }

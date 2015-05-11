@@ -43,9 +43,8 @@ namespace Veidibokin.Controllers
         {
             string status = collection.myFeedList[0].statusText.ToString();
             HttpPostedFileBase file = collection.myPic;
-            byte[] thisPicture = null;
             string directory = @"~/Content/Images/";
-            string path;
+            string path = null;
 
             if (String.IsNullOrEmpty(status))
             {
@@ -63,44 +62,53 @@ namespace Veidibokin.Controllers
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId, thisPicture);
+            myStatusRepo.StatusToDB(status, userId, path);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
             //return View("Index");
         }
 
-        /*public FileContentResult getImage(int statusId)
-        {
-            var statusRepo = new StatusRepository();
-            //statusRepo.
-            //byte[] byteArray = UserStatuses.
-            if (byteArray != null)
+		public ActionResult SearchResult(string searchString)
+		{
+            SearchResultViewModel empty = new SearchResultViewModel();
+            empty.mySearchResultList = new List<SearchResult>();
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return new FileContentResult(byteArray, "image/jpeg");
+                var mySearchRepo = new SearchRepository();
+
+                var searchResultList = new List<SearchResult>();
+            
+                searchResultList = mySearchRepo.ReturnSearchResult(searchString);
+
+                SearchResultViewModel temp = new SearchResultViewModel();
+
+                temp.mySearchResultList = searchResultList;
+               
+                return View(temp);
             }
             else
             {
-                return null;
+                return View(empty);
             }
-
-           
-        }*/
-
-		public ActionResult SearchResult(string searchString)
-		{
-			ApplicationDbContext db = new ApplicationDbContext();
-
-			var name = from n in db.Zones
-							select n;
-
-			if (!String.IsNullOrEmpty(searchString))
-			{
-				name = name.Where(s => s.zoneName.Contains(searchString));
-			}
-
-			return View(name);
 		}
+
+        public ActionResult ProfilePage()
+        {
+            var myProfileRepo = new StatusRepository();
+
+            var statusList = new List<Feed>();
+            var userId = User.Identity.GetUserId();
+
+            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+
+            //ViewData["StatusList"] = statusList;
+
+            //ViewBag.UserStatuses = statusList;
+
+            // finna út hvaða view á að vera hér !
+            return View(statusList);
+        }
 
 		public ActionResult About()
 		{

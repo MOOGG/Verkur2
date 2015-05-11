@@ -57,7 +57,10 @@
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>
-                                    
+                                    @if (data.statusPicture != null)
+                                    {
+                                        <img src="@Url.Content("~/Content/Images/AP6745.JPG")" alt="Image" />
+                                    }
                                     <div>
                                         @data.statusText
                                     </div>
