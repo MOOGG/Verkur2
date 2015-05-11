@@ -56,8 +56,8 @@ namespace Veidibokin.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 WebImage img = new WebImage(file.InputStream);
-                if (img.Width > 200)
-                    img.Resize(200, 200);
+                if (img.Width > 300)
+                    img.Resize(300, 300);
                 fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
                 path = Path.Combine(Server.MapPath(directory), fileName);
                 img.Save(path);
