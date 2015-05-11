@@ -73,6 +73,7 @@ namespace Veidibokin.Controllers
             //return View("Index");
         }
 
+		[Authorize]
 		public ActionResult SearchResult(string searchString)
 		{
             SearchResultViewModel empty = new SearchResultViewModel();
