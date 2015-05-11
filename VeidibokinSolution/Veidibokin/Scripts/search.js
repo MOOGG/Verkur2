@@ -1,15 +1,21 @@
 ﻿$(function () {
-    $('#searchbutton').click(function () {
-        console.log("clicked");
+    $("#searchform").on('submit', 'form', function () {
+        var theForm = $(this);
         $.ajax({
-            url: $(this).data('url'),
-            type: 'GET',
-            cache: false,
-            success: function (result) {
-                console.log("Success", result);
-                $('#msmqpartial').html(result);
-            }
+            type: 'POST',
+            url: theForm.attr('action'),
+            data: theForm.serialize(),
+        }).done(function (result) {
+
+            var resultHtml = $(result).find('#results');
+
+            $('#results').replaceWith(resultHtml);
+
+        }).fail(function () {
+            alert('Villa kom upp!');
         });
+
         return false;
     });
+
 });
