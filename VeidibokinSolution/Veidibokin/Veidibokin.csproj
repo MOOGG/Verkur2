@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201505110956571_ZoneName.Designer.cs">
       <DependentUpon>201505110956571_ZoneName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505111454309_PhotosToString.cs" />
+    <Compile Include="Migrations\201505111454309_PhotosToString.Designer.cs">
+      <DependentUpon>201505111454309_PhotosToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
@@ -213,6 +217,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\SearchResultViewModel.cs" />
     <Compile Include="Models\StatusComment.cs" />
     <Compile Include="Models\UserFollower.cs" />
     <Compile Include="Models\UserStatus.cs" />
@@ -323,6 +328,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -361,6 +367,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Home\SearchResult.cshtml" />
+    <Content Include="Views\Home\SearchPartialview.cshtml" />
     <Content Include="Views\Home\ProfilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505110956571_ZoneName.resx">
       <DependentUpon>201505110956571_ZoneName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505111454309_PhotosToString.resx">
+      <DependentUpon>201505111454309_PhotosToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,7 +16,7 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public int postalCode { get; set; }
         public string town { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
         public string gender { get; set; }
         public string info { get; set; }
  

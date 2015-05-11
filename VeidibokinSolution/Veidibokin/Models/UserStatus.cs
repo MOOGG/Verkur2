@@ -18,7 +18,7 @@ namespace Veidibokin.Models
         public string statusText { get; set; }
         [ForeignKey("User")]
         public string userId { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
         [ForeignKey("Catch")]
         public int? catchID { get; set; }
         public bool isPublic { get; set; }
