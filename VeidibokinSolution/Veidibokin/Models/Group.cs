@@ -10,7 +10,7 @@ namespace Veidibokin.Models
     public class Group
     {
         public int ID { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
         [StringLength(30)]
         [Required]
         public string groupName { get; set; }

@@ -5,10 +5,8 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
-    public class SearchResult
+    public class SearchResultViewModel
     {
-        public string searchResultText { get; set; }
-        public int type { get; set; }
-
+        public List<SearchResult> mySearchResultList { get; set; }
     }
 }

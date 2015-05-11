@@ -9,7 +9,7 @@ namespace Veidibokin.Models
     public class Zone
     {
         public int ID { get; set; }
-        public byte[] photo { get; set; }
+        public string photo { get; set; }
         [StringLength(50)]
         [Required]
         public string zoneName { get; set; }
