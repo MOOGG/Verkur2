@@ -83,7 +83,7 @@ namespace Veidibokin.Controllers
 
 			if (!String.IsNullOrEmpty(searchString))
 			{
-				name = name.Where(s => s.name.Contains(searchString));
+				name = name.Where(s => s.zoneName.Contains(searchString));
 			}
 
 			return View(name);

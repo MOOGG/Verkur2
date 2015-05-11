@@ -12,7 +12,7 @@ namespace Veidibokin.Models
         public byte[] photo { get; set; }
         [StringLength(50)]
         [Required]
-        public string name { get; set; }
+        public string zoneName { get; set; }
         public string description { get; set; }
         public string location { get; set; }
     }
