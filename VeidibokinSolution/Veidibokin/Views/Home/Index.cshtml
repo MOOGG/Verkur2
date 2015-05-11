@@ -14,14 +14,15 @@
                 Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi 
                     þar niður sem IEnumerable týpu  *************************** -->
                 <div class="statusContainer">
-                    @using (Html.BeginForm("PostStatus", "Home"))
+                    @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
                     {
                         <div>
                             @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                            <input type="file" name="file" id="file" style="width: 100%;" /> 
                         </div>
                         <br />
                         <div>
-                            @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
+                            <!-- Html.TextBoxFor(m => m.picture, new { type = "file", accept = "image/x-png, image/gif, image/jpeg" }) -->
                         </div>
                         <br />    
                         <div>
@@ -55,6 +56,11 @@
                         <ul class="well" id="list-no-style">
                             <li>
                                 <div>
+                                    @if (data.statusPicture != null)
+                                    {
+                                        <img src="data:image;base64,@System.Convert.ToBase64String(@data.statusPicture)" />
+                                    }
+                                 
                                     <b>@data.fullName</b>
                                     <span class="float-right">
                                         @data.dateInserted

@@ -11,6 +11,8 @@ using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Veidibokin.Models;
 using Veidibokin.Repositories;
+using System.IO;
+using System.Drawing;
 
 namespace Veidibokin.Controllers
 {
@@ -19,7 +21,6 @@ namespace Veidibokin.Controllers
         [Authorize]
 		public ActionResult Index()
         {
-
             var myStatusRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
@@ -40,10 +41,16 @@ namespace Veidibokin.Controllers
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
-        public ActionResult PostStatus(FormCollection collection)
+        // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
+        [HttpPost]
+        public ActionResult PostStatus(FormCollection collection, UserStatusViewModel model)
         {
             // væri ekki best að koma picture hér inn... en getur input þá verið FormCollection ?
             string status = collection.Get("myFeedList");
+
+            MemoryStream target = new MemoryStream();
+            model.picture.InputStream.CopyTo(target);
+            byte[] picture = target.ToArray();
 
             if (String.IsNullOrEmpty(status))
             {
@@ -53,26 +60,27 @@ namespace Veidibokin.Controllers
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId);
+            myStatusRepo.StatusToDB(status, userId, picture);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
             //return View("Index");
         }
 
-        // gæti líka gert nýtt fall sem sér sérstaklega um myndina.... eins og þetta hér f neðan
-	    [HttpPost]
-	    [Authorize]
-	    [ValidateAntiForgeryToken]
-	    public async Task<ActionResult> PostPicture(UserStatusViewModel model)
-	    {
-
-	        if (model.statusPicture != null)
-	        {
-	            
-	        }
-	        return null;
-	    }
+        /*public FileContentResult getImage(int statusId)
+        {
+            var statusRepo = new StatusRepository();
+            //statusRepo.
+            //byte[] byteArray = UserStatuses.
+            if (byteArray != null)
+            {
+                return new FileContentResult(byteArray, "image/jpeg");
+            }
+            else
+            {
+                return null;
+            }
+        }*/
 
 		public ActionResult About()
 		{
