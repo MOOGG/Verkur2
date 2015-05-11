@@ -51,21 +51,17 @@
                     {
                         <ul class="well" id="list-no-style">
                             <li>
-                                <div>
-<<<<<<< HEAD
-                                      
+                                <div>                                      
                                     <b>@data.fullName</b>
-=======
                                     <b> 
                                         @Html.ActionLink(data.fullName, "ProfilePage")
                                     </b>
->>>>>>> 501b62295886ac88f2ef016fd835848656adabe1
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>
                                     @if (data.statusPicture != null)
                                     {
-                                        <img src="@Url.Content("~/Content/Images/AP6745.JPG")" alt="Image" />
+                                        <img src="@Url.Content("~/Content/Images/" + data.statusPicture)" alt="Image" />
                                     }
                                     <div>
                                         @data.statusText
