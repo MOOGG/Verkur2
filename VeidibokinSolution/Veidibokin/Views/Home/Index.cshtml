@@ -17,7 +17,7 @@
                     @using (Html.BeginForm("PostStatus", "Home"))
                     {
                         <div>
-                            @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                            @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @id = "UserStatus", @style="width: 300px", @placeholder = "Hvað liggur þér á hjarta?"})
                         </div>
                         <br />
                         <div>

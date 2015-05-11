@@ -73,21 +73,47 @@ namespace Veidibokin.Controllers
 	        }
 	        return null;
 	    }
-
-		public ActionResult SearchResult(string searchString)
+        //[Authorize]
+        public ActionResult SearchResult(string searchString)
 		{
-			ApplicationDbContext db = new ApplicationDbContext();
+            SearchResultViewModel empty = new SearchResultViewModel();
+            empty.mySearchResultList = new List<SearchResult>();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var mySearchRepo = new SearchRepository();
 
-			var name = from n in db.Zones
-							select n;
+                var searchResultList = new List<SearchResult>();
+            
+                searchResultList = mySearchRepo.ReturnSearchResult(searchString);
 
-			if (!String.IsNullOrEmpty(searchString))
-			{
-				name = name.Where(s => s.zoneName.Contains(searchString));
-			}
+                SearchResultViewModel temp = new SearchResultViewModel();
 
-			return View(name);
+                temp.mySearchResultList = searchResultList;
+               
+                return View(temp);
+            }
+            else
+            {
+                return View(empty);
+            }
 		}
+
+        public ActionResult ProfilePage()
+        {
+            var myProfileRepo = new StatusRepository();
+
+            var statusList = new List<Feed>();
+            var userId = User.Identity.GetUserId();
+
+            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+
+            //ViewData["StatusList"] = statusList;
+
+            //ViewBag.UserStatuses = statusList;
+
+            // finna út hvaða view á að vera hér !
+            return View(statusList);
+        }
 
 		public ActionResult About()
 		{
