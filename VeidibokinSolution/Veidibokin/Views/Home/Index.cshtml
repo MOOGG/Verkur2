@@ -55,7 +55,8 @@
                         <ul class="well" id="list-no-style">
                             <li>
                                 <div>
-                                    <b>@data.fullName</b>
+                                    <!--<b><%=Html.ActionLink(@data.fullName, "ProfilePage", "Home")%></b> -->
+                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { id = "43dd2f77-58a5-4535-8b24-6ef52fa1faf7" },null)</b>
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>

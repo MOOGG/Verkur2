@@ -89,14 +89,14 @@ namespace Veidibokin.Controllers
 			return View(name);
 		}
 
-        public ActionResult ProfilePage()
+        public ActionResult ProfilePage(string id)
         {
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
 
-            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+            statusList = myProfileRepo.ReturnProfileStatuses(userId);
 
             //ViewData["StatusList"] = statusList;
 
