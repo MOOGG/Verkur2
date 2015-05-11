@@ -17,14 +17,10 @@
                     @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
                     {
                         <div>
-                            @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-                            <input type="file" name="file" id="file" style="width: 100%;" /> 
-                        </div>
-                        <br />
-                        <div>
-                            <!-- Html.TextBoxFor(m => m.picture, new { type = "file", accept = "image/x-png, image/gif, image/jpeg" }) -->
-                        </div>
-                        <br />    
+                            @Html.TextBoxFor(m => m.myFeedList[0].statusText, new {@Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
+                            <label for="photo"></label>
+                            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+                        </div>   
                         <div>
                            <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
                         </div>
@@ -56,11 +52,7 @@
                         <ul class="well" id="list-no-style">
                             <li>
                                 <div>
-                                    @if (data.statusPicture != null)
-                                    {
-                                        <img src="data:image;base64,@System.Convert.ToBase64String(@data.statusPicture)" />
-                                    }
-                                 
+                                      
                                     <b>@data.fullName</b>
                                     <span class="float-right">
                                         @data.dateInserted

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -32,35 +33,37 @@ namespace Veidibokin.Controllers
 
             temp.myFeedList = statusList;
 
-            //ViewData["StatusList"] = statusList;
-
-            //ViewBag.UserStatuses = statusList;
-
-            // finna út hvaða view á að vera hér !
             return View(temp);
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
         // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
         [HttpPost]
-        public ActionResult PostStatus(FormCollection collection, UserStatusViewModel model)
+        public ActionResult PostStatus(UserStatusViewModel collection)
         {
-            // væri ekki best að koma picture hér inn... en getur input þá verið FormCollection ?
-            string status = collection.Get("myFeedList");
-
-            MemoryStream target = new MemoryStream();
-            model.picture.InputStream.CopyTo(target);
-            byte[] picture = target.ToArray();
+            string status = collection.myFeedList[0].statusText.ToString();
+            HttpPostedFileBase file = collection.myPic;
+            byte[] thisPicture = null;
+            string directory = @"~/Content/Images/";
+            string path;
 
             if (String.IsNullOrEmpty(status))
             {
                 return View("Error");
             }
 
+            if (file != null && file.ContentLength > 0)
+            {
+                var img = Path.GetFileName(file.FileName);
+                path = Path.Combine(Server.MapPath(directory),
+                           System.IO.Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+            }
+
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId, picture);
+            myStatusRepo.StatusToDB(status, userId, thisPicture);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
@@ -80,6 +83,8 @@ namespace Veidibokin.Controllers
             {
                 return null;
             }
+
+           
         }*/
 
 		public ActionResult SearchResult(string searchString)

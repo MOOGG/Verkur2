@@ -8,6 +8,6 @@ namespace Veidibokin.Models
     public class UserStatusViewModel
     {
         public List<Feed> myFeedList { get; set; }
-        public HttpPostedFileBase picture { get; set; }
+        public HttpPostedFileBase myPic { get; set; }
     }
 }

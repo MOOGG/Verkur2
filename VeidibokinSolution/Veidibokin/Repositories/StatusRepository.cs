@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using Veidibokin.Models;
@@ -32,6 +33,18 @@ namespace Veidibokin.Repositories
                 //Debug.WriteLine(userStatusRepository.GetAll());
                 dataContext.SaveChanges();
             }
+        }
+
+        public byte[] returnImageFromDb(string userId)
+        {
+            byte[] returnPic = null;
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var image = dataContext.UserStatuses.FirstOrDefault(i => i.userId == userId);
+                returnPic = image.photo;
+
+            }
+            return returnPic;
         }
 
         public List<Feed> ReturnProfileStatuses(string userId)
@@ -95,7 +108,6 @@ namespace Veidibokin.Repositories
                         dateInserted = item.date
                     });
                 }
-
             }
             return returnList;
         }
