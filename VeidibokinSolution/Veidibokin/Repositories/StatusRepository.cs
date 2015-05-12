@@ -29,7 +29,7 @@ namespace Veidibokin.Repositories
                 };
 
                 myRepo.Insert(newStatus);
-
+                
                 //Debug.WriteLine(userStatusRepository.GetAll());
                 dataContext.SaveChanges();
             }
