@@ -29,7 +29,7 @@ namespace Veidibokin.Repositories
                 };
 
                 myRepo.Insert(newStatus);
-
+                
                 //Debug.WriteLine(userStatusRepository.GetAll());
                 dataContext.SaveChanges();
             }
@@ -72,12 +72,11 @@ namespace Veidibokin.Repositories
                     {
                         fullName = item.fullname,
                         statusText = item.status,
-                        dateInserted = item.date
+                        dateInserted = item.date,
                     });
-                } 
-
+                }
+                return returnList;
             }
-            return returnList;
         }
 
         public List<Feed> ReturnFeedStatuses(string userId)
