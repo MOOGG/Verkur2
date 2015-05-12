@@ -11,7 +11,6 @@ namespace Veidibokin.Repositories
     {
         IQueryable<Tag> GetAll();
         Tag GetById(int id);
-
         void Insert(Tag entity);
         void Delete(Tag entity);
     }
