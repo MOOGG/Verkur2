@@ -9,6 +9,14 @@
 </div>
 <hr />
 
+@*@if(User Er ekki að followa)*@
+
+    <div>
+        @Html.ActionLink("Fylgja notanda", "Follow", "Home", null, new { @class = "btn btn-primary"})
+    </div>
+
+
+
 <div class="row">
     <div class="col-md-4">
         <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
@@ -18,7 +26,7 @@
             @using (Html.BeginForm("PostStatus", "Home"))
             {
                 <div>
-                    @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @id = "UserStatus", @style = "width: 300px", @placeholder = "Hvað liggur þér á hjarta?" })
+                    @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
                 </div>
                 <br />
                 <div>
@@ -30,20 +38,6 @@
                 </div>
             }
         </div>
-        <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
-        <select multiple>
-            <option value="hopur1">Hopur1</option>
-            <option value="hopur2">Hopur2</option>
-            <option value="hopur3">Hopur3</option>
-            <option value="hopur4">Hopur4</option>
-        </select>
-
-        <br/>
-        <div>
-            <input type="submit" class="btn btn-primary"></input>
-        </div>
-        -->
-        @* } *@
     </div>
 
     <div class="col-md-8">
