@@ -35,7 +35,7 @@
                     <div>
                         @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
                         <label for="photo"></label>
-                    @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+                        @Html.TextBoxFor(m => m.myPic, new { type = "file" })
                 
                     </div>
                     <div>
@@ -69,10 +69,10 @@
                                         <div class="statusText">
                                             <p>@data.statusText</p>
                                         </div>
-                                        @if (data.statusPicture != null)
+                                        @if (data.statusPhoto != null)
                                         {
                                             <div class="imageContainer">
-                                                <img src="@Url.Content("~/Content/Images/" + data.statusPicture)" alt="Image" />
+                                                <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
                                             </div>
                                         }
                                     </div>

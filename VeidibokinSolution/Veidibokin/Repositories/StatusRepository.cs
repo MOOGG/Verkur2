@@ -101,10 +101,24 @@ namespace Veidibokin.Repositories
                 List<Feed> fishfeed = (from users in dataContext.Users
                                        join status in statuses on users.Id equals status.userId
                                        orderby status.date descending
-                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
                 
                 return fishfeed;
             }
         }
+
+        public List<string> ReturnFollowList(string userId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var followers = (from f in dataContext.UserFollowers
+                                 where f.followerID == userId
+                                 select f.userID).ToList();
+
+                // eftir að tengja töflur sama til að fá nöfn...
+
+                return followers;
+            }
+        } 
     }
 }

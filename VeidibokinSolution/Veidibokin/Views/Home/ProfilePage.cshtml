@@ -19,9 +19,6 @@
 
 <div class="row">
     <div class="col-md-4">
-        <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
-        Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi
-            þar niður sem IEnumerable týpu  *************************** -->
         <div class="statusContainer">
             @using (Html.BeginForm("PostStatus", "Home"))
             {
@@ -36,6 +33,15 @@
                 <div>
                     <input class="btn btn-success" id="submit" type="submit" value="Submit" />
                 </div>
+            }
+
+            @foreach (var data in Model.myFollowersList)
+            {
+                <ul id="list-no-style">
+                    <li>
+                        @data.fullName
+                    </li>
+                </ul>
             }
         </div>
     </div>

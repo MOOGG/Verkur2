@@ -103,28 +103,23 @@ namespace Veidibokin.Controllers
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            var userId = User.Identity.GetUserId();
+            var followList = new List<string>();
+            //var userId = User.Identity.GetUserId();
 
-            if(id == userId)
-            {
-                statusList = myProfileRepo.ReturnOwnStatuses(id);
-            }
-            else
-            {
-                statusList = myProfileRepo.ReturnProfileStatuses(id);
-            }
-            
+            statusList = myProfileRepo.ReturnProfileStatuses(id);
+            followList = myProfileRepo.ReturnFollowList(id);
 
-            ProfileViewModel temp = new ProfileViewModel();
+            ProfileViewModel displayProfile = new ProfileViewModel();
 
-            temp.myFeedList = statusList;
+            displayProfile.myFeedList = statusList;
+            displayProfile.myFollowersList = followList;
 
             //ViewData["StatusList"] = statusList;
 
             //ViewBag.UserStatuses = statusList;
 
             // finna út hvaða view á að vera hér !
-            return View(temp);
+            return View(displayProfile);
         }
 
 		public ActionResult About()

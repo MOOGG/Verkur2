@@ -9,5 +9,6 @@ namespace Veidibokin.Models
     {
         public List<Feed> myFeedList { get; set; }
         public HttpPostedFileBase statusPicture { get; set; }
+        public List<string> myFollowersList { get; set; } 
     }
 }
