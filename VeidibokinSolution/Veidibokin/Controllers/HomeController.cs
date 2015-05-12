@@ -28,14 +28,17 @@ namespace Veidibokin.Controllers
 
             var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
+            var followList = new List<FollowList>();
 
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
+            followList = myStatusRepo.ReturnFollowingList(userId);
 
-            UserStatusViewModel temp = new UserStatusViewModel();
+            UserStatusViewModel feedView = new UserStatusViewModel();
+            
+            feedView.myFeedList = statusList;
+            feedView.myFollowList = followList;
 
-            temp.myFeedList = statusList;
-
-            return View(temp);
+            return View(feedView);
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
@@ -103,11 +106,11 @@ namespace Veidibokin.Controllers
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            var followList = new List<FullNameForFeed>();
+            var followList = new List<FollowList>();
             //var userId = User.Identity.GetUserId();
 
             statusList = myProfileRepo.ReturnProfileStatuses(id);
-            followList = myProfileRepo.ReturnFollowList(id);
+            followList = myProfileRepo.ReturnFollowersList(id);
 
             ProfileViewModel displayProfile = new ProfileViewModel();
 

@@ -10,11 +10,11 @@ namespace Veidibokin.Models
         public List<Feed> myFeedList { get; set; }
         public HttpPostedFileBase statusPicture { get; set; }
         //public List<string> myFollowersList { get; set; }
-        public List<FullNameForFeed> myFullNameList { get; set; } 
+        public List<FollowList> myFullNameList { get; set; } 
     }
 
     // viewmodel klasi
-    public class FullNameForFeed
+    public class FollowList
     {
         public string fullName { get; set; }
         public string userId { get; set; }

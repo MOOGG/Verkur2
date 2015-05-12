@@ -107,7 +107,7 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<FullNameForFeed> ReturnFollowList(string userId)
+        public List<FollowList> ReturnFollowersList(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
@@ -115,12 +115,25 @@ namespace Veidibokin.Repositories
                /* var followers = (from f in dataContext.UserFollowers
                                  where f.followerID == userId
                                  select f.userID);*/
-                var followersName = (from user in dataContext.Users
-                    join followid in dataContext.UserFollowers on user.Id equals followid.userID
-                    where followid.followerID == userId
-                    select new FullNameForFeed {fullName = user.fullName, userId = user.Id}).ToList();
+                var followersNames = (from user in dataContext.Users
+                                      join followid in dataContext.UserFollowers on user.Id equals followid.userID
+                                     where followid.followerID == userId
+                                     select new FollowList {fullName = user.fullName, userId = user.Id}).ToList();
                
-                return followersName;
+                return followersNames;
+            }
+        }
+
+        public List<FollowList> ReturnFollowingList(string userId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var followingNames = (from user in dataContext.Users
+                                     join followid in dataContext.UserFollowers on user.Id equals followid.followerID
+                                     where followid.userID == userId
+                                     select new FollowList { fullName = user.fullName, userId = user.Id }).ToList();
+
+                return followingNames;
             }
         } 
     }
