@@ -53,35 +53,40 @@ namespace Veidibokin.Repositories
 
             using (var dataContext = new ApplicationDbContext())
             {
-                var Following = (from f in dataContext.UserFollowers
-                                 where f.followerID == userId
-                                 select f.userID);
-
                 var statuses = (from status in dataContext.UserStatuses
-                                where ((Following.Contains(status.userId) & status.isPublic == true) || status.userId == userId)
+                                where (status.isPublic == true && status.userId == userId)
                                 select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
 
-                var fishfeed = (from users in dataContext.Users
+                List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new { fullname = users.fullName, status = status.status, date = status.date });
-                
-                foreach (var item in fishfeed)
-                {
-                    returnList.Add(new Feed()
-                    {
-                        fullName = item.fullname,
-                        statusText = item.status,
-                        dateInserted = item.date,
-                    });
-                }
-                return returnList;
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                       
+                return fishfeed;
             }
         }
-
-        public List<Feed> ReturnFeedStatuses(string userId)
+        
+        public List<Feed> ReturnOwnStatuses(string userId)
         {
             var returnList = new List<Feed>();
+
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var statuses = (from status in dataContext.UserStatuses
+                                where (status.userId == userId)
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+
+                List<Feed> fishfeed = (from users in dataContext.Users
+                                       join status in statuses on users.Id equals status.userId
+                                       orderby status.date descending
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+
+                return fishfeed;
+            }
+        }
+        
+        public List<Feed> ReturnFeedStatuses(string userId)
+        {
 
             using (var dataContext = new ApplicationDbContext())
             {
@@ -90,26 +95,16 @@ namespace Veidibokin.Repositories
                                  select f.userID);
 
                 var statuses = (from status in dataContext.UserStatuses
-                                where ((Following.Contains(status.userId) & status.isPublic == true) || status.userId == userId)
+                                where ((Following.Contains(status.userId) && status.isPublic == true) || status.userId == userId)
                                 select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
-                var fishfeed = (from users in dataContext.Users
-                                join status in statuses on users.Id equals status.userId
-                                orderby status.date descending
-                                select new { fullname = users.fullName, status = status.status, date = status.date, photo = status.photo });
-
-                foreach (var item in fishfeed)
-                {
-                    returnList.Add(new Feed()
-                    {
-                        fullName = item.fullname,
-                        statusText = item.status,
-                        dateInserted = item.date,
-                        statusPicture = item.photo
-                    });
-                }
+                List<Feed> fishfeed = (from users in dataContext.Users
+                                       join status in statuses on users.Id equals status.userId
+                                       orderby status.date descending
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                
+                return fishfeed;
             }
-            return returnList;
         }
     }
 }

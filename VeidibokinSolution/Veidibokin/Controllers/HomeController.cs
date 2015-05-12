@@ -103,9 +103,17 @@ namespace Veidibokin.Controllers
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            //var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
-            statusList = myProfileRepo.ReturnProfileStatuses(id);
+            if(id == userId)
+            {
+                statusList = myProfileRepo.ReturnOwnStatuses(id);
+            }
+            else
+            {
+                statusList = myProfileRepo.ReturnProfileStatuses(id);
+            }
+            
 
             ProfileViewModel temp = new ProfileViewModel();
 
