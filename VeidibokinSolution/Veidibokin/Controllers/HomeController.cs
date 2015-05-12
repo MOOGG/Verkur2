@@ -14,6 +14,8 @@ using Veidibokin.Models;
 using Veidibokin.Repositories;
 using System.IO;
 using System.Drawing;
+using System.Net;
+using System.Web.Helpers;
 
 namespace Veidibokin.Controllers
 {
@@ -38,13 +40,12 @@ namespace Veidibokin.Controllers
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
         // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
-        [HttpPost]
         public ActionResult PostStatus(UserStatusViewModel collection)
         {
             string status = collection.myFeedList[0].statusText.ToString();
             HttpPostedFileBase file = collection.myPic;
             string directory = @"~/Content/Images/";
-            string path = null; 
+            string path = null;
             string fileName = null;
 
             if (String.IsNullOrEmpty(status))
@@ -54,9 +55,12 @@ namespace Veidibokin.Controllers
 
             if (file != null && file.ContentLength > 0)
             {
-                fileName = Path.GetFileName(file.FileName);
+                WebImage img = new WebImage(file.InputStream);
+                if (img.Width > 300)
+                    img.Resize(300, 300);
+                fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
                 path = Path.Combine(Server.MapPath(directory), fileName);
-                file.SaveAs(path);
+                img.Save(path);
             }
 
             var userId = User.Identity.GetUserId();
@@ -69,6 +73,7 @@ namespace Veidibokin.Controllers
             //return View("Index");
         }
 
+		[Authorize]
 		public ActionResult SearchResult(string searchString)
 		{
             SearchResultViewModel empty = new SearchResultViewModel();
@@ -93,21 +98,25 @@ namespace Veidibokin.Controllers
             }
 		}
 
-        public ActionResult ProfilePage()
+        public ActionResult ProfilePage(string id)
         {
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            var userId = User.Identity.GetUserId();
+            //var userId = User.Identity.GetUserId();
 
-            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+            statusList = myProfileRepo.ReturnProfileStatuses(id);
+
+            ProfileViewModel temp = new ProfileViewModel();
+
+            temp.myFeedList = statusList;
 
             //ViewData["StatusList"] = statusList;
 
             //ViewBag.UserStatuses = statusList;
 
             // finna út hvaða view á að vera hér !
-            return View(statusList);
+            return View(temp);
         }
 
 		public ActionResult About()

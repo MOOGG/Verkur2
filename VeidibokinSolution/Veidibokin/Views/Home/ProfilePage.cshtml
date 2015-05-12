@@ -1,13 +1,14 @@
-﻿@model Veidibokin.Models.UserStatusViewModel
+﻿@model Veidibokin.Models.ProfileViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Profile Page";
 }
-<!-- Hér ætlum við að vera með User Profile síðuna -->
+
 <div>
     <img src="/Content/Images/logo.jpg" alt="Missing logo" />
 </div>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
@@ -17,7 +18,7 @@
             @using (Html.BeginForm("PostStatus", "Home"))
             {
                 <div>
-                    @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                    @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @id = "UserStatus", @style = "width: 300px", @placeholder = "Hvað liggur þér á hjarta?" })
                 </div>
                 <br />
                 <div>
@@ -43,12 +44,10 @@
         </div>
         -->
         @* } *@
-
-
-
     </div>
+
     <div class="col-md-8">
-        <h3>@data.fullName</h3>
+        <h3>Prófílsíða</h3>
 
         @foreach (var data in Model.myFeedList)
         {

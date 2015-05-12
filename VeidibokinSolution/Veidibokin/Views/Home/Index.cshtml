@@ -51,24 +51,33 @@
                     {
                         <ul class="well" id="list-no-style">
                             <li>
-                                <div>                                      
-                                    <b>@data.fullName</b>
-                                    <b> 
-                                        @Html.ActionLink(data.fullName, "ProfilePage")
-                                    </b>
+                                <div>
+                                    <!--<b><%=Html.ActionLink(@data.fullName, "ProfilePage", "Home")%></b> -->
+                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { id = "06d222ac-be42-4c73-aae6-8a550a155d4e" }, null)</b>
                                     <span class="float-right">
                                         @data.dateInserted
                                     </span>
+                                <div class="statusBlock">
+                                    <div class="statusHead">
+                                        <b>
+                                            @Html.ActionLink(data.fullName, "ProfilePage")
+                                        </b>
+                                        <span class="float-right">
+                                            @data.dateInserted
+                                        </span>
+                                    </div>
+                                    <div class="statusText">
+                                        <p>@data.statusText</p>
+                                    </div>
                                     @if (data.statusPicture != null)
                                     {
-                                        <img src="@Url.Content("~/Content/Images/" + data.statusPicture)" alt="Image" />
+                                        <div class="imageContainer">
+                                            <img src="@Url.Content("~/Content/Images/" + data.statusPicture)" alt="Image" />
+                                        </div>
                                     }
-                                    <div>
-                                        @data.statusText
-                                    </div>
                                 </div>
                                 <br />
-                                <div class="float-right">
+                                <div class="float-left">
                                     <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
                                     <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
                                     <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />
