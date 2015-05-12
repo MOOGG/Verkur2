@@ -26,6 +26,15 @@
                     <input class="btn btn-success" id="submit" type="submit" value="Submit" />
                 </div>
             }
+
+            @foreach (var data in Model.myFollowersList)
+            {
+                <ul id="list-no-style">
+                    <li>
+                        @data.fullName
+                    </li>
+                </ul>
+            }
         </div>
         <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
         <select multiple>

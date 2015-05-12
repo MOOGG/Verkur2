@@ -109,24 +109,16 @@ namespace Veidibokin.Repositories
 
         public List<string> ReturnFollowList(string userId)
         {
-            List<string> returnList = null;
-
             using (var dataContext = new ApplicationDbContext())
             {
                 var followers = (from f in dataContext.UserFollowers
-                                 where f.userID == userId
-                                 select f.userID);
+                                 where f.followerID == userId
+                                 select f.userID).ToList();
 
                 // eftir að tengja töflur sama til að fá nöfn...
-                if (followers != null)
-                {
-                    foreach (var data in followers)
-                    {
-                        returnList.Add(data);
-                    }
-                }
+
+                return followers;
             }
-            return returnList;
         } 
     }
 }

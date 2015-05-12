@@ -107,10 +107,12 @@ namespace Veidibokin.Controllers
             //var userId = User.Identity.GetUserId();
 
             statusList = myProfileRepo.ReturnProfileStatuses(id);
+            followList = myProfileRepo.ReturnFollowList(id);
 
             ProfileViewModel displayProfile = new ProfileViewModel();
 
             displayProfile.myFeedList = statusList;
+            displayProfile.myFollowersList = followList;
 
             //ViewData["StatusList"] = statusList;
 
