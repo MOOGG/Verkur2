@@ -23,8 +23,8 @@
             return false;
         });
 
-        $("#statusform").on('submit', 'form', function () {
-            /*
+        $("#statusformdrasl").on('submit', 'form', function () {
+
             var theForm = $(this);
 
             $("#waitingMessage").show();
@@ -34,16 +34,16 @@
                 data: theForm.serialize(),
             }).done(function (result) {
                 $("#waitingMessage").hide();
-                var resultHtmls = $(result).find('#statuses');
+                var resultHtmls = $(result).find('#statusesdrasl');
 
-                $('#statuses').replaceWith(resultHtmls);
+                $('#statusesdrasl').replaceWith(resultHtmls);
 
                 theForm.find('#UserStatus').val('');
             }).fail(function () {
                 alert('Villa kom upp!');
             });
 
-            return false;*/
+            return false;
         });
     });
 });
