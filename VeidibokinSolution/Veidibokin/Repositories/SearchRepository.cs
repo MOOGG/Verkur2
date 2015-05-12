@@ -18,21 +18,22 @@ namespace Veidibokin.Repositories
             {
                 var userSearch = (from a in dataContext.Users
                                   where a.fullName.Contains(searchString)
-                                  select new {fullname = a.fullName});
+                                  select new { fullname = a.fullName, userId = a.Id });
 
                 var zoneSearch = (from z in dataContext.Zones
                                   where z.zoneName.Contains(searchString)
-                                  select new {zonename = z.zoneName});
+                                  select new { zonename = z.zoneName, zoneId = z.ID });
 
                 var groupSearch = (from g in dataContext.Groups
                                   where g.groupName.Contains(searchString)
-                                  select new {groupname = g.groupName});
+                                  select new { groupname = g.groupName, groupId = g.ID });
 
                 foreach (var user in userSearch)
                 {
                     returnList.Add(new SearchResult()
                     {
                         searchResultText = user.fullname,
+                        searchResultId = user.userId,
                         type = 0
                     });
                 }
@@ -42,6 +43,7 @@ namespace Veidibokin.Repositories
                     returnList.Add(new SearchResult()
                     {
                         searchResultText = zone.zonename,
+                        searchResultId = zone.zoneId.ToString(),
                         type = 1
                     });
                 }
@@ -51,6 +53,7 @@ namespace Veidibokin.Repositories
                     returnList.Add(new SearchResult()
                     {
                         searchResultText = group.groupname,
+                        searchResultId = group.groupId.ToString(),
                         type = 2
                     });
                 }
