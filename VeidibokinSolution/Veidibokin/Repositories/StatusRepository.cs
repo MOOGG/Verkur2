@@ -112,17 +112,11 @@ namespace Veidibokin.Repositories
             using (var dataContext = new ApplicationDbContext())
             {
                 var followers = (from f in dataContext.UserFollowers
-                                 where f.userID == userId
+                                 where f.followerID == userId
                                  select f.userID).ToList();
 
                 // eftir að tengja töflur sama til að fá nöfn...
-                if (followers != null)
-                {
-                    foreach (var data in followers)
-                    {
-                        followers.Add(data);
-                    }
-                }
+
                 return followers;
             }
         } 
