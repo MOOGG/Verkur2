@@ -101,7 +101,7 @@ namespace Veidibokin.Repositories
                 List<Feed> fishfeed = (from users in dataContext.Users
                                        join status in statuses on users.Id equals status.userId
                                        orderby status.date descending
-                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
                 
                 return fishfeed;
             }
