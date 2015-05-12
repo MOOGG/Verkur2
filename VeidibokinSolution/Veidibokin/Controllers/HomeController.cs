@@ -103,7 +103,7 @@ namespace Veidibokin.Controllers
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            var followList = new List<string>();
+            var followList = new List<FullNameForFeed>();
             //var userId = User.Identity.GetUserId();
 
             statusList = myProfileRepo.ReturnProfileStatuses(id);
@@ -112,7 +112,7 @@ namespace Veidibokin.Controllers
             ProfileViewModel displayProfile = new ProfileViewModel();
 
             displayProfile.myFeedList = statusList;
-            displayProfile.myFollowersList = followList;
+            displayProfile.myFullNameList = followList;
 
             //ViewData["StatusList"] = statusList;
 
