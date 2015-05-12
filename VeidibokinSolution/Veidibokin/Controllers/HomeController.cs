@@ -76,7 +76,7 @@ namespace Veidibokin.Controllers
         }
 
 		[Authorize]
-		public ActionResult SearchResult(string searchString, int? page, int pageSize = 10)
+		public ActionResult SearchResult(string searchString)
 		{
             SearchResultViewModel empty = new SearchResultViewModel();
             empty.mySearchResultList = new List<SearchResult>();
