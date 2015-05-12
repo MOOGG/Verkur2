@@ -19,31 +19,31 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div class="statusContainer">
-            @using (Html.BeginForm("PostStatus", "Home"))
-            {
-                <div>
-                    @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-                </div>
-                <br />
-                <div>
-                    @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
-                </div>
-                <br />
-                <div>
-                    <input class="btn btn-success" id="submit" type="submit" value="Submit" />
-                </div>
-            }
+        @*<div class="statusContainer">
+        @using (Html.BeginForm("PostStatus", "Home"))
+        {
+            <div>
+                @Html.TextBoxFor(m => m.myFeedList, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+            </div>
+            <br />
+            <div>
+                @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
+            </div>
+            <br />
+            <div>
+                <input class="btn btn-success" id="submit" type="submit" value="Submit" />
+            </div>
+        }
 
-            @foreach (var data in Model.myFollowersList)
-            {
-                <ul id="list-no-style">
-                    <li>
-                        @data.fullName
-                    </li>
-                </ul>
-            }
-        </div>
+        @foreach (var data in Model.myFollowersList)
+        {
+            <ul id="list-no-style">
+                <li>
+
+                </li>
+            </ul>
+        }
+    </div>*@
     </div>
 
     <div class="col-md-8">

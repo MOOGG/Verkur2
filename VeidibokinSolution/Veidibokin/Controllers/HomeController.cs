@@ -16,6 +16,8 @@ using System.IO;
 using System.Drawing;
 using System.Net;
 using System.Web.Helpers;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Veidibokin.Controllers
 {
@@ -74,10 +76,11 @@ namespace Veidibokin.Controllers
         }
 
 		[Authorize]
-		public ActionResult SearchResult(string searchString)
+		public ActionResult SearchResult(string searchString, int? page, int pageSize = 10)
 		{
             SearchResultViewModel empty = new SearchResultViewModel();
             empty.mySearchResultList = new List<SearchResult>();
+						
             if (!String.IsNullOrEmpty(searchString))
             {
                 var mySearchRepo = new SearchRepository();
