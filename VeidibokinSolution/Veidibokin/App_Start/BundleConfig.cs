@@ -27,6 +27,8 @@ namespace Veidibokin
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));
+
+			bundles.IgnoreList.Ignore("*.unobtrusive-ajax.js", OptimizationMode.WhenDisabled);
 		}
 	}
 }

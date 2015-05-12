@@ -1,21 +1,49 @@
-﻿$(function () {
-    $("#searchform").on('submit', 'form', function () {
-        var theForm = $(this);
-        $.ajax({
-            type: 'POST',
-            url: theForm.attr('action'),
-            data: theForm.serialize(),
-        }).done(function (result) {
+﻿$(document).ready(function () {
+    $(function () {
 
-            var resultHtml = $(result).find('#results');
+        $("#searchform").on('submit', 'form', function () {
 
-            $('#results').replaceWith(resultHtml);
+            var theForm = $(this);
+            $("#waitingMessage").show();
+            $.ajax({
+                type: 'POST',
+                url: theForm.attr('action'),
+                data: theForm.serialize(),
+            }).done(function (result) {
+                $("#waitingMessage").hide();
 
-        }).fail(function () {
-            alert('Villa kom upp!');
+                var resultHtml = $(result).find('#results');
+
+                $('#results').replaceWith(resultHtml);
+
+            }).fail(function () {
+                alert('Villa kom upp!');
+            });
+
+            return false;
         });
 
-        return false;
-    });
+        $("#statusform").on('submit', 'form', function () {
+            /*
+            var theForm = $(this);
 
+            $("#waitingMessage").show();
+            $.ajax({
+                type: 'POST',
+                url: theForm.attr('action'),
+                data: theForm.serialize(),
+            }).done(function (result) {
+                $("#waitingMessage").hide();
+                var resultHtmls = $(result).find('#statuses');
+
+                $('#statuses').replaceWith(resultHtmls);
+
+                theForm.find('#UserStatus').val('');
+            }).fail(function () {
+                alert('Villa kom upp!');
+            });
+
+            return false;*/
+        });
+    });
 });

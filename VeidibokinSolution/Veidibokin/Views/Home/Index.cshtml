@@ -3,48 +3,52 @@
     @{
         ViewBag.Title = "Home Page";
     }
+
     <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
-    <div>
-        <img src="/Content/Images/logo.jpg" alt="Missing logo" />
-    </div>
+
+<span>
+    <span>
+        <img src="/Content/Images/_logo.jpg" alt="Missing logo" height="80" width="80" />
+    </span>
+</span>
+<span>
+    <span>
+        @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-danger btn-lg active" })
+    </span>
+    <span>
+        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info btn-lg active" })
+    </span>
+</span>
+
     <hr />
     <div class="row">
-        <div class="col-md-4">      
-                <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
-                Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi 
-                    þar niður sem IEnumerable týpu  *************************** -->
-                <div class="statusContainer">
-                    @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                    {
-                        <div>
-                            @Html.TextBoxFor(m => m.myFeedList[0].statusText, new {@Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?"})
-                            <label for="photo"></label>
-                            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
-                        </div>   
-                        <div>
-                           <input class="btn btn-success" id="submit" type="submit" value="Submit"/>
-                        </div>
-                    }
-                </div>
-                <!--<input type="checkbox" name="postOnWall" value="Bike"> Setja á vegg?<br>
-                <select multiple>
-                    <option value="hopur1">Hopur1</option>
-                    <option value="hopur2">Hopur2</option>
-                    <option value="hopur3">Hopur3</option>
-                    <option value="hopur4">Hopur4</option>
-                </select>
+        <div class="col-md-4" >
+            <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
+        Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi
+            þar niður sem IEnumerable týpu
 
-                <br/>
-                <div>
-                    <input type="submit" class="btn btn-primary"></input>
-                </div>
-                -->
-                @* } *@
-            
-            
+          *************************** -->
+
+            <div class="statusContainer" id="statusform">
+                @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div>
+                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                        <!--<label for="photo"></label>-->
+                   @* @Html.TextBoxFor(m => m.myPic, new { type = "file" })*@
+                
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+                    </div>
+                }
+            </div>
 
         </div>
-        <div class="col-md-8">
+
+        @Html.Partial("_WaitMessage")
+
+        <div class="col-md-8" id="statuses">
             <h3>Nýjustu færslurnar þínar og þeirra sem þú fylgir</h3>
                 
                     @foreach (var data in Model.myFeedList)
