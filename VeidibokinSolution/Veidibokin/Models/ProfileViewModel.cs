@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
-    public class UserStatusViewModel
+    public class ProfileViewModel
     {
         public List<Feed> myFeedList { get; set; }
-        public HttpPostedFileBase myPic { get; set; }
+        public HttpPostedFileBase statusPicture { get; set; }
     }
 }

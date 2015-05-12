@@ -216,8 +216,10 @@
     <Compile Include="Models\GroupStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\SearchResultViewModel.cs" />
+    <Compile Include="Models\SingleFeed.cs" />
     <Compile Include="Models\StatusComment.cs" />
     <Compile Include="Models\UserFollower.cs" />
     <Compile Include="Models\UserStatus.cs" />
@@ -367,7 +369,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Home\SearchResult.cshtml" />
-    <Content Include="Views\Home\SearchPartialview.cshtml" />
     <Content Include="Views\Home\ProfilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>

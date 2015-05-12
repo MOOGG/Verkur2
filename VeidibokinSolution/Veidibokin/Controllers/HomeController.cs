@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,10 @@ using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Veidibokin.Models;
 using Veidibokin.Repositories;
+using System.IO;
+using System.Drawing;
+using System.Net;
+using System.Web.Helpers;
 
 namespace Veidibokin.Controllers
 {
@@ -19,7 +24,6 @@ namespace Veidibokin.Controllers
         [Authorize]
 		public ActionResult Index()
         {
-
             var myStatusRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
@@ -31,50 +35,46 @@ namespace Veidibokin.Controllers
 
             temp.myFeedList = statusList;
 
-            //ViewData["StatusList"] = statusList;
-
-            //ViewBag.UserStatuses = statusList;
-
-            // finna út hvaða view á að vera hér !
             return View(temp);
 		}
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
-        public ActionResult PostStatus(FormCollection collection)
+        // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
+        public ActionResult PostStatus(UserStatusViewModel collection)
         {
-            // væri ekki best að koma picture hér inn... en getur input þá verið FormCollection ?
-            string status = collection.Get("myFeedList");
+            string status = collection.myFeedList[0].statusText.ToString();
+            HttpPostedFileBase file = collection.myPic;
+            string directory = @"~/Content/Images/";
+            string path = null;
+            string fileName = null;
 
             if (String.IsNullOrEmpty(status))
             {
                 return View("Error");
             }
 
+            if (file != null && file.ContentLength > 0)
+            {
+                WebImage img = new WebImage(file.InputStream);
+                if (img.Width > 300)
+                    img.Resize(300, 300);
+                fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+                path = Path.Combine(Server.MapPath(directory), fileName);
+                img.Save(path);
+            }
+
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId);
+            myStatusRepo.StatusToDB(status, userId, fileName);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
             //return View("Index");
         }
 
-        // gæti líka gert nýtt fall sem sér sérstaklega um myndina.... eins og þetta hér f neðan
-	    [HttpPost]
-	    [Authorize]
-	    [ValidateAntiForgeryToken]
-	    public async Task<ActionResult> PostPicture(UserStatusViewModel model)
-	    {
-
-	        if (model.statusPicture != null)
-	        {
-	            
-	        }
-	        return null;
-	    }
-        //[Authorize]
-        public ActionResult SearchResult(string searchString)
+		[Authorize]
+		public ActionResult SearchResult(string searchString)
 		{
             SearchResultViewModel empty = new SearchResultViewModel();
             empty.mySearchResultList = new List<SearchResult>();
@@ -98,21 +98,25 @@ namespace Veidibokin.Controllers
             }
 		}
 
-        public ActionResult ProfilePage()
+        public ActionResult ProfilePage(string id)
         {
             var myProfileRepo = new StatusRepository();
 
             var statusList = new List<Feed>();
-            var userId = User.Identity.GetUserId();
+            //var userId = User.Identity.GetUserId();
 
-            statusList = myProfileRepo.ReturnFeedStatuses(userId);
+            statusList = myProfileRepo.ReturnProfileStatuses(id);
+
+            ProfileViewModel temp = new ProfileViewModel();
+
+            temp.myFeedList = statusList;
 
             //ViewData["StatusList"] = statusList;
 
             //ViewBag.UserStatuses = statusList;
 
             // finna út hvaða view á að vera hér !
-            return View(statusList);
+            return View(temp);
         }
 
 		public ActionResult About()
