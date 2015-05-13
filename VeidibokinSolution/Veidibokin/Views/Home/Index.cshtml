@@ -5,58 +5,56 @@
     }
 
     <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
-<br />
-<span>
+    <br />
     <span>
-        <img src="/Content/Images/letter-V.png" alt="Missing logo" height="130" width="130" />
+        <span>
+            <img src="/Content/Images/letter-V.png" alt="Missing logo" height="115" width="115" />
+        </span>
     </span>
-</span>
-<span class="pull-right" >
-    <span>
-        @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-warning primary" })
+    <span class="pull-right" >
+        <span>
+            @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-warning primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Búa til hóp", "SearchResult", null, new { @class = "btn btn-success primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info primary" })
+        </span>
     </span>
-    <span>
-        @Html.ActionLink("Búa til hóp", "SearchResult", null, new { @class = "btn btn-success primary" })
-    </span>
-    <span>
-        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info primary" })
-    </span>
-</span>
-
     <hr />
     <div class="row">
         <div class="col-md-4" >
             <!-- *********** Í RAZOR hér f neðan er using og bæði html með at fyrir framan og class id name o.s.frv....
         Kann ekki að kommenta merkið at út !! þarf að nota IEnumarble a TextBox til a senda input úr formi
             þar niður sem IEnumerable týpu
-
           *************************** -->
-
-            <div class="statusContainer" id="statusform">
-                @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {               
-                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-                        <br />       
-                            <label for="photo"></label>
-                                @Html.TextBoxFor(m => m.myPic, new { type = "file" })   
-                        <br />
-    <span class="pull-right">
-        <input type="submit" class="btn btn-success" id="submit" value="Birta" />
-    </span>
-
-
-                }
-                <div class="following">
-                    @Html.Label("Þú fylgir")
-                    @foreach (var data in Model.myFollowList)
+            <div class="statusContainer" id="statusform">               
+                    @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <ul id="list-no-style">
-                            <li>
-                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.userId }, null)</b>
-                            </li>
-                        </ul>
+                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+                        @*@Html.TextAreaFor(m => m.myFeedList, new { @class = "UserStatus", @Value = "", @cols = 80, @rows = 10, @placeholder = "Hvað liggur þér á hjarta?" })*@
+                        <br />
+                            <label for="photo"></label>
+                            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+                        <br />
+                            <input type="submit" class="btn btn-success" id="submit" value="Birta" />
                     }
+                <br />
+                <div class="following">
+                    
+                    <h3>@Html.Label("Þeir sem þú fylgir:")</h3>                       
 
+                    <div class="well">
+                        @foreach (var data in Model.myFollowList)
+                        {
+                            <ul id="list-no-style">
+                                <li>
+                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.userId }, null)</b>
+                                </li>
+                            </ul>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -65,8 +63,7 @@
         @Html.Partial("_WaitMessage")
 
         <div class="col-md-8" id="statuses">
-            <h3>Nýjustu færslurnar þínar og þeirra sem þú fylgir</h3>
-                
+            <h3>@Html.Label("Nýjustu færslurnar þínar og þeirra sem þú fylgir:")</h3>                
                     @foreach (var data in Model.myFeedList)
                     {
                         <ul class="well" id="list-no-style" >
