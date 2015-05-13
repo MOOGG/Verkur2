@@ -116,7 +116,13 @@ namespace Veidibokin.Controllers
 
             displayProfile.myFeedList = statusList;
             displayProfile.myFullNameList = followList;
+            //displayProfile.followRelations.myId = id;
+            //displayProfile.followRelations.otherId = displayProfile.myFeedList[0].statusUserId;
+            
+            string myId = User.Identity.GetUserId();
+            string otherId = id;//displayProfile.myFeedList[0].statusUserId;
 
+            //myProfileRepo.MakeFollowers(myId, otherId);
             //ViewData["StatusList"] = statusList;
 
             //ViewBag.UserStatuses = statusList;
@@ -125,7 +131,44 @@ namespace Veidibokin.Controllers
             return View(displayProfile);
         }
 
-		public ActionResult About()
+        public ActionResult Follow(string id)
+        {
+            // COPY ÚR FALLI FYRIR OFAN... ÞARF ÉG AÐ GERA ÞETTA TIL AÐ BIRTA displayProfile VIEW HÉR AÐ OFAN ???
+            var myProfileRepo = new StatusRepository();
+
+            var statusList = new List<Feed>();
+            var followList = new List<FollowList>();
+            //var userId = User.Identity.GetUserId();
+
+            statusList = myProfileRepo.ReturnProfileStatuses(id);
+            followList = myProfileRepo.ReturnFollowersList(id);
+
+            ProfileViewModel displayProfile = new ProfileViewModel();
+
+            displayProfile.myFeedList = statusList;
+            displayProfile.myFullNameList = followList;
+            // harðkóðun prófuð til þess að athuga virkni með að skrá niður í grunn. Notum samt ekki þennan
+            // controller í view-i
+            string yourId = id;
+            string otherId = User.Identity.GetUserId();
+
+            //ProfileViewModel displayProfile = new ProfileViewModel();
+
+            // mögulega þarf ég ekkert að senda þetta inní viewmodel en ég þarf bool breytu til að vita
+            // hvort ég eigi að birta "fylgja" hnappinn... hvernig er best að gera þetta ??
+            //displayProfile.followRelations.myId = yourId;
+            //displayProfile.followRelations.otherId = "06d222ac-be42-4c73-aae6-8a550a155d4e";
+            //displayProfile.followRelations.isFollowing = true;
+
+            StatusRepository myRepo = new StatusRepository();
+            myRepo.MakeFollowers(yourId, otherId);
+
+            return RedirectToAction("Index", "Home");
+            //return View(displayProfile);
+        }
+
+
+	    public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";
 
