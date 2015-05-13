@@ -33,15 +33,17 @@ select
 .center {
   text-align:center;
 }
-/* Tekur punkta fyrir framan ul burt */
+/* Tekur punkta fyrir framan ul burt, MH */
 #list-no-style {
     list-style-type: none;
 }
-/* Flæðir til hægri */
+/* Flæðir til hægri, MH */
 .float-right {
     float: right;
 } 
-
-.padding-top {
-    padding-top: 30px;
+/* Bakgrunnsliturinn á síðunni, MH */
+.grey-background {
+    /* background-color: #c0e7b6; */
+    background-image: url(/Content/Images/fishhook.jpg)
 }
+/* #595d4e liturinn hans geira */
