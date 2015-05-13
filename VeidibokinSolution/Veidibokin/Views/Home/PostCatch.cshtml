@@ -1,0 +1,28 @@
+﻿@model Veidibokin.Models.UserStatusViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PostCatch</title>
+</head>
+<body>
+    <div class="statusContainer" id="statusform">
+        @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+            <br />
+            <label for="photo"></label>
+            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+            <br />
+            <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
+        }
+        <br />
+    </div>
+</body>
+</html>
