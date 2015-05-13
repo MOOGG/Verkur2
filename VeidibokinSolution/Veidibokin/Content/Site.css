@@ -41,6 +41,10 @@ select
 .float-right {
     float: right;
 } 
+/* Flæðir til hægri, MH */
+#float-right {
+    float: right;
+} 
 /* Bakgrunnsmynd á síðunni, MH */
 .background-image {
     background-image: url(/Content/Images/fishhook.jpg)
@@ -57,3 +61,9 @@ a.orange {
 orange {
     color: #c02000;
 }
+    .Curved
+    {
+    	-webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+    }

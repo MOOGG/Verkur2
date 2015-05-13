@@ -24,27 +24,28 @@
         </p>
     }
 </div>
-    @Html.Partial("_WaitMessage")
+@Html.Partial("_WaitMessage")
 
-    <div id="results">
-        <!--table class="table-striped"-->
-        <table class="well">
-                @foreach (var data in Model.mySearchResultList)
-                {
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.searchResultText)*@
-                            @if (@data.type == 0)
-                            {
-                                <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => data.searchResultText)
-                            }
-                        </td>
-                    </tr>
-                }
-            </table>
-        
+<div id="results">
+    <div class="well">
+        <table>
+            @foreach (var data in Model.mySearchResultList)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.searchResultText)*@
+                        @if (@data.type == 0)
+                        {
+                            <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => data.searchResultText)
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
+
+</div>

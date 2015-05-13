@@ -32,7 +32,7 @@
             <div class="statusContainer" id="statusform">               
                     @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })                              
+                        @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })                        
                         <br />
                             <label for="photo"></label>
                             @Html.TextBoxFor(m => m.myPic, new { type = "file" })
@@ -78,15 +78,15 @@
                                         <div class="statusHead">
                                         
                                         </div>
-                                        <div class="statusText">
-                                            <p>@data.statusText</p>
-                                        </div>
+                                    <div class="statusText">
+                                            <p>@data.statusText</p>                                        
                                         @if (data.statusPhoto != null)
                                         {
-                                            <div class="imageContainer">
+                                            <span class="imageContainer">
                                                 <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
-                                            </div>
+                                            </span>
                                         }
+                                       
                                     </div>
                                     <br />
                                     <div class="float-left">
