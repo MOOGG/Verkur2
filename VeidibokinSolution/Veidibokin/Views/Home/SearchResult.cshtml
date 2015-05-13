@@ -22,10 +22,16 @@
                 <tr>
                     <td>
                         @*@Html.DisplayFor(modelItem => item.searchResultText)*@
-                        @if (@data.type == 0) { 
+                        @if (@data.type == 0) 
+                        { 
                             <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
                         }
-                        else { 
+                        else if (@data.type == 2)
+                        {
+                            <b>@Html.ActionLink(@data.searchResultText, "GroupPage", "Home", new { Id = @data.searchResultId }, null)</b>
+                        }
+                        else
+                        {
                             @Html.DisplayFor(modelItem => data.searchResultText)
                         }    
                     </td>

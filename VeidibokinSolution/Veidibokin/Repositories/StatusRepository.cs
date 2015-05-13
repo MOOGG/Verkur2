@@ -12,7 +12,7 @@ namespace Veidibokin.Repositories
     public class StatusRepository
     {
         // hér þarf að bæta við byte[] picture sem argument
-        public void StatusToDB(string status, string thisuserid, string statusPicture)
+        public void StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic)
         {
             using (var dataContext = new ApplicationDbContext())
             {

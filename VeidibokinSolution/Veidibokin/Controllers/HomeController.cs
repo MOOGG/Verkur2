@@ -71,38 +71,14 @@ namespace Veidibokin.Controllers
             var userId = User.Identity.GetUserId();
 
             var myStatusRepo = new StatusRepository();
-            myStatusRepo.StatusToDB(status, userId, fileName);
+			var isPublic = true;
+
+            myStatusRepo.StatusToDB(status, userId, fileName, isPublic);
 
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
             //return View("Index");
         }
-
-		[Authorize]
-		public ActionResult SearchResult(string searchString)
-		{
-            SearchResultViewModel empty = new SearchResultViewModel();
-            empty.mySearchResultList = new List<SearchResult>();
-						
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                var mySearchRepo = new SearchRepository();
-
-                var searchResultList = new List<SearchResult>();
-            
-                searchResultList = mySearchRepo.ReturnSearchResult(searchString);
-
-                SearchResultViewModel temp = new SearchResultViewModel();
-
-                temp.mySearchResultList = searchResultList;
-               
-                return View(temp);
-            }
-            else
-            {
-                return View(empty);
-            }
-		}
 
         public ActionResult ProfilePage(string id)
         {
@@ -136,17 +112,75 @@ namespace Veidibokin.Controllers
 			var groupMembers = new List<GroupMembersList>();
 
 			groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
-			groupMembers = myGroupRepo.ReturnMembersList(id);
+			//groupMembers = myGroupRepo.ReturnMembersList(id);
 
 			GroupViewModel displayGroup = new GroupViewModel();
 
 			displayGroup.myFeedList = groupStatusList;
 			displayGroup.myFullNameList = groupMembers;
 
-
 			return View(displayGroup);
 		}
-		
+
+		public ActionResult GroupPostStatus(GroupViewModel collection)
+		{
+			string status = collection.myFeedList[0].statusText.ToString();
+			HttpPostedFileBase file = collection.statusPicture;
+			string directory = @"~/Content/Images/";
+			string path = null;
+			string fileName = null;
+
+			if (String.IsNullOrEmpty(status))
+			{
+				return View("Error");
+			}
+
+			if (file != null && file.ContentLength > 0)
+			{
+				WebImage img = new WebImage(file.InputStream);
+				if (img.Width > 300)
+					img.Resize(300, 300);
+				fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+				path = Path.Combine(Server.MapPath(directory), fileName);
+				img.Save(path);
+			}
+
+			var userId = User.Identity.GetUserId();
+
+			var myStatusRepo = new GroupRepository();
+			var isPublic = false;
+
+			myStatusRepo.StatusToDB(status, userId, fileName, isPublic);
+
+			return RedirectToAction("GroupPage", "Home");
+		}
+
+		[Authorize]
+		public ActionResult SearchResult(string searchString)
+		{
+			SearchResultViewModel empty = new SearchResultViewModel();
+			empty.mySearchResultList = new List<SearchResult>();
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				var mySearchRepo = new SearchRepository();
+
+				var searchResultList = new List<SearchResult>();
+
+				searchResultList = mySearchRepo.ReturnSearchResult(searchString);
+
+				SearchResultViewModel temp = new SearchResultViewModel();
+
+				temp.mySearchResultList = searchResultList;
+
+				return View(temp);
+			}
+			else
+			{
+				return View(empty);
+			}
+		}
+
 		public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";
