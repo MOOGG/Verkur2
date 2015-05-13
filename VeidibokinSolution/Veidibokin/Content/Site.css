@@ -41,9 +41,19 @@ select
 .float-right {
     float: right;
 } 
-/* Bakgrunnsliturinn á síðunni, MH */
-.grey-background {
-    /* background-color: #c0e7b6; */
+/* Bakgrunnsmynd á síðunni, MH */
+.background-image {
     background-image: url(/Content/Images/fishhook.jpg)
 }
-/* #595d4e liturinn hans geira */
+/* Body bakgrunnslitur-grænn, MH */
+#green-background {
+    background-color: #788b49;
+}
+/* Litur á logo-inu notaður sem litur á ActionLink */
+a.orange {
+    color: #c02000;
+}
+/* Litur á logo-inu notaður sem viðvörunarlitur */
+orange {
+    color: #c02000;
+}
