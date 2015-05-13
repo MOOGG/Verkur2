@@ -159,7 +159,10 @@ namespace Veidibokin.Controllers
             var myRepo = new StatusRepository();
             myRepo.MakeFollowers(yourId, otherId);
 
-            return RedirectToAction("ProfilePage", "Home");
+            return RedirectToAction("ProfilePage", new
+            {
+                id = id
+            });
             //return View(displayProfile.OpenID);
         }
 
