@@ -11,7 +11,8 @@ namespace Veidibokin.Models
         public HttpPostedFileBase statusPicture { get; set; }
         //public List<string> myFollowersList { get; set; }
         public List<FollowList> myFullNameList { get; set; }
-        public FollowRelations followRelations { get; set; }
+        public string userNameId { get; set; }
+        public string OpenID { set; get; }
     }
 
     // viewmodel klasi
@@ -19,11 +20,5 @@ namespace Veidibokin.Models
     {
         public string fullName { get; set; }
         public string userId { get; set; }
-    }
-
-    public class FollowRelations
-    {
-        public string myId { get; set; }
-        public string otherId { get; set; }
     }
 }

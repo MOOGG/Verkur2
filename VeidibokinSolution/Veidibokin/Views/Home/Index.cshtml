@@ -8,7 +8,7 @@
     <br />
     <span>
         <span>
-            <img src="/Content/Images/letter-V.png" alt="Missing logo" height="115" width="115" />
+            <img src="/Content/Images/letter-V.png" alt="Missing logo" height="70" width="70" />
         </span>
     </span>
     <span class="pull-right" >
@@ -32,13 +32,12 @@
             <div class="statusContainer" id="statusform">               
                     @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-                        @*@Html.TextAreaFor(m => m.myFeedList, new { @class = "UserStatus", @Value = "", @cols = 80, @rows = 10, @placeholder = "Hvað liggur þér á hjarta?" })*@
+                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })                              
                         <br />
                             <label for="photo"></label>
                             @Html.TextBoxFor(m => m.myPic, new { type = "file" })
                         <br />
-                            <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+                            <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
                     }
                 <br />
                 <div class="following">
