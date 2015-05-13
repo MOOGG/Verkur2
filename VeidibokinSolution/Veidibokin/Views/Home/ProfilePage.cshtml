@@ -20,7 +20,9 @@
     @*@if(User Er ekki að followa)*@
 
     <div>
-        @Html.ActionLink("Fylgja notanda", "Follow", "Home", null, new { @class = "btn btn-primary" })
+
+        @Html.ActionLink("Fylgja notanda", "Follow", "Home", new { @class = "btn btn-primary", id = @Model.userNameId }, null)
+
     </div>
 
 
