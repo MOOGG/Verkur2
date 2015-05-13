@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201505121055165_test1.Designer.cs">
       <DependentUpon>201505121055165_test1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505131333053_goldmember.cs" />
+    <Compile Include="Migrations\201505131333053_goldmember.Designer.cs">
+      <DependentUpon>201505131333053_goldmember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
@@ -215,7 +219,6 @@
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\FishType.cs" />
     <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\GroupCatch.cs" />
     <Compile Include="Models\GroupMember.cs" />
     <Compile Include="Models\GroupStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -420,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505121055165_test1.resx">
       <DependentUpon>201505121055165_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131333053_goldmember.resx">
+      <DependentUpon>201505131333053_goldmember.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

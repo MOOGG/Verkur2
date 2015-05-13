@@ -10,11 +10,11 @@ namespace Veidibokin.Models
     public class GroupMember
     {
         [Key]
-        [ForeignKey("Group")]
+        //[ForeignKey("Group")]
         [Column(Order = 1)]
         public int groupID { get; set; }
         [Key]
-        [ForeignKey("User")]
+        //[ForeignKey("User")]
         [Column(Order = 2)]
         public string userID { get; set; }
         public bool memberStatus { get; set; }

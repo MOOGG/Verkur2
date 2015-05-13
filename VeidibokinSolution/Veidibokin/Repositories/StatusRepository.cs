@@ -34,6 +34,27 @@ namespace Veidibokin.Repositories
                 dataContext.SaveChanges();
             }
         }
+
+        public void CatchToDB(string thisuserid, int zone, int fishType, int baitType, double length, double weight )
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<Catch>(dataContext);
+
+                var newCatch = new Catch()
+                {
+                    zoneId = zone,
+                    fishTypeId = fishType,
+                    baitTypeID = baitType,
+                    length= length,
+                    weight = weight
+                };
+
+                myRepo.Insert(newCatch);
+
+                dataContext.SaveChanges();
+            }
+        }
         
         /*public byte[] returnImageFromDb(string userId)
         {

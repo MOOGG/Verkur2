@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Veidibokin.Models
 {
@@ -19,7 +21,9 @@ namespace Veidibokin.Models
         public string photo { get; set; }
         public string gender { get; set; }
         public string info { get; set; }
- 
+
+        public virtual ICollection<GroupMember> GroupMembers { get; set; }
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
