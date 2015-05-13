@@ -45,7 +45,7 @@ namespace Veidibokin.Controllers
         // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
         public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
         {
-            string status = collection.myFeedList[0].statusText.ToString();
+            string status =  collection.myFeed.statusText.ToString();
             HttpPostedFileBase file = collection.myPic;
             string directory = @"~/Content/Images/";
             string path = null;
@@ -79,11 +79,11 @@ namespace Veidibokin.Controllers
 		[Authorize]
         public ActionResult PostCatch (UserStatusViewModel collection)
         {
-            int zoneID = collection.myCatchList[0].zoneID;
-            int baitID = collection.myCatchList[0].baitTypeID;
-            int fishID = collection.myCatchList[0].fishTypeId;
-            double? length = collection.myCatchList[0].length;
-            double? weight = collection.myCatchList[0].weight;
+            int zoneID = collection.myCatch.zoneID;
+            int baitID = collection.myCatch.baitTypeID;
+            int fishID = collection.myCatch.fishTypeId;
+            double? length = collection.myCatch.length;
+            double? weight = collection.myCatch.weight;
                         
             var myCatchRepo = new StatusRepository();
             Catch newCatch = myCatchRepo.CatchToDB(zoneID, baitID, fishID, length, weight);
