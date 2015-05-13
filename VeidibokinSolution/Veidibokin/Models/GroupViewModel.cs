@@ -7,10 +7,10 @@ namespace Veidibokin.Models
 {
 	public class GroupViewModel
 	{
-		// tekið ur profile view model
 		public List<GroupFeed> myFeedList { get; set; }
 		public HttpPostedFileBase statusPicture { get; set; }
 		public List<GroupMembersList> myFullNameList { get; set; } 
+		public Feed myFeed { get; set; } 
 	}
 
 	public class GroupMembersList

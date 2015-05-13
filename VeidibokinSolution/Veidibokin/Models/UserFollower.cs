@@ -12,7 +12,6 @@ namespace Veidibokin.Models
     public class UserFollower
     {
         [Key]
-        [ForeignKey("User")]
         [Column(Order = 1)]
         public string userID { get; set; }
         [Key]

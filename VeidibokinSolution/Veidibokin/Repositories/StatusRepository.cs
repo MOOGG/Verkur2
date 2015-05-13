@@ -34,6 +34,29 @@ namespace Veidibokin.Repositories
                 dataContext.SaveChanges();
             }
         }
+
+        public Catch CatchToDB(int zone, int fishType, int baitType, double? length, double? weight )
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<Catch>(dataContext);
+
+                var newCatch = new Catch()
+                {
+                    zoneID = zone,
+                    fishTypeId = fishType,
+                    baitTypeID = baitType,
+                    length= length,
+                    weight = weight
+                };
+
+                myRepo.Insert(newCatch);
+
+                dataContext.SaveChanges();
+
+                return newCatch;
+            }
+        }
         
         /*public byte[] returnImageFromDb(string userId)
         {
@@ -90,12 +113,12 @@ namespace Veidibokin.Repositories
 
             using (var dataContext = new ApplicationDbContext())
             {
-                var Following = (from f in dataContext.UserFollowers
+                var following = (from f in dataContext.UserFollowers
                                  where f.followerID == userId
                                  select f.userID);
 
                 var statuses = (from status in dataContext.UserStatuses
-                                where ((Following.Contains(status.userId) && status.isPublic == true) || status.userId == userId)
+                                where ((following.Contains(status.userId) && status.isPublic == true) || status.userId == userId)
                                 select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
                 List<Feed> fishfeed = (from users in dataContext.Users

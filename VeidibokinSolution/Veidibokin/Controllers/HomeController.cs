@@ -45,7 +45,7 @@ namespace Veidibokin.Controllers
 
         // er ég kannski ekki að senda rétt á milli frá formi í Index til controllers ?
         // ??????? Gæti ég ekki BARA sent módelið inn hér að neðan, Check it out !! ???????????
-        public ActionResult PostStatus(UserStatusViewModel collection)
+        public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
         {
             string status = collection.myFeedList[0].statusText.ToString();
             HttpPostedFileBase file = collection.myPic;
@@ -80,6 +80,50 @@ namespace Veidibokin.Controllers
             //return View("Index");
         }
 
+		[Authorize]
+        public ActionResult PostCatch (UserStatusViewModel collection)
+        {
+            int zoneID = collection.myCatchList[0].zoneID;
+            int baitID = collection.myCatchList[0].baitTypeID;
+            int fishID = collection.myCatchList[0].fishTypeId;
+            double? length = collection.myCatchList[0].length;
+            double? weight = collection.myCatchList[0].weight;
+                        
+            var myCatchRepo = new StatusRepository();
+            Catch newCatch = myCatchRepo.CatchToDB(zoneID, baitID, fishID, length, weight);
+
+            var catchId = newCatch.ID;
+            PostStatus(collection, catchId);
+            
+            return RedirectToAction("Index", "Home");
+        }
+         
+        [Authorize]
+		public ActionResult SearchResult(string searchString)
+		{
+            SearchResultViewModel empty = new SearchResultViewModel();
+            empty.mySearchResultList = new List<SearchResult>();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var mySearchRepo = new SearchRepository();
+
+                var searchResultList = new List<SearchResult>();
+            
+                searchResultList = mySearchRepo.ReturnSearchResult(searchString);
+
+                SearchResultViewModel temp = new SearchResultViewModel();
+
+                temp.mySearchResultList = searchResultList;
+               
+                return View(temp);
+            }
+            else
+            {
+                return View(empty);
+            }
+		}
+
+		[Authorize]
         public ActionResult ProfilePage(string id)
         {
             var myProfileRepo = new StatusRepository();
@@ -104,6 +148,7 @@ namespace Veidibokin.Controllers
             return View(displayProfile);
         }
 
+		[Authorize]
 		public ActionResult GroupPage(string id)
 		{
 			var myGroupRepo = new GroupRepository();
@@ -122,9 +167,10 @@ namespace Veidibokin.Controllers
 			return View(displayGroup);
 		}
 
+		[Authorize]
 		public ActionResult GroupPostStatus(GroupViewModel collection)
 		{
-			string status = collection.myFeedList[0].statusText.ToString();
+			string status = collection.myFeed.statusText.ToString();
 			HttpPostedFileBase file = collection.statusPicture;
 			string directory = @"~/Content/Images/";
 			string path = null;
@@ -153,32 +199,6 @@ namespace Veidibokin.Controllers
 			myStatusRepo.StatusToDB(status, userId, fileName, isPublic);
 
 			return RedirectToAction("GroupPage", "Home");
-		}
-
-		[Authorize]
-		public ActionResult SearchResult(string searchString)
-		{
-			SearchResultViewModel empty = new SearchResultViewModel();
-			empty.mySearchResultList = new List<SearchResult>();
-
-			if (!String.IsNullOrEmpty(searchString))
-			{
-				var mySearchRepo = new SearchRepository();
-
-				var searchResultList = new List<SearchResult>();
-
-				searchResultList = mySearchRepo.ReturnSearchResult(searchString);
-
-				SearchResultViewModel temp = new SearchResultViewModel();
-
-				temp.mySearchResultList = searchResultList;
-
-				return View(temp);
-			}
-			else
-			{
-				return View(empty);
-			}
 		}
 
 		public ActionResult About()

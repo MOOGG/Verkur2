@@ -12,14 +12,16 @@
 <div>
     @Html.ActionLink("Ganga í hóp", "joinGroup", "Home", null, new { @class = "btn btn-primary" })
 </div>
-
+<dvi>
+    @
+</dvi>
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
              @using (Html.BeginForm("GroupPostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
              {
                 
-                @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
+                @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 <br />
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })

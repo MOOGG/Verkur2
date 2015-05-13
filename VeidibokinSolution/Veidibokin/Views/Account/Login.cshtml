@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 -->
 <div>
-    <img src="/Content/Images/logo.jpg" alt="Missing logo" />
+    <img src="/Content/Images/_logo.png" alt="Missing logo" />
 </div>
 <hr />
 <br />
@@ -50,10 +50,10 @@
                     <div class="col-md-offset-2 col-md-10">
                         <!-- Ég breytti class="btn btn-default" í "btn btn-primary", MH -->
                         <input type="submit" value="Innskrá" class="btn btn-primary" /> 
-                            <span class="help-block">
+                            <div class="help-block">
                                 @* Enable this once you have account confirmation enabled for password reset functionality *@
                                 @Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword")
-                            </span>
+                            </div>
                     </div>
                 </div>
             }
