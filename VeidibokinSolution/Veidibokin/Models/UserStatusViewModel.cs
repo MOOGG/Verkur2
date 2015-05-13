@@ -9,5 +9,7 @@ namespace Veidibokin.Models
     {
         public List<Feed> myFeedList { get; set; }
         public HttpPostedFileBase myPic { get; set; }
+        public List<FollowList> myFollowList { get; set; } 
+        
     }
 }

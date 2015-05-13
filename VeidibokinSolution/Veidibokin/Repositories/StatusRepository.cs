@@ -107,17 +107,33 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<string> ReturnFollowList(string userId)
+        public List<FollowList> ReturnFollowersList(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
-                var followers = (from f in dataContext.UserFollowers
+                
+               /* var followers = (from f in dataContext.UserFollowers
                                  where f.followerID == userId
-                                 select f.userID).ToList();
+                                 select f.userID);*/
+                var followersNames = (from user in dataContext.Users
+                                      join followid in dataContext.UserFollowers on user.Id equals followid.userID
+                                     where followid.followerID == userId
+                                     select new FollowList {fullName = user.fullName, userId = user.Id}).ToList();
+               
+                return followersNames;
+            }
+        }
 
-                // eftir að tengja töflur sama til að fá nöfn...
+        public List<FollowList> ReturnFollowingList(string userId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var followingNames = (from user in dataContext.Users
+                                     join followid in dataContext.UserFollowers on user.Id equals followid.followerID
+                                     where followid.userID == userId
+                                     select new FollowList { fullName = user.fullName, userId = user.Id }).ToList();
 
-                return followers;
+                return followingNames;
             }
         } 
     }

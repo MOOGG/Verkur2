@@ -43,6 +43,18 @@
 
 
                 }
+                <div class="following">
+                    @Html.Label("Þú fylgir")
+                    @foreach (var data in Model.myFollowList)
+                    {
+                        <ul id="list-no-style">
+                            <li>
+                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.userId }, null)</b>
+                            </li>
+                        </ul>
+                    }
+
+                </div>
             </div>
 
         </div>
