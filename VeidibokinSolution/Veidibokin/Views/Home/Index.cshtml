@@ -5,18 +5,18 @@
     }
 
     <!-- Hér ætlum við að vera með "Fish Feed" síðuna, sem birtist þegar notandinn er innskráður. -->
-
+<br />
 <span>
     <span>
         <img src="/Content/Images/_logo.jpg" alt="Missing logo" height="80" width="80" />
     </span>
 </span>
-<span>
+<span class="pull-right" >
     <span>
-        @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-danger btn-lg active" })
+        @Html.ActionLink("Skrá fisk", "Register", null, new { @class = "btn btn-warning active" })
     </span>
     <span>
-        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info btn-lg active" })
+        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info active" })
     </span>
 </span>
 
@@ -31,16 +31,17 @@
 
             <div class="statusContainer" id="statusform">
                 @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <div>
+                {               
                         @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-                        <label for="photo"></label>
-                        @Html.TextBoxFor(m => m.myPic, new { type = "file" })
-                
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-success" id="submit" value="Birta" />
-                    </div>
+                        <br />       
+                            <label for="photo"></label>
+                                @Html.TextBoxFor(m => m.myPic, new { type = "file" })   
+                        <br />
+    <span class="pull-right">
+        <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+    </span>
+
+
                 }
             </div>
 
@@ -53,7 +54,7 @@
                 
                     @foreach (var data in Model.myFeedList)
                     {
-                        <ul class="well" id="list-no-style">
+                        <ul class="well" id="list-no-style" >
                             <li>
                                 <div>
                                        
