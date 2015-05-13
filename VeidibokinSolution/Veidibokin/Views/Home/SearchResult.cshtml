@@ -4,6 +4,17 @@
     ViewBag.Title = "SearchResult";
 }
 <br />
+<span>
+    <span>
+        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
+    </span>
+</span>
+<span class="pull-right">
+    <span>
+        @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
+    </span>
+</span>
+<hr />
 <div id="searchform">
     @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
     {
@@ -16,21 +27,24 @@
     @Html.Partial("_WaitMessage")
 
     <div id="results">
-        <table class="table-striped">
-            @foreach (var data in Model.mySearchResultList)
-            {
-                <tr>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.searchResultText)*@
-                        @if (@data.type == 0) { 
-                            <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
-                        }
-                        else { 
-                            @Html.DisplayFor(modelItem => data.searchResultText)
-                        }    
-                    </td>
-                </tr>
-            }
-        </table>
+        <!--table class="table-striped"-->
+        <table class="well">
+                @foreach (var data in Model.mySearchResultList)
+                {
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.searchResultText)*@
+                            @if (@data.type == 0)
+                            {
+                                <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => data.searchResultText)
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
         
     </div>
