@@ -53,17 +53,7 @@ select
 #green-background {
     background-color: #788b49;
 }
-/* Litur á logo-inu notaður sem litur á ActionLink */
-a.orange {
+/* Orange */
+#orange {
     color: #c02000;
 }
-/* Litur á logo-inu notaður sem viðvörunarlitur */
-orange {
-    color: #c02000;
-}
-    .Curved
-    {
-    	-webkit-border-radius: 50px;
-        -moz-border-radius: 50px;
-        border-radius: 50px;
-    }

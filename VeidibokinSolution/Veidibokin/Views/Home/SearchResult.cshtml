@@ -18,9 +18,9 @@
 <div id="searchform">
     @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
     {
-        <p>
-            @Html.TextBox("searchString")
-            <input id="searchString" type="submit" value="Leita" />
+        <p class="well">
+            @Html.TextBox("searchString") 
+            <input class="btn btn-default"  type="submit" value="Leita" />
         </p>
     }
 </div>
@@ -28,6 +28,7 @@
 
 <div id="results">
     <div class="well">
+        <h3>@Html.Label("Niðurstaða leitar:")</h3>
         <table>
             @foreach (var data in Model.mySearchResultList)
             {
