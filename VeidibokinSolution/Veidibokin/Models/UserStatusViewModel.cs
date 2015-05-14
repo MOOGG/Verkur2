@@ -12,6 +12,6 @@ namespace Veidibokin.Models
         public Feed myFeed { get; set; }
         public Catch myCatch { get; set; }
         public HttpPostedFileBase myPic { get; set; }
-        public List<FollowList> myFollowList { get; set; }         
+        public List<FollowList> myFollowList { get; set; }   
     }
 }

@@ -8,9 +8,18 @@ using Veidibokin.Repositories;
 
 namespace Veidibokin.Controllers
 {
-    public class CatchController : HomeController
+    public class CatchController : ProfileController
     {
         [Authorize]
+        [HttpGet]
+        public ActionResult PostCatch()
+        {
+            var viewModel = new UserStatusViewModel { /* Set properties here or load data for it */ };
+            return View(viewModel);
+        }
+        
+        [Authorize]
+        [HttpPost]
         public ActionResult PostCatch(UserStatusViewModel collection)
         {
             int zoneID = collection.myCatch.zoneID;
@@ -43,6 +52,40 @@ namespace Veidibokin.Controllers
             }
 
             return FishTypeList;
+        }
+
+        public static List<SelectListItem> GetBaitTypeDropDown()
+        {
+            var dataContext = new ApplicationDbContext();
+            var myRepo = new UserRepository<BaitType>(dataContext);
+
+            List<SelectListItem> BaitTypeList = new List<SelectListItem>();
+
+            List<BaitType> TempList = myRepo.GetAll().ToList();
+
+            foreach (var temp in TempList)
+            {
+                BaitTypeList.Add(new SelectListItem() { Text = temp.name, Value = temp.ID.ToString() });
+            }
+
+            return BaitTypeList;
+        }
+
+        public static List<SelectListItem> GetZoneDropDown()
+        {
+            var dataContext = new ApplicationDbContext();
+            var myRepo = new UserRepository<Zone>(dataContext);
+
+            List<SelectListItem> ZoneList = new List<SelectListItem>();
+
+            List<Zone> TempList = myRepo.GetAll().ToList();
+
+            foreach (var temp in TempList)
+            {
+                ZoneList.Add(new SelectListItem() { Text = temp.zoneName, Value = temp.ID.ToString() });
+            }
+
+            return ZoneList;
         }
 
     }
