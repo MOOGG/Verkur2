@@ -13,9 +13,9 @@
         </span>
     </span>
     <span class="pull-right">
-        @Html.ActionLink("Skrá fisk", "PostCatch", null, new { @class = "btn btn-warning primary" })
+        @Html.ActionLink("Skrá fisk", "PostCatch", "Catch", null, new { @class = "btn btn-warning primary" })
         @Html.ActionLink("Búa til hóp", "SearchResult", null, new { @class = "btn btn-success primary" })
-        @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info primary" })
+        @Html.ActionLink("Leita", "SearchResult", "Search" , null, new { @class = "btn btn-info primary" })
     </span>
 </div>
 <br />
@@ -72,7 +72,7 @@
                 <li>
                     <div>
 
-                        <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.statusUserId }, null)</b>
+                        <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.statusUserId }, null)</b>
 
                         <span class="float-right">
                             @data.dateInserted
