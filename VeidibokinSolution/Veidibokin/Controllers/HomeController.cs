@@ -74,26 +74,7 @@ namespace Veidibokin.Controllers
             // hvaða view-i á ég að skila hér ???
             return RedirectToAction("Index", "Home");
             //return View("Index");
-        }
-
-		[Authorize]
-        public ActionResult PostCatch (UserStatusViewModel collection)
-        {
-            int zoneID = collection.myCatch.zoneID;
-            int baitID = collection.myCatch.baitTypeID;
-            int fishID = collection.myCatch.fishTypeId;
-            double? length = collection.myCatch.length;
-            double? weight = collection.myCatch.weight;
-                        
-            var myCatchRepo = new StatusRepository();
-            Catch newCatch = myCatchRepo.CatchToDB(zoneID, baitID, fishID, length, weight);
-
-            var catchId = newCatch.ID;
-            PostStatus(collection, catchId);
-            
-            return RedirectToAction("Index", "Home");
-        }
-        
+        }        
         
         [Authorize]
 		public ActionResult SearchResult(string searchString)

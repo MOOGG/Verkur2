@@ -13,13 +13,15 @@
 </head>
 <body>
     <div class="statusContainer" id="statusform">
-        @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("PostCatch", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+            @Html.TextBoxFor(f => f.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
             <br />
             <label for="photo"></label>
-            @Html.TextBoxFor(m => m.myPic, new { type = "file" })
+            @Html.TextBoxFor(f => f.myPic, new { type = "file" })
             <br />
+            @Html.DropDownListFor(c => c.myCatch.FishType, Veidibokin.Controllers.CatchController.GetFishTypeDropDown()
+            )
             <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
         }
         <br />
