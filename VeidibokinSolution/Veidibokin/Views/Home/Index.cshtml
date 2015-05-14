@@ -61,7 +61,11 @@
     @Html.Partial("_WaitMessage")
 
     <div class="col-md-8" id="statuses">
+        <span class="float-left">
+            @Html.ActionLink("Síðan mín", "ProfilePage", null, new { @class = "btn btn-warning primary" })
+        </span>
         <h3>@Html.Label("Nýjustu færslurnar þínar og þeirra sem þú fylgir:")</h3>
+
         @foreach (var data in Model.myFeedList)
         {
             <ul class="well" id="list-no-style">
@@ -79,21 +83,21 @@
                             </div>
                             <div class="statusText">
                                 <p>@data.statusText</p>
-                            </div>
-                            @if (data.statusPhoto != null)
-                            {
-                                <div class="imageContainer">
-                                    <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
-                                </div>
-                            }
-                        </div>
+
+                                @if (data.statusPhoto != null)
+                                {
+                                    <span class="imageContainer">
+                                        <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
+                                    </span>
+                                }
+
                         <br />
                         <div class="float-left">
                             <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
                             <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
                             <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />
                         </div>
-                        <br />
+
                     </div>
                 </li>
             </ul>
