@@ -12,11 +12,11 @@
             <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
         </span>
     </span>
-    <span class="pull-right">       
-            @Html.ActionLink("Skrá fisk", "PostCatch", null, new { @class = "btn btn-warning primary" })
+        <span class="pull-right">
             @Html.ActionLink("Búa til hóp", "SearchResult", null, new { @class = "btn btn-success primary" })
             @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info primary" })
-    </span>
+            @Html.ActionLink("Skrá fisk", "PostCatch", null, new { @class = "btn btn-danger primary" })
+        </span>
 </div>
 <br />
 <hr />
@@ -39,7 +39,7 @@
                 <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
             }
             <br />
-            <div class="following">git
+            <div class="following">
 
                 <h3>@Html.Label("Þeir sem þú fylgir:")</h3>
 
@@ -61,7 +61,11 @@
     @Html.Partial("_WaitMessage")
 
     <div class="col-md-8" id="statuses">
+        <span class="float-left">
+            @Html.ActionLink("Síðan mín", "ProfilePage", null, new { @class = "btn btn-warning primary" })
+        </span>
         <h3>@Html.Label("Nýjustu færslurnar þínar og þeirra sem þú fylgir:")</h3>
+
         @foreach (var data in Model.myFeedList)
         {
             <ul class="well" id="list-no-style">
@@ -85,7 +89,6 @@
                                         <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
                                     </span>
                                 }
-
                             </div>
                             <br />
                             <div class="float-left">
@@ -95,6 +98,7 @@
                             </div>
                             <br />
                         </div>
+                    </div>
                 </li>
             </ul>
         }
