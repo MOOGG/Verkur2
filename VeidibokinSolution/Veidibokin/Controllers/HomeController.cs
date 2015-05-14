@@ -152,6 +152,7 @@ namespace Veidibokin.Controllers
             displayProfile.myFeedList = statusList;
             displayProfile.myFullNameList = followList;
             displayProfile.OpenID = id;
+            //displayProfile.isFollowing = true;
 
             string yourId = id;
             string otherId = User.Identity.GetUserId();
