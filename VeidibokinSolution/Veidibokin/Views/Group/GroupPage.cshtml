@@ -1,0 +1,77 @@
+﻿@model Veidibokin.Models.GroupViewModel
+
+@{
+    ViewBag.Title = "GroupPage";
+}
+
+<div>
+    <img src="/Content/Images/logo.jpg" alt="Missing logo" />
+</div>
+<hr />
+
+@*@if( User Er ekki í grúbbunni)*@
+<div>
+    @Html.ActionLink("Ganga í hóp", "joinGroup", "Group", null, new { @class = "btn btn-primary" })
+</div>
+<dvi>
+    
+</dvi>
+<div class="row">
+    <div class="col-md-4">
+        <div class="statusContainer">
+             @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+             {
+                
+                @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
+                <br />
+                <label for="photo"></label>
+                @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
+                <br />
+                <span class="pull-right">
+                    <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+                </span>
+             }
+
+            @Html.Label("Hópmeðlimir")
+            @foreach (var data in Model.myFullNameList)
+            {
+                <ul id="list-no-style">
+                    <li>
+
+                        <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
+
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <h3>Hópsíða</h3>
+
+        @foreach (var data in Model.myFeedList)
+        {
+            <ul class="well" id="list-no-style">
+                <li>
+                    <div>
+                        <b>@data.fullName</b>
+                        <span class="float-right">
+                            @data.dateInserted
+                        </span>
+
+                        <div>
+                            @data.statusText
+                        </div>
+                    </div>
+                    <br />
+                    <div class="float-right">
+                        <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
+                        <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
+                        <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />
+                    </div>
+                    <br />
+                </li>
+            </ul>
+        }
+    </div>
+</div>
