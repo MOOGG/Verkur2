@@ -87,5 +87,10 @@ namespace Veidibokin.Controllers
 			return View();
 		}
 
+		public ActionResult Group()
+		{
+		
+			return View();
+		}
     }
 }
