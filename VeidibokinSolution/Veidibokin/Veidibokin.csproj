@@ -397,6 +397,8 @@
     <Content Include="Views\Shared\_WaitMessage.cshtml" />
     <Content Include="Views\Catch\PostCatch.cshtml" />
     <Content Include="Views\Group\GroupPage.cshtml" />
+    <Content Include="Views\Home\PostCatch.cshtml" />
+    <Content Include="Views\Group\Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
