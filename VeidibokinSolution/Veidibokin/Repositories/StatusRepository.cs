@@ -12,7 +12,7 @@ namespace Veidibokin.Repositories
     public class StatusRepository
     {
         // hér þarf að bæta við byte[] picture sem argument
-        public void StatusToDB(string status, string thisuserid, string statusPicture)
+        public int StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic)
         {
             using (var dataContext = new ApplicationDbContext())
             {
@@ -22,7 +22,7 @@ namespace Veidibokin.Repositories
                 var newStatus = new UserStatus()
                 {
                     statusText = status,
-                    isPublic = true,
+                    //isPublic = true,
                     dateInserted = DateTime.Now,
                     userId = thisuserid,
                     photo = statusPicture
@@ -32,6 +32,8 @@ namespace Veidibokin.Repositories
                 
                 //Debug.WriteLine(userStatusRepository.GetAll());
                 dataContext.SaveChanges();
+
+				return newStatus.ID;
             }
         }
 
@@ -161,21 +163,41 @@ namespace Veidibokin.Repositories
         }
 
         public void MakeFollowers(string myId, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
             {
-                using (var dataContext = new ApplicationDbContext())
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                UserFollower followRelation = new UserFollower()
                 {
-                    var myRepo = new UserRepository<UserFollower>(dataContext);
+                    userID = myId,
+                    followerID = otherId
+                };
 
-                    UserFollower followRelation = new UserFollower()
-                    {
-                        userID = myId,
-                        followerID = otherId
-                    };
+                myRepo.Insert(followRelation);
 
-                    myRepo.Insert(followRelation);
-
-                    dataContext.SaveChanges();
-                }
+                dataContext.SaveChanges();
             }
+        }
+
+        public bool AreFollowers(string id, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                List<UserFollower> myList = myRepo.GetAll().ToList();
+
+                for (int i = 0; i < myList.Count; i++)
+                {
+                    if (myList[i].userID == id && myList[i].followerID == otherId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
     }
 }

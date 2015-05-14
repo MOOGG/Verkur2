@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Veidibokin.Repositories;
 
 namespace Veidibokin.Models
 {
@@ -12,7 +13,7 @@ namespace Veidibokin.Models
         public List<FollowList> myFullNameList { get; set; }
         public string userNameId { get; set; }
         public string OpenID { set; get; }
-       // public bool isFollowing { get; set; }
+        public bool isFollowing { get; set; }
     }
 
     // viewmodel klasi
@@ -21,4 +22,5 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public string userId { get; set; }
     }
+
 }
