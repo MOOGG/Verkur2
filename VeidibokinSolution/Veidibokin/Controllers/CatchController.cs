@@ -8,8 +8,8 @@ using Veidibokin.Repositories;
 
 namespace Veidibokin.Controllers
 {
-	public class CatchController : HomeController
-	{
+    public class CatchController : HomeController
+    {
         [Authorize]
         public ActionResult PostCatch(UserStatusViewModel collection)
         {
@@ -32,7 +32,7 @@ namespace Veidibokin.Controllers
         {
             var dataContext = new ApplicationDbContext();
             var myRepo = new UserRepository<FishType>(dataContext);
-            
+
             List<SelectListItem> FishTypeList = new List<SelectListItem>();
 
             List<FishType> TempList = myRepo.GetAll().ToList();
@@ -41,10 +41,10 @@ namespace Veidibokin.Controllers
             {
                 FishTypeList.Add(new SelectListItem() { Text = temp.name, Value = temp.ID.ToString() });
             }
-            
+
             return FishTypeList;
         }
 
-	}
+    }
 }
 

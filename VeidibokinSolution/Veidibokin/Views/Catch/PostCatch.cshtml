@@ -16,7 +16,7 @@
 </span>
 <hr />
     <div class="statusContainer" id="statusform">
-        @using (Html.BeginForm("PostCatch", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("PostCatch", "Catch", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.TextBoxFor(f => f.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
             <br />
