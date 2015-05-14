@@ -80,12 +80,12 @@ namespace Veidibokin.Repositories
             {
                 var statuses = (from status in dataContext.UserStatuses
                                 where (status.isPublic == true && status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
                        
                 return fishfeed;
             }
