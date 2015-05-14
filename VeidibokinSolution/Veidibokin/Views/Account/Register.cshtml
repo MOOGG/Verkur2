@@ -10,7 +10,7 @@
 </span>
 <span class="pull-right">
     <span>
-        @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
+        @Html.ActionLink("Til baka", "Login", null, new { @class = "btn btn-info primary" })
     </span>
 </span>
 <hr />
@@ -18,9 +18,9 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-    <h4>Sláðu inn upplýsingarnar til að stofna nýjan aðgang</h4>
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+            <h4>Sláðu inn upplýsingarnar til að stofna nýjan aðgang</h4>
+            @Html.ValidationSummary("", new { @class = "text-orange" })
     <div class="form-group">
         @Html.LabelFor(m => m.fullName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
