@@ -1,11 +1,24 @@
 ﻿@{
     ViewBag.Title = "Um okkur";
 }
+<br />
+<span>
+    <span>
+        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
+    </span>
+</span>
+<span class="pull-right">
+    <span>
+        @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
+    </span>
+</span>
+<hr />
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
-
-<p>
-    Veiðibókin.is er samfélagsmiðill ætlaður fyrir áhugamenn um veiði. Á síðunni getur veiðimaður
-    sett inn færslur um sína veiði og deilt með þeim sem fyglja honum. Á sama hátt getur veiðimaður
-    fylgt öðrum og séð færslur frá þeim sem hann fylgir.
-</p>
+<div class="well">
+    <p>
+        Veiðibókin.is er samfélagsmiðill ætlaður fyrir áhugamenn um veiði. Á síðunni getur veiðimaður
+        sett inn færslur um sína veiði og deilt með þeim sem fylgja honum. Á sama hátt getur veiðimaður
+        fylgt öðrum og séð færslur frá þeim sem hann fylgir.
+    </p>
+</div>

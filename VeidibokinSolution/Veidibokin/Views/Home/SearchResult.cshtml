@@ -4,33 +4,49 @@
     ViewBag.Title = "SearchResult";
 }
 <br />
+<span>
+    <span>
+        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
+    </span>
+</span>
+<span class="pull-right">
+    <span>
+        @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
+    </span>
+</span>
+<hr />
 <div id="searchform">
     @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
     {
-        <p>
-            @Html.TextBox("searchString")
-            <input id="searchString" type="submit" value="Leita" />
+        <p class="well">
+            @Html.TextBox("searchString") 
+            <input class="btn btn-default"  type="submit" value="Leita" />
         </p>
     }
 </div>
-    @Html.Partial("_WaitMessage")
+@Html.Partial("_WaitMessage")
 
-    <div id="results">
-        <table class="table-striped">
+<div id="results">
+    <div class="well">
+        <h3>@Html.Label("Niðurstaða leitar:")</h3>
+        <table>
             @foreach (var data in Model.mySearchResultList)
             {
                 <tr>
                     <td>
                         @*@Html.DisplayFor(modelItem => item.searchResultText)*@
-                        @if (@data.type == 0) { 
+                        @if (@data.type == 0)
+                        {
                             <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Home", new { Id = @data.searchResultId }, null)</b>
                         }
-                        else { 
+                        else
+                        {
                             @Html.DisplayFor(modelItem => data.searchResultText)
-                        }    
+                        }
                     </td>
                 </tr>
             }
         </table>
-        
     </div>
+
+</div>

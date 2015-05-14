@@ -49,10 +49,10 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <!-- Ég breytti class="btn btn-default" í "btn btn-primary", MH -->
-                        <input type="submit" value="Innskrá" class="btn btn-primary" /> 
+                        <input type="submit" value="Innskrá" class="btn btn-primary" />                                            
                             <div class="help-block">
                                 @* Enable this once you have account confirmation enabled for password reset functionality *@
-                                @Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword")
+                                <li>@Html.ActionLink("Hefurðu gleymt lykilorðinu þínu?", "ForgotPassword", null, new { style="color:#c02000" })</li>
                             </div>
                     </div>
                 </div>

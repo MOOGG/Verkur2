@@ -1,17 +1,20 @@
 ﻿@model Veidibokin.Models.UserStatusViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "PostCatch";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>PostCatch</title>
-</head>
-<body>
+<br />
+<span>
+    <span>
+        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
+    </span>
+</span>
+<span class="pull-right">
+    <span>
+        @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
+    </span>
+</span>
+<hr />
     <div class="statusContainer" id="statusform">
         @using (Html.BeginForm("PostCatch", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -26,5 +29,3 @@
         }
         <br />
     </div>
-</body>
-</html>

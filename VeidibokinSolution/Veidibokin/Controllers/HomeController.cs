@@ -31,7 +31,7 @@ namespace Veidibokin.Controllers
             var followList = new List<FollowList>();
 
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
-            followList = myStatusRepo.ReturnFollowingList(userId);
+            followList = myStatusRepo.ReturnFollowersList(userId);
 
             UserStatusViewModel feedView = new UserStatusViewModel();
             
@@ -107,25 +107,48 @@ namespace Veidibokin.Controllers
 
             var statusList = new List<Feed>();
             var followList = new List<FollowList>();
-            //var userId = User.Identity.GetUserId();
 
             statusList = myProfileRepo.ReturnProfileStatuses(id);
-            followList = myProfileRepo.ReturnFollowersList(id);
+            followList = myProfileRepo.ReturnFollowingList(id);
 
             ProfileViewModel displayProfile = new ProfileViewModel();
 
             displayProfile.myFeedList = statusList;
             displayProfile.myFullNameList = followList;
+            displayProfile.userNameId = id;
 
-            //ViewData["StatusList"] = statusList;
-
-            //ViewBag.UserStatuses = statusList;
-
-            // finna út hvaða view á að vera hér !
             return View(displayProfile);
         }
 
-		public ActionResult About()
+        public ActionResult Follow(string id)
+        {
+            var statusList = new List<Feed>();
+            var followList = new List<FollowList>();
+
+            var myProfileRepo = new StatusRepository();
+            statusList = myProfileRepo.ReturnProfileStatuses(id);
+            followList = myProfileRepo.ReturnFollowingList(id);
+
+            var displayProfile = new ProfileViewModel();
+            displayProfile.myFeedList = statusList;
+            displayProfile.myFullNameList = followList;
+            displayProfile.OpenID = id;
+
+            string yourId = id;
+            string otherId = User.Identity.GetUserId();
+
+            var myRepo = new StatusRepository();
+            myRepo.MakeFollowers(yourId, otherId);
+
+            return RedirectToAction("ProfilePage", new
+            {
+                id = id
+            });
+            //return View(displayProfile.OpenID);
+        }
+
+
+	    public ActionResult About()
 		{
 			//ViewBag.Message = "Your application description page.";
 

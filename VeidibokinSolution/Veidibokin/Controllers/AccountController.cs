@@ -52,7 +52,7 @@ namespace Veidibokin.Controllers
             }
         }
 
-        //
+        //text
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -86,7 +86,7 @@ namespace Veidibokin.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Innskráning misfórst");
                     return View(model);
             }
         }

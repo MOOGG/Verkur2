@@ -41,6 +41,10 @@ select
 .float-right {
     float: right;
 } 
+/* Flæðir til hægri, MH */
+#float-right {
+    float: right;
+} 
 /* Bakgrunnsmynd á síðunni, MH */
 .background-image {
     background-image: url(/Content/Images/fishhook.jpg)
@@ -49,11 +53,10 @@ select
 #green-background {
     background-color: #788b49;
 }
-/* Litur á logo-inu notaður sem litur á ActionLink */
-a.orange {
+/* Orange */
+#orange {
     color: #c02000;
 }
-/* Litur á logo-inu notaður sem viðvörunarlitur */
-orange {
-    color: #c02000;
+.text-orange {
+    color: #C02000;
 }

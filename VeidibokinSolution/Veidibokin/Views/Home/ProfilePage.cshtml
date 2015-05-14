@@ -7,7 +7,7 @@
     <br />
     <span>
         <span>
-            <img src="/Content/Images/letter-V.png" alt="Missing logo" height="70" width="70" />
+            <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
         </span>
     </span>
     <span class="pull-right">
@@ -20,7 +20,9 @@
     @*@if(User Er ekki að followa)*@
 
     <div>
-        @Html.ActionLink("Fylgja notanda", "Follow", "Home", null, new { @class = "btn btn-primary" })
+
+        @Html.ActionLink("Fylgja notanda", "Follow", "Home", null, new { @class = "btn btn-success primary", id = @Model.userNameId })
+
     </div>
 
 
@@ -61,7 +63,7 @@
         </div>
 
         <div class="col-md-8">
-            <h3>@Html.Label("Prófílsíðan þín:")</h3>
+            <h3>@Html.Label("Prófílsíða:")</h3>
 
             @foreach (var data in Model.myFeedList)
             {

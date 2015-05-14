@@ -158,6 +158,24 @@ namespace Veidibokin.Repositories
 
                 return followingNames;
             }
-        } 
+        }
+
+        public void MakeFollowers(string myId, string otherId)
+            {
+                using (var dataContext = new ApplicationDbContext())
+                {
+                    var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                    UserFollower followRelation = new UserFollower()
+                    {
+                        userID = myId,
+                        followerID = otherId
+                    };
+
+                    myRepo.Insert(followRelation);
+
+                    dataContext.SaveChanges();
+                }
+            }
     }
 }
