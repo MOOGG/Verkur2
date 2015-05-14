@@ -13,6 +13,7 @@ namespace Veidibokin.Models
 		public Feed myFeed { get; set; }
         public int groupId { get; set; }
         public CreateGroup myGroup { get; set; }
+        public string testGroupID { get; set; }
 	}
 
 	public class GroupMembersList

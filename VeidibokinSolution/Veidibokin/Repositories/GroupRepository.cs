@@ -10,27 +10,37 @@ using Veidibokin.Models;
 namespace Veidibokin.Repositories
 {
 	public class GroupRepository
-	{
+    {
+        // !!!!!!!KEMUR VILLA HÉR, þegar reynt er að pósta group status.... skoða þetta !
 		public void GroupStatusToDB(string status, string thisuserid, string statusPicture, int groupId)
 		{
-			using (var dataContext = new ApplicationDbContext())
-			{
-				var myUserRepo = new UserRepository<UserStatus>(dataContext);
-				var myGroupRepo = new UserRepository<GroupStatus>(dataContext);
-				
-				// held að það þurfi ekkert að tjekka hvort picture sé null því ef null þá verður statusPicture = null
-				var newStatus = new UserStatus()
-				{
-					statusText = status,
-					isPublic = false,
-					dateInserted = DateTime.Now,
-					userId = thisuserid,
-					photo = statusPicture,
-				};
+		    int statusID = 0;
 
-				myUserRepo.Insert(newStatus);
-				
-				int statusID = newStatus.ID;
+		    using (var dataContext = new ApplicationDbContext())
+		    {
+		        var myUserRepo = new UserRepository<UserStatus>(dataContext);
+		        //var myGroupRepo = new UserRepository<GroupStatus>(dataContext);
+
+		        // held að það þurfi ekkert að tjekka hvort picture sé null því ef null þá verður statusPicture = null
+		        var newStatus = new UserStatus()
+		        {
+		            statusText = status,
+		            isPublic = false,
+		            dateInserted = DateTime.Now,
+		            userId = thisuserid,
+		            photo = statusPicture,
+		        };
+
+                statusID = newStatus.ID;
+
+		        myUserRepo.Insert(newStatus);
+		        // ÞARF AÐ GERA SAVECHANGES TVISVAR ??? kemur einnhver villa þegar maður postar groupstatus
+		        dataContext.SaveChanges();
+		    }
+
+		    using (var dataContext1 = new ApplicationDbContext())
+		    {
+		        var myGroupRepo = new UserRepository<GroupStatus>(dataContext1);
 
 				var newGroupStatus = new GroupStatus()
 				{
@@ -39,10 +49,9 @@ namespace Veidibokin.Repositories
 				};
 
 				myGroupRepo.Insert(newGroupStatus);
-
-				dataContext.SaveChanges();
-				
-			}
+                dataContext1.SaveChanges();
+		    }	
+		
 		}
 
 		public List<GroupFeed> ReturnGroupStatuses(int GroupID)
@@ -92,15 +101,58 @@ namespace Veidibokin.Repositories
 			 }
 		 }
 
-	    public void CreateGroupToDb(string groupName, string groupDescription, string photoPath)
+	    public int AddGroupToDb(string groupName, string groupDescription, string photoPath, string userId)
 	    {
-	        
+	        using (var dataContext = new ApplicationDbContext())
+	        {
+	            var myGroupRepo = new UserRepository<Group>(dataContext);
+
+	            var newGroup = new Group()
+	            {
+                    groupName = groupName,
+                    description = groupDescription,
+                    photo = photoPath
+	            };
+
+                myGroupRepo.Insert(newGroup);
+
+	            var adminUser = new GroupMember()
+	            {
+	                groupID = newGroup.ID,
+	                userID = userId,
+	                memberStatus = true,
+	                isAdmin = true
+	            };
+
+                var myGroupMemberRepo = new UserRepository<GroupMember>(dataContext);
+	            myGroupMemberRepo.Insert(adminUser);
+
+                dataContext.SaveChanges();
+
+	            return newGroup.ID;
+	        }
 	    }
 
-	    public void AddGroupMemberToDb()
+	    public void AddGroupMemberToDb(int groupId, string userId)
 	    {
-	        
-	    }
-			
+	        using (var dataContext = new ApplicationDbContext())
+	        {
+	            var myRepo = new UserRepository<GroupMember>(dataContext);
+
+                var thisUser = new GroupMember()
+                {
+                    groupID = groupId,
+                    userID = userId,
+                    memberStatus = false,
+                    isAdmin = false
+                };
+
+                myRepo.Insert(thisUser);
+
+	            dataContext.SaveChanges();
+
+	            return;
+	        }
+	    }		
 	}
 }

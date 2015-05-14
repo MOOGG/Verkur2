@@ -11,11 +11,12 @@
 
 @*@if( User Er ekki í grúbbunni)*@
 <div>
-    @Html.ActionLink("Ganga í hóp", "joinGroup", "Group", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new {@class = "btn btn-primary", id = @Model.groupId}, null)
 </div>
-<dvi>
-    
-</dvi>
+<div>
+    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId },null)
+</div>
+
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
