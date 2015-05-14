@@ -1,4 +1,5 @@
 ﻿@model Veidibokin.Models.GroupViewModel
+
 @{
     ViewBag.Title = "GroupPage";
 }
@@ -8,20 +9,20 @@
 </div>
 <hr />
 
-
+@*@if( User Er ekki í grúbbunni)*@
 <div>
-    @Html.ActionLink("Ganga í hóp", "joinGroup", "Home", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Ganga í hóp", "joinGroup", "Group", null, new { @class = "btn btn-primary" })
 </div>
 <dvi>
-    @
+    
 </dvi>
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
-             @using (Html.BeginForm("GroupPostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+             @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
              {
                 
-                @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "UserStatus", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
+                @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 <br />
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
@@ -37,7 +38,7 @@
                 <ul id="list-no-style">
                     <li>
 
-                        <b>@Html.ActionLink(@data.fullName, "GroupPage", "Home", new { Id = @data.userId }, null)</b>
+                        <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
 
                     </li>
                 </ul>

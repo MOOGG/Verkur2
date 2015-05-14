@@ -8,7 +8,7 @@
     <br />
     <span>
         <span>
-            <img src="/Content/Images/letter-V.png" alt="Missing logo" height="70" width="70" />
+            <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
         </span>
     </span>
     <span class="pull-right" >
@@ -19,7 +19,7 @@
             @Html.ActionLink("Búa til hóp", "SearchResult", null, new { @class = "btn btn-success primary" })
         </span>
         <span>
-            @Html.ActionLink("Leita", "SearchResult", null, new { @class = "btn btn-info primary" })
+            @Html.ActionLink("Leita", "SearchResult", "Search" , null, new { @class = "btn btn-info primary" })
         </span>
     </span>
     <hr />
@@ -30,9 +30,9 @@
             þar niður sem IEnumerable týpu
           *************************** -->
             <div class="statusContainer" id="statusform">               
-                    @using (Html.BeginForm("PostStatus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("PostStatus", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.TextBoxFor(m => m.myFeedList[0].statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })                              
+                        @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })                              
                         <br />
                             <label for="photo"></label>
                             @Html.TextBoxFor(m => m.myPic, new { type = "file" })
@@ -49,7 +49,7 @@
                         {
                             <ul id="list-no-style">
                                 <li>
-                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.userId }, null)</b>
+                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
                                 </li>
                             </ul>
                         }
@@ -69,7 +69,7 @@
                             <li>
                                 <div>
                                        
-                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Home", new { Id = @data.statusUserId }, null)</b>
+                                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.statusUserId }, null)</b>
                                     
                                     <span class="float-right">
                                         @data.dateInserted
