@@ -19,6 +19,9 @@ using System.Web.Helpers;
 
 namespace Veidibokin.Controllers
 {
+    /// <summary>
+    /// Hérna birtum við leitarniðurstöður þegar notandi skrifar inn leitarorð
+    /// </summary>
     public class SearchController : Controller
     {
 		[Authorize]
