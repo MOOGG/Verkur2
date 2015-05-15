@@ -16,6 +16,7 @@ namespace Veidibokin.Models
         public string OpenID { set; get; }
         public List<string> fullName { get; set; }
         public bool isFollowing { get; set; }
+        public List<CatchFeed> myCatchFeedList { get; set; }
     }
 
     // viewmodel klasi
@@ -24,5 +25,4 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public string userId { get; set; }
     }
-
 }

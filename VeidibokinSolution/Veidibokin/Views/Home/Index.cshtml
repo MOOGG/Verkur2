@@ -86,9 +86,16 @@
                                 }
                                 @if (data.catchId != null)
                                 {
-                                    <p>@Html.DisplayFor(model => model.myCatch.Zone)</p>   
-                                    <p>@Html.DisplayFor(model => model.myCatch.fishTypeId)</p>
-                                    <p>@Html.DisplayFor(model => model.myCatch.baitTypeID)</p>
+                                    foreach (var temp in Model.myCatchFeedList)
+                                    {
+                                        if (data.catchId == temp.catchID)
+                                        {
+                                            <p>@temp.fish</p> 
+                                            <p>@temp.bait</p>   
+                                            <p>@temp.zone</p>
+                                            <p>@temp.length cm @temp.weight pund</p>
+                                        }
+                                    }
                                 }
                             </div>
                             <br />
