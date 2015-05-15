@@ -129,11 +129,11 @@ namespace Veidibokin.Controllers
         }
 
         //public ActionResult ShowMemberRequests(int groupId)//, string userId)
-        public ActionResult ShowMemberRequests(int id)
+        public ActionResult ShowMemberRequests(int groupId)
         {
             var myRepo = new GroupRepository();
 
-            var listOfRequest = myRepo.ReturnGroupRequestList(id);
+            var listOfRequest = myRepo.ReturnGroupRequestList(groupId);
 
             var returnView = new GroupViewModel();
 
@@ -142,18 +142,25 @@ namespace Veidibokin.Controllers
             return View(returnView);
         }
 
-        public ActionResult RequestGroupAccess(int id)
+        public ActionResult RequestGroupAccess()
+        {
+            return View();
+        }
+
+        public ActionResult RequestGroupAccess(int groupId)
         {
             var myRepo = new GroupRepository();
 
             string userId = User.Identity.GetUserId();
 
-            myRepo.AddGroupMemberToDb(id, userId);
+            myRepo.AddGroupMemberToDb(groupId, userId);
 
             return RedirectToAction("GroupPage", new
             {
-                id = id
+                id = groupId
             });
         }
+
+
     }
 }
