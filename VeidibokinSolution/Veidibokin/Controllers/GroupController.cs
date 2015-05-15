@@ -78,19 +78,5 @@ namespace Veidibokin.Controllers
 
 			return View(displayGroup);
 		}
-
-		public ActionResult CreateGroup()
-		{
-
-
-
-			return View();
-		}
-
-		public ActionResult Group()
-		{
-		
-			return View();
-		}
     }
 }

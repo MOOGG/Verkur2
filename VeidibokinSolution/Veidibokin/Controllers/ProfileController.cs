@@ -37,7 +37,7 @@ namespace Veidibokin.Controllers
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.userNameId = id;
-
+			
 			return View(displayProfile);
 		}
 
@@ -89,7 +89,7 @@ namespace Veidibokin.Controllers
 				path = Path.Combine(Server.MapPath(directory), fileName);
 				img.Save(path);
 			}
-
+			
 			var userId = User.Identity.GetUserId();
 
 			var myStatusRepo = new StatusRepository();
