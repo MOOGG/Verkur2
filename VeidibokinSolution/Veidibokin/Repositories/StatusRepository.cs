@@ -80,12 +80,12 @@ namespace Veidibokin.Repositories
             {
                 var statuses = (from status in dataContext.UserStatuses
                                 where (status.isPublic == true && status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
                        
                 return fishfeed;
             }
@@ -163,21 +163,41 @@ namespace Veidibokin.Repositories
         }
 
         public void MakeFollowers(string myId, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
             {
-                using (var dataContext = new ApplicationDbContext())
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                UserFollower followRelation = new UserFollower()
                 {
-                    var myRepo = new UserRepository<UserFollower>(dataContext);
+                    userID = myId,
+                    followerID = otherId
+                };
 
-                    UserFollower followRelation = new UserFollower()
-                    {
-                        userID = myId,
-                        followerID = otherId
-                    };
+                myRepo.Insert(followRelation);
 
-                    myRepo.Insert(followRelation);
-
-                    dataContext.SaveChanges();
-                }
+                dataContext.SaveChanges();
             }
+        }
+
+        public bool AreFollowers(string id, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                List<UserFollower> myList = myRepo.GetAll().ToList();
+
+                for (int i = 0; i < myList.Count; i++)
+                {
+                    if (myList[i].userID == id && myList[i].followerID == otherId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
     }
 }
