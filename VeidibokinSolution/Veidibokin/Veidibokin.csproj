@@ -224,10 +224,15 @@
     <Compile Include="Migrations\201505131554476_catch.Designer.cs">
       <DependentUpon>201505131554476_catch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505142000054_error.cs" />
+    <Compile Include="Migrations\201505142000054_error.Designer.cs">
+      <DependentUpon>201505142000054_error.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
     <Compile Include="Models\Catch.cs" />
+    <Compile Include="Models\CatchFeed.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\FishType.cs" />
@@ -450,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505131554476_catch.resx">
       <DependentUpon>201505131554476_catch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505142000054_error.resx">
+      <DependentUpon>201505142000054_error.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

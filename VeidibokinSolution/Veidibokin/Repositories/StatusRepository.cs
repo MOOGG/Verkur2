@@ -5,14 +5,19 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using Veidibokin.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 
 namespace Veidibokin.Repositories
 {
     public class StatusRepository
     {
-        // hér þarf að bæta við byte[] picture sem argument
-        public int StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic)
+      
+        // Þessi aðgerð keyrir inn status án catchId ef catchId = null
+        public int StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic, int? catchId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
@@ -25,7 +30,8 @@ namespace Veidibokin.Repositories
                     //isPublic = true,
                     dateInserted = DateTime.Now,
                     userId = thisuserid,
-                    photo = statusPicture
+                    photo = statusPicture,
+                    catchID = catchId
                 };
 
                 myRepo.Insert(newStatus);
@@ -37,7 +43,7 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public Catch CatchToDB(int zone, int fishType, int baitType, double? length, double? weight )
+        public Catch CatchToDB(int zone, int fishType, int baitType, double? length, double? weight)
         {
             using (var dataContext = new ApplicationDbContext())
             {
@@ -48,17 +54,21 @@ namespace Veidibokin.Repositories
                     zoneID = zone,
                     fishTypeId = fishType,
                     baitTypeID = baitType,
-                    length= length,
+                    length = length,
                     weight = weight
                 };
 
                 myRepo.Insert(newCatch);
-
+                
                 dataContext.SaveChanges();
-
+              
                 return newCatch;
             }
         }
+   
+
+        
+        
         
         /*public byte[] returnImageFromDb(string userId)
         {
@@ -80,12 +90,12 @@ namespace Veidibokin.Repositories
             {
                 var statuses = (from status in dataContext.UserStatuses
                                 where (status.isPublic == true && status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, catchId = status.catchID });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId }).ToList();
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, catchId = status.catchId }).ToList();
                        
                 return fishfeed;
             }
@@ -121,12 +131,12 @@ namespace Veidibokin.Repositories
 
                 var statuses = (from status in dataContext.UserStatuses
                                 where ((following.Contains(status.userId) && status.isPublic == true) || status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo, catchId = status.catchID });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                        join status in statuses on users.Id equals status.userId
                                        orderby status.date descending
-                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo, catchId = status.catchId }).ToList();
                 
                 return fishfeed;
             }
@@ -163,21 +173,32 @@ namespace Veidibokin.Repositories
         }
 
         public void MakeFollowers(string myId, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
             {
-                using (var dataContext = new ApplicationDbContext())
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                UserFollower followRelation = new UserFollower()
                 {
-                    var myRepo = new UserRepository<UserFollower>(dataContext);
+                    userID = myId,
+                    followerID = otherId
+                };
 
-                    UserFollower followRelation = new UserFollower()
-                    {
-                        userID = myId,
-                        followerID = otherId
-                    };
+                myRepo.Insert(followRelation);
 
-                    myRepo.Insert(followRelation);
-
-                    dataContext.SaveChanges();
-                }
+                dataContext.SaveChanges();
             }
+        }
+
+        public List<Catch> ReturnCatch (int catchID)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myCatch = (from c in dataContext.Catches
+                           where c.ID == catchID
+                           select new Catch { ID = c.ID, zoneID = c.zoneID, baitTypeID = c.baitTypeID, fishTypeId = c.fishTypeId, length = c.length, weight = c.weight }).ToList();
+                return myCatch;
+            }
+        }
     }
 }
