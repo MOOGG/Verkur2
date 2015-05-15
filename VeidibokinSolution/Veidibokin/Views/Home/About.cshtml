@@ -2,11 +2,11 @@
     ViewBag.Title = "Um okkur";
 }
 <br />
-<span>
-    <span>
-        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
-    </span>
-</span>
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+
+<hr />
 <span class="pull-right">
     <span>
         @Html.ActionLink("Til baka", "Index", null, new { @class = "btn btn-info primary" })
