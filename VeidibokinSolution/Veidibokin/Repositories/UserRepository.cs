@@ -12,6 +12,10 @@ using System.Web.UI;
 using System.Windows.Markup;
 namespace Veidibokin.Repositories
 {
+    /// <summary>
+    /// Þetta repo erfir ParentRepository og útfærir öll þau föll sem eru skilgreind í því. Notast
+    /// var við innbyggð föll DbSet.
+    /// </summary>
     public class UserRepository<Tag> : ParentRepository<Tag> where Tag : class 
     {
         protected DbSet<Tag> DbSet;

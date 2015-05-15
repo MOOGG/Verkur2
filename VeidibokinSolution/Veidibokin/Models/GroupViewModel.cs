@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Veidibokin.Models
 {
+    /// <summary>
+    /// Þetta ViewModel var notað við birtingar á hópum og annað þeim tengt
+    /// </summary>
 	public class GroupViewModel
 	{
 		public List<GroupFeed> myFeedList { get; set; }

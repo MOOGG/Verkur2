@@ -7,6 +7,9 @@ using Veidibokin.Repositories;
 
 namespace Veidibokin.Models
 {
+    /// <summary>
+    /// Þetta ViewModel var notað við birtingnar á prófíl síðum
+    /// </summary>
     public class ProfileViewModel
     {
         public List<Feed> myFeedList { get; set; }
@@ -19,7 +22,6 @@ namespace Veidibokin.Models
         public List<CatchFeed> myCatchFeedList { get; set; }
     }
 
-    // viewmodel klasi
     public class FollowList
     {
         public string fullName { get; set; }
