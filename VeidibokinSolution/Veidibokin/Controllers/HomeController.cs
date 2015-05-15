@@ -21,6 +21,10 @@ namespace Veidibokin.Controllers
 {
 	public class HomeController : Controller
 	{
+        /// <summary>
+        /// Hér er index (heimasíðu) notenda fyllt af réttum upplýsingum
+        /// (statusar, fylgjendur o.s.frv)
+        /// </summary>
         [Authorize]
 		public ActionResult Index()
         {
@@ -33,7 +37,7 @@ namespace Veidibokin.Controllers
 
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
             followList = myStatusRepo.ReturnFollowersList(userId);
-            catchList = myStatusRepo.ReturnCatch(userId);
+            catchList = myStatusRepo.ReturnCatch();
 
             UserStatusViewModel feedView = new UserStatusViewModel();
             

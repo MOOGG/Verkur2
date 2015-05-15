@@ -9,9 +9,13 @@ using Veidibokin.Models;
 
 namespace Veidibokin.Repositories
 {
+    /// <summary>
+    /// GroupRepository sér um að sækja gögn úr grunni og skrá niður í sambandi
+    /// við allt sem viðkemur hópum innan síðunnar
+    /// </summary>
 	public class GroupRepository
     {
-        // !!!!!!!KEMUR VILLA HÉR, þegar reynt er að pósta group status.... skoða þetta !
+        // GroupStatusToDB skrifar hópastatus niður í grunn í GroupStatus töfluna
 		public void GroupStatusToDB(string status, string thisuserid, string statusPicture, int groupId)
 		{
 		    int statusID = 0;
@@ -19,9 +23,7 @@ namespace Veidibokin.Repositories
 		    using (var dataContext = new ApplicationDbContext())
 		    {
 		        var myUserRepo = new UserRepository<UserStatus>(dataContext);
-		        //var myGroupRepo = new UserRepository<GroupStatus>(dataContext);
 
-		        // held að það þurfi ekkert að tjekka hvort picture sé null því ef null þá verður statusPicture = null
 		        var newStatus = new UserStatus()
 		        {
 		            statusText = status,
@@ -52,6 +54,7 @@ namespace Veidibokin.Repositories
 		
 		}
 
+        // ReturnGroupStatuses skilar lista af statusum úr viðkomandi hóp
 		public List<GroupFeed> ReturnGroupStatuses(int GroupID)
 		{
             using (var dataContext = new ApplicationDbContext())
@@ -73,32 +76,35 @@ namespace Veidibokin.Repositories
             }
         }
 
-		 public List<GroupMembersList> ReturnMembersList(int groupId)
+        // ReturnMembersList skilar lista af hópmeðlimum viðkomandi hóps
+		public List<GroupMembersList> ReturnMembersList(int groupId)
+		{
+		using (var dataContext = new ApplicationDbContext())
+		{
+			var membersNames = (from user in dataContext.Users
+								join groupmemberid in dataContext.GroupMembers on user.Id equals groupmemberid.userID
+								where (groupmemberid.memberStatus == true && groupmemberid.groupID == groupId )
+								select new GroupMembersList { fullName = user.fullName, userId = user.Id }).ToList();
+
+			return membersNames;
+		}
+		}
+
+        // ReturnGroupRequestList skilar lista af meðlimabeiðnum viðkomandi hóps
+		public List<GroupMembersList> ReturnGroupRequestList(int groupId)
 		{
 			using (var dataContext = new ApplicationDbContext())
 			{
 				var membersNames = (from user in dataContext.Users
 									join groupmemberid in dataContext.GroupMembers on user.Id equals groupmemberid.userID
-									where (groupmemberid.memberStatus == true && groupmemberid.groupID == groupId )
+									where (groupmemberid.memberStatus == false && groupmemberid.groupID == groupId)
 									select new GroupMembersList { fullName = user.fullName, userId = user.Id }).ToList();
 
 				return membersNames;
 			}
 		}
 
-		 public List<GroupMembersList> ReturnGroupRequestList(int groupId)
-		 {
-			 using (var dataContext = new ApplicationDbContext())
-			 {
-				 var membersNames = (from user in dataContext.Users
-									 join groupmemberid in dataContext.GroupMembers on user.Id equals groupmemberid.userID
-									 where (groupmemberid.memberStatus == false && groupmemberid.groupID == groupId)
-									 select new GroupMembersList { fullName = user.fullName, userId = user.Id }).ToList();
-
-				 return membersNames;
-			 }
-		 }
-
+        // AddGroupToDb býr til nýjan hóp í grunni í Groups töfluna
 	    public int AddGroupToDb(string groupName, string groupDescription, string photoPath, string userId)
 	    {
 	        using (var dataContext = new ApplicationDbContext())
@@ -131,6 +137,7 @@ namespace Veidibokin.Repositories
 	        }
 	    }
 
+        // AddGroupMemberToDb bætir nýjum notenda í viðkomandi hóp
 	    public void AddGroupMemberToDb(int groupId, string userId)
 	    {
 	        using (var dataContext = new ApplicationDbContext())
@@ -153,6 +160,8 @@ namespace Veidibokin.Repositories
 	        }
 	    }
 
+        // IsMember athugar hvort að notandi sé nú þegar meðlimur af hóp.
+        // Ef svo er skilar fallið true
         public bool IsMember(int groupId, string userId)
         {
             using (var dataContext = new ApplicationDbContext())
@@ -173,6 +182,8 @@ namespace Veidibokin.Repositories
             }
         }
 
+        // MakeMember skráir að notandi sé orðinn meðlimur af viðkomandi hóp
+        // með því að breyta mamberStatus breytunni í true
 	    public void MakeMember(int groupId, string userId)
 	    {
 	        using (var dataContext = new ApplicationDbContext())
@@ -189,6 +200,8 @@ namespace Veidibokin.Repositories
 	        }
 	    }
 
+        // DenyMemberReq sér um að henda út notenda úr GroupMembers töflunni sem
+        // hefur verið neitað um inngöngu í hóp. Virkni ekki kláruð
 	    public void DenyMemberReq(int groupId, string userId)
 	    {
 	        using (var dataContext = new ApplicationDbContext())
@@ -207,22 +220,25 @@ namespace Veidibokin.Repositories
 	        }
 	    }
 
-        public List<string> ReturnGroupName(int Id)
+        // ReturnGroupName skilar nafni viðkomandi hóps
+        public List<string> ReturnGroupName(int id)
         {
             using (var dataContext = new ApplicationDbContext())
             {
                 List<string> groupName = (from groups in dataContext.Groups
-                                         where (groups.ID == Id)
+                                         where (groups.ID == id)
                                          select groups.groupName).ToList();
                 return groupName;
             }
         }
-        public List<string> ReturnGroupDescription(int Id)
+
+        // ReturnGroupDescription skilar lýsingu viðkomandi hóps
+        public List<string> ReturnGroupDescription(int id)
         {
             using (var dataContext = new ApplicationDbContext())
             {
                 List<string> groupDescription = (from groups in dataContext.Groups
-                                          where (groups.ID == Id)
+                                          where (groups.ID == id)
                                           select groups.description).ToList();
                 return groupDescription;
             }

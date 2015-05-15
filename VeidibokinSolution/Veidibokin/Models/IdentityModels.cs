@@ -47,7 +47,7 @@ namespace Veidibokin.Models
         public DbSet<UserFollower> UserFollowers { get; set; }
         public DbSet<GroupStatus> GroupStatuses { get; set; }
         public DbSet<Worm> Worms { get; set; }
-        
+
         // hér búum við til tilvik af entity klösunum, búm þá til inní Models möppuna (UserStatus, UserComment,
         // UserInfo etc., f.ex. "public DbSet<UserStatus> UserStatuses { get; set; }"
         // muna að tilgreina lykla í entity klösunum, "public int ID ..." automatic key

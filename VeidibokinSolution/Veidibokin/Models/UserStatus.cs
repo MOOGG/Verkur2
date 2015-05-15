@@ -24,7 +24,6 @@ namespace Veidibokin.Models
         public bool isPublic { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-        //public virtual Photo Photo { get; set; }
         public virtual Catch Catch { get; set; }
     }
 }
