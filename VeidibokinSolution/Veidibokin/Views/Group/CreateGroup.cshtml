@@ -1,0 +1,17 @@
+﻿@model Veidibokin.Models.GroupViewModel
+@{
+    ViewBag.Title = "CreateGroup";
+}
+
+<h2>Búa til hóp</h2>
+
+<div>
+    @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.TextBoxFor(m => m.myGroup.groupName, new { @placeholder = "Nafn hóps" })
+        @Html.TextBoxFor(m => m.myGroup.groupDescription, new { @placeholder = "Lýsing hóps" })
+        @Html.TextBoxFor(m => m.myGroup.groupPic, new { type = "file", @class = "btn btn-default" })
+        <input type="submit" class="btn btn-primary" id="submit" value="Stofna hóp" />
+    }
+</div>
