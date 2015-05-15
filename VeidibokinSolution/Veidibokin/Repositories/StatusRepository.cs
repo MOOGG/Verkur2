@@ -90,12 +90,12 @@ namespace Veidibokin.Repositories
             {
                 var statuses = (from status in dataContext.UserStatuses
                                 where (status.isPublic == true && status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, catchId = status.catchID });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, catchId = status.catchId }).ToList();
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
                        
                 return fishfeed;
             }
@@ -190,14 +190,34 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<Catch> ReturnCatch (int catchID)
+        public List<Catch> ReturnCatch(int catchID)
         {
             using (var dataContext = new ApplicationDbContext())
             {
                 var myCatch = (from c in dataContext.Catches
-                           where c.ID == catchID
-                           select new Catch { ID = c.ID, zoneID = c.zoneID, baitTypeID = c.baitTypeID, fishTypeId = c.fishTypeId, length = c.length, weight = c.weight }).ToList();
+                               where c.ID == catchID
+                               select new Catch { ID = c.ID, zoneID = c.zoneID, baitTypeID = c.baitTypeID, fishTypeId = c.fishTypeId, length = c.length, weight = c.weight }).ToList();
                 return myCatch;
+            }
+        }
+
+        public bool AreFollowers(string id, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                List<UserFollower> myList = myRepo.GetAll().ToList();
+
+                for (int i = 0; i < myList.Count; i++)
+                {
+                    if (myList[i].userID == id && myList[i].followerID == otherId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
     }

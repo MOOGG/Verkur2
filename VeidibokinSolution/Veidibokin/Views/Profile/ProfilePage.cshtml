@@ -75,8 +75,14 @@
                             @data.dateInserted
                         </span>
 
-                        <div>
-                            @data.statusText
+                        <div class="statusText">
+                            <p>@data.statusText</p>
+                            @if (data.statusPhoto != null)
+                            {
+                                <span class="imageContainer">
+                                    <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
+                                </span>
+                            }
                         </div>
                     </div>
                     <br />

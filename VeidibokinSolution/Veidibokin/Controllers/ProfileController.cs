@@ -37,7 +37,7 @@ namespace Veidibokin.Controllers
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.userNameId = id;
-
+			
 			return View(displayProfile);
 		}
 
@@ -54,25 +54,46 @@ namespace Veidibokin.Controllers
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.OpenID = id;
+            displayProfile.isFollowing = true;
 
 			string yourId = id;
 			string otherId = User.Identity.GetUserId();
 
-			var myRepo = new StatusRepository();
-			myRepo.MakeFollowers(yourId, otherId);
-
+            if (!myProfileRepo.AreFollowers(id,otherId))
+		    {
+                var myRepo = new StatusRepository();
+                myRepo.MakeFollowers(otherId, id);
+		    }
+            
 			return RedirectToAction("ProfilePage", new
 			{
 				id = id
 			});
 		}
 
+<<<<<<< HEAD
         [HttpGet]
         public ActionResult PostStatus()
         {
             var viewModel = new UserStatusViewModel();
             return View(viewModel);
         }
+=======
+			if (file != null && file.ContentLength > 0)
+			{
+				WebImage img = new WebImage(file.InputStream);
+				if (img.Width > 300)
+					img.Resize(300, 300);
+				fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+				path = Path.Combine(Server.MapPath(directory), fileName);
+				img.Save(path);
+			}
+			
+			var userId = User.Identity.GetUserId();
+
+			var myStatusRepo = new StatusRepository();
+			var isPublic = true;
+>>>>>>> 95067058fe547dd1020fd4bb59f4298fa99e4359
 
         [HttpPost]
         public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
