@@ -153,6 +153,26 @@ namespace Veidibokin.Repositories
 
 	            return;
 	        }
-	    }		
+	    }
+
+        public bool IsMember(int groupId, string userId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<GroupMember>(dataContext);
+
+                List<GroupMember> myList = myRepo.GetAll().ToList();
+
+                for (int i = 0; i < myList.Count; i++)
+                {
+                    if (myList[i].groupID == groupId && myList[i].userID == userId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
 	}
 }

@@ -148,12 +148,27 @@ namespace Veidibokin.Controllers
 
             string userId = User.Identity.GetUserId();
 
-            myRepo.AddGroupMemberToDb(groupId, userId);
+            if (!myRepo.IsMember(groupId, userId))
+            {
+                myRepo.AddGroupMemberToDb(groupId, userId);
+            }
 
             return RedirectToAction("GroupPage", new
             {
                 id = groupId
             });
         }
+
+        public ActionResult AcceptRequest(int groupId, string userId)
+        {
+            return View();
+        }
+
+        public ActionResult DenyRequest(int groupId, string userId)
+        {
+            return View();
+        }
+
+
     }
 }

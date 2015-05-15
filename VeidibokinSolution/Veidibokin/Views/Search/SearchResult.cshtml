@@ -27,8 +27,7 @@
 @Html.Partial("_WaitMessage")
 
 <div id="results">
-    <!--table class="table-striped"-->
-    <table class="well">
+    <table>
         @foreach (var data in Model.mySearchResultList)
         {
             <tr>
@@ -36,11 +35,11 @@
                     @*@Html.DisplayFor(modelItem => item.searchResultText)*@
                     @if (@data.type == 0)
                     {
-                        <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Profile", new { Id = @data.searchResultId }, null)</b>
+                        <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Profile", new { Id = @data.searchResultId }, new{ @class = "Links"}) </b>
                     }
                     else if (@data.type == 2)
                     {
-                        <b>@Html.ActionLink(@data.searchResultText, "GroupPage", "Group", new { Id = @data.searchResultId }, null)</b>
+                        <b>@Html.ActionLink(@data.searchResultText, "GroupPage", "Group", new { Id = @data.searchResultId }, new{ @class = "Links"})</b>
                     }
                     else
                     {

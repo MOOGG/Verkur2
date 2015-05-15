@@ -16,6 +16,7 @@
     @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
 </span>
 
+
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
@@ -35,13 +36,13 @@
         </div>
         
     </div>
-    <div class="pull-right">
+    <div class="pull-right Links">
         @Html.Label("Hópmeðlimir")
         @foreach (var data in Model.myFullNameList)
         {
             <ul id="list-no-style">
                 <li>
-                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
+                    <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, new { @class = "Links"})</b>
                 </li>
             </ul>
         }
