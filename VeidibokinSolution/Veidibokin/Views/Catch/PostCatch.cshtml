@@ -3,33 +3,37 @@
 @{
     ViewBag.Title = "PostCatch";
 }
-<br />
-<span>
-    <span>
-        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
-    </span>
-</span>
-<span class="pull-right">
-    <span>
-        @Html.ActionLink("Til baka","Index","Home", null, new { @class = "btn btn-info primary" })
-    </span>
-</span>
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+
 <hr />
     <div class="form" id="statusform">
-        @using (Html.BeginForm("PostCatch", "Catch", new { id = Model.myCatch }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.TextBoxFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
-            <br />
-            <label for="photo"></label>
-            @Html.TextBoxFor(f => f.myPic, new { type = "file" })
-            <br />
-            @Html.DropDownListFor(f => f.myCatch.fishTypeId, Veidibokin.Controllers.CatchController.GetFishTypeDropDown(),"Fisktegund")
-            @Html.DropDownListFor(f => f.myCatch.baitTypeID, Veidibokin.Controllers.CatchController.GetBaitTypeDropDown(),"Beita")
-            @Html.DropDownListFor(f => f.myCatch.zoneID, Veidibokin.Controllers.CatchController.GetZoneDropDown(),"Staður")
-            <br />
-            @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "", @class = "form-group", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
-            @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "", @class = "form-group", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
-            <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
-        }
-        <br />
-    </div>
+    @using (Html.BeginForm("PostCatch", "Catch", new { id = Model.myCatch, @class = "form" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            <div class="">
+                @Html.TextAreaFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group textBoxStatus", @id = "Status", @name = "UserStatus", @placeholder = "Hvernig gekk veiðin?" })
+            </div>
+            <div>
+                <label for="photo"></label>
+                @Html.TextBoxFor(f => f.myPic, new { type = "file" })
+            </div>
+            <div class="margin-top">
+                @Html.DropDownListFor(f => f.myCatch.fishTypeId, Veidibokin.Controllers.CatchController.GetFishTypeDropDown(), "Fisktegund")
+                @Html.DropDownListFor(f => f.myCatch.baitTypeID, Veidibokin.Controllers.CatchController.GetBaitTypeDropDown(), "Beita")
+                @Html.DropDownListFor(f => f.myCatch.zoneID, Veidibokin.Controllers.CatchController.GetZoneDropDown(), "Staður")
+            </div>
+            <div class="">
+                @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "cm", @class = "form-group margin-top", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
+                @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "pund", @class = "", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
+            <div>
+                <input type="submit" class="btn btn-primary" id="submit" value="Skrá fisk" />
+            </div>
+            </div>
+
+                </div>
+    }
+
+</div>
+

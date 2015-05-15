@@ -2,8 +2,12 @@
 @{
     ViewBag.Title = "CreateGroup";
 }
-
-<h2>Búa til hóp</h2>
+<br />
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+<hr />
+<h3>Búa til hóp</h3>
 
 <div>
     @using (Html.BeginForm("CreateGroup", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))

@@ -4,19 +4,22 @@
     ViewBag.Title = "GroupPage";
 }
 
-<div>
-    <img src="/Content/Images/logo.jpg" alt="Missing logo" />
+
+<div class="margin-top">
+    @Html.Partial("_logo")
 </div>
 <hr />
 
-<span class="pull-right">
-    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
-</span>
-<span>
+<div class="pull-right margin-bot">
+    <span>
+        @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
+    </span>
+</div>
+<div>
     @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
-</span>
+</div>
 
-<div class="row">
+<div class="row margin-top">
     <div class="col-md-4">
         <div class="statusContainer">
             @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -27,9 +30,9 @@
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
 
-                <br />
+                
                 <div class="pull-left">
-                    <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+                    <input type="submit" class="btn btn-success margin-top id="submit" value="Birta" />
                 </div>
             }
         </div>

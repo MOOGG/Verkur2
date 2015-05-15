@@ -5,17 +5,11 @@
 }
 
 <br />
-<span>
-    <span>
-        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
-    </span>
-</span>
-<span class="pull-right">
-    <span>
-        @Html.ActionLink("Til baka", "Index", "Home", null, new { @class = "btn btn-info primary" })
-    </span>
-</span>
-<hr />
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+
+<br />
 
 @*@if(User Er ekki að followa)*@
 
