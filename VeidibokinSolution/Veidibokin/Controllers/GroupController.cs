@@ -73,15 +73,22 @@ namespace Veidibokin.Controllers
 
 			var groupStatusList = new List<GroupFeed>();
 			var groupMembers = new List<GroupMembersList>();
+            var groupName = new List<string>();
+            var description = new List<string>();
+
 
 			groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
 			groupMembers = myGroupRepo.ReturnMembersList(id);
+            groupName = myGroupRepo.ReturnGroupName(id);
+            description = myGroupRepo.ReturnGroupDescription(id);
 
 			GroupViewModel displayGroup = new GroupViewModel();
 
 			displayGroup.myFeedList = groupStatusList;
 			displayGroup.myFullNameList = groupMembers;
 		    displayGroup.groupId = id;
+            displayGroup.groupName = groupName;
+            displayGroup.description = description;
 
 			return View(displayGroup);
 		}

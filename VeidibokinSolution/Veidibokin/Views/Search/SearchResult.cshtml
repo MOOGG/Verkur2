@@ -3,23 +3,17 @@
 @{
     ViewBag.Title = "SearchResult";
 }
-<br />
-<span>
-    <span> 
-            <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
-    </span>
-</span>
-<span class="pull-right">
-    <span>
-        @Html.ActionLink("Til baka", "Index", "Home", null, new { @class = "btn btn-info primary" })
-    </span>
-</span>
+
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+
 <hr />
 <div id="searchform">
     @using (Html.BeginForm("SearchResult", "Search", FormMethod.Post))
     {
         <p>
-            @Html.TextBox("searchString")
+            @Html.TextBox("searchString", null ,new { @class="searchBox" , @placeholder = "Hvað viltu finna?" })
             <input id="searchString-button" type="submit" value="Leita" />
         </p>
     }
@@ -32,7 +26,6 @@
         {
             <tr>
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.searchResultText)*@
                     @if (@data.type == 0)
                     {
                         <b>@Html.ActionLink(@data.searchResultText, "ProfilePage", "Profile", new { Id = @data.searchResultId }, new{ @class = "Links"}) </b>

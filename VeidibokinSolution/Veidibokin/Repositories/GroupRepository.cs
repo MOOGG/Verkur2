@@ -211,5 +211,26 @@ namespace Veidibokin.Repositories
                 myRepo.Delete(denyMember[0]);
 	        }
 	    }
+
+        public List<string> ReturnGroupName(int Id)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                List<string> groupName = (from groups in dataContext.Groups
+                                         where (groups.ID == Id)
+                                         select groups.groupName).ToList();
+                return groupName;
+            }
+        }
+        public List<string> ReturnGroupDescription(int Id)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                List<string> groupDescription = (from groups in dataContext.Groups
+                                          where (groups.ID == Id)
+                                          select groups.description).ToList();
+                return groupDescription;
+            }
+        }
 	}
 }

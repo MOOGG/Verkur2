@@ -29,15 +29,17 @@ namespace Veidibokin.Controllers
             var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
             var followList = new List<FollowList>();
-            
+            var catchList = new List<CatchFeed>();
+
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
             followList = myStatusRepo.ReturnFollowersList(userId);
-            
+            catchList = myStatusRepo.ReturnCatch(userId);
 
             UserStatusViewModel feedView = new UserStatusViewModel();
             
             feedView.myFeedList = statusList;
             feedView.myFollowList = followList;
+            feedView.myCatchFeedList = catchList;
 
             return View(feedView);
 		}
