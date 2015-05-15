@@ -28,15 +28,18 @@ namespace Veidibokin.Controllers
 
 			var statusList = new List<Feed>();
 			var followList = new List<FollowList>();
+            var userList = new List<string>();
 
 			statusList = myProfileRepo.ReturnProfileStatuses(id);
 			followList = myProfileRepo.ReturnFollowingList(id);
+            userList = myProfileRepo.ReturnUserName(id);
 
 			ProfileViewModel displayProfile = new ProfileViewModel();
 
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.userNameId = id;
+            displayProfile.fullName = userList;
 
 			return View(displayProfile);
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,7 @@ namespace Veidibokin.Models
         public List<FollowList> myFullNameList { get; set; }
         public string userNameId { get; set; }
         public string OpenID { set; get; }
+        public List<string> fullName { get; set; }
     }
 
     // viewmodel klasi
