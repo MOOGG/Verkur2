@@ -23,14 +23,18 @@ namespace Veidibokin.Controllers
 {
     public class GroupController : Controller
     {
+        // GRÆJA lausn fyrir harðkóðun í þessum controller
 		[Authorize]
-		public ActionResult GroupPostStatus(GroupViewModel collection)
+        [HttpPost]
+        public ActionResult GroupPostStatus(GroupViewModel collection)
 		{
 			string status = collection.myFeed.statusText.ToString();
 			HttpPostedFileBase file = collection.statusPicture;
 			string directory = @"~/Content/Images/";
 			string path = null;
 			string fileName = null;
+		    int groupId = collection.groupId;
+            //bla = @Model.groupId
 
 			if (String.IsNullOrEmpty(status))
 			{
@@ -50,13 +54,15 @@ namespace Veidibokin.Controllers
 			var userId = User.Identity.GetUserId();
 
 			var myGroupRepo = new GroupRepository();
+
+            // MUNA AÐ GRÆJA ÞETTA SVO ÞETTA SÉ EKKI HARÐKÓÐAÐ !!!!!!!
 			int currentGroupId = 1;
 
-			myGroupRepo.GroupStatusToDB(status, userId, fileName, currentGroupId);
+			myGroupRepo.GroupStatusToDB(status, userId, fileName, groupId);
 
 			return RedirectToAction("GroupPage", new
 			{
-				id = currentGroupId
+				id = groupId
 			});
 		}
 
@@ -75,22 +81,108 @@ namespace Veidibokin.Controllers
 
 			displayGroup.myFeedList = groupStatusList;
 			displayGroup.myFullNameList = groupMembers;
+		    displayGroup.groupId = id;
 
 			return View(displayGroup);
 		}
 
-		public ActionResult CreateGroup()
-		{
+        [HttpGet]
+        public ActionResult CreateGroup()
+        {
+            var emptyGroupModel = new GroupViewModel();
+            return View(emptyGroupModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateGroup(GroupViewModel collection)
+        {
+            string creatorId = User.Identity.GetUserId();
+            HttpPostedFileBase file = collection.myGroup.groupPic;
+            string directory = @"~/Content/Images/";
+            string path = null;
+            string fileName = null;
+
+            if (file != null && file.ContentLength > 0)
+            {
+                WebImage img = new WebImage(file.InputStream);
+                if (img.Width > 300)
+                    img.Resize(300, 300);
+                fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+                path = Path.Combine(Server.MapPath(directory), fileName);
+                img.Save(path);
+            }
+
+            var groupName = collection.myGroup.groupName;
+            var groupDescription = collection.myGroup.groupDescription;
+
+            var myGroupRepo = new GroupRepository();
+
+            int groupId = myGroupRepo.AddGroupToDb(groupName, groupDescription, path, creatorId);
+
+            var groupView = new GroupViewModel();
+            groupView.groupId = groupId;
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
+        }
+
+        //public ActionResult ShowMemberRequests(int groupId)//, string userId)
+        public ActionResult ShowMemberRequests(int groupId)
+        {
+            var myRepo = new GroupRepository();
+
+            var listOfRequest = myRepo.ReturnGroupRequestList(groupId);
+
+            var returnView = new GroupViewModel();
+
+            returnView.myFullNameList = listOfRequest;
+
+            return View(returnView);
+        }
+
+        public ActionResult RequestGroupAccess(int groupId)
+        {
+            var myRepo = new GroupRepository();
+
+            string userId = User.Identity.GetUserId();
+
+            if (!myRepo.IsMember(groupId, userId))
+            {
+                myRepo.AddGroupMemberToDb(groupId, userId);
+            }
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
+        }
+
+        public ActionResult AcceptRequest(int groupId, string userId)
+        {
+            var myRepo = new GroupRepository();
+
+            myRepo.MakeMember(groupId, userId);
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
+        }
+
+        public ActionResult DenyRequest(int groupId, string userId)
+        {
+            var myRepo = new GroupRepository();
+
+            myRepo.DenyMemberReq(groupId, userId);
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
+        }
 
 
-
-			return View();
-		}
-
-		public ActionResult Group()
-		{
-		
-			return View();
-		}
     }
 }

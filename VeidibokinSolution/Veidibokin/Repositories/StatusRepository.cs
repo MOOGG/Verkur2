@@ -174,21 +174,41 @@ namespace Veidibokin.Repositories
         }
 
         public void MakeFollowers(string myId, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
             {
-                using (var dataContext = new ApplicationDbContext())
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                UserFollower followRelation = new UserFollower()
                 {
-                    var myRepo = new UserRepository<UserFollower>(dataContext);
+                    userID = myId,
+                    followerID = otherId
+                };
 
-                    UserFollower followRelation = new UserFollower()
-                    {
-                        userID = myId,
-                        followerID = otherId
-                    };
+                myRepo.Insert(followRelation);
 
-                    myRepo.Insert(followRelation);
-
-                    dataContext.SaveChanges();
-                }
+                dataContext.SaveChanges();
             }
+        }
+
+        public bool AreFollowers(string id, string otherId)
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                var myRepo = new UserRepository<UserFollower>(dataContext);
+
+                List<UserFollower> myList = myRepo.GetAll().ToList();
+
+                for (int i = 0; i < myList.Count; i++)
+                {
+                    if (myList[i].userID == id && myList[i].followerID == otherId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
     }
 }
