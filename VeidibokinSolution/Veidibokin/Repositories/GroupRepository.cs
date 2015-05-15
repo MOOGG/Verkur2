@@ -174,5 +174,42 @@ namespace Veidibokin.Repositories
                 return false;
             }
         }
+
+	    public void MakeMember(int groupId, string userId)
+	    {
+	        using (var dataContext = new ApplicationDbContext())
+	        {
+	            var myRepo = new UserRepository<GroupMember>(dataContext);
+
+	            List<GroupMember> makeMember = new List<GroupMember>();
+
+	            makeMember = (from f in dataContext.GroupMembers
+                              where f.groupID == groupId && f.userID == userId
+	                          select f).ToList();
+
+	            foreach (var data in makeMember)
+	            {
+	                data.memberStatus = true;
+	            }
+
+	            return;
+	        }
+	    }
+
+	    public void DenyMemberReq(int groupId, string userId)
+	    {
+	        using (var dataContext = new ApplicationDbContext())
+	        {
+                var myRepo = new UserRepository<GroupMember>(dataContext);
+
+                List<GroupMember> denyMember = new List<GroupMember>();
+
+                denyMember = (from f in dataContext.GroupMembers
+                            where f.groupID == groupId && f.userID == userId
+                            select f).ToList();
+
+                myRepo.Delete(denyMember[0]);
+	        }
+	    }
 	}
 }

@@ -161,12 +161,26 @@ namespace Veidibokin.Controllers
 
         public ActionResult AcceptRequest(int groupId, string userId)
         {
-            return View();
+            var myRepo = new GroupRepository();
+
+            myRepo.MakeMember(groupId, userId);
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
         }
 
         public ActionResult DenyRequest(int groupId, string userId)
         {
-            return View();
+            var myRepo = new GroupRepository();
+
+            myRepo.DenyMemberReq(groupId, userId);
+
+            return RedirectToAction("GroupPage", new
+            {
+                id = groupId
+            });
         }
 
 
