@@ -70,3 +70,25 @@ select
     
     text-decoration:none;
 }
+
+.margin-top {
+    
+    margin-top: 20px;
+}
+
+.margin-bot {
+    
+    margin-bottom: -25px;
+}
+
+.searchBox {
+    
+    width:300px;
+}
+
+.textBoxStatus {
+
+    width:300px;
+    height:100px;
+    resize: none;
+}

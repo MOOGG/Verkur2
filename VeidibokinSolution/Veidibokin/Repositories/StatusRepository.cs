@@ -27,7 +27,7 @@ namespace Veidibokin.Repositories
                 var newStatus = new UserStatus()
                 {
                     statusText = status,
-                    //isPublic = true,
+                    isPublic = isPublic,
                     dateInserted = DateTime.Now,
                     userId = thisuserid,
                     photo = statusPicture,
@@ -75,12 +75,12 @@ namespace Veidibokin.Repositories
             {
                 var statuses = (from status in dataContext.UserStatuses
                                 where (status.isPublic == true && status.userId == userId)
-                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo });
+                                select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo, catchId = status.catchID });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
                                 join status in statuses on users.Id equals status.userId
                                 orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo }).ToList();
+                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo, catchId = status.catchId }).ToList();
                        
                 return fishfeed;
             }
@@ -186,13 +186,18 @@ namespace Veidibokin.Repositories
             }
         }
 
-        public List<Catch> ReturnCatch(int catchID)
+        public List<CatchFeed> ReturnCatch(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
-                var myCatch = (from c in dataContext.Catches
-                               where c.ID == catchID
-                               select new Catch { ID = c.ID, zoneID = c.zoneID, baitTypeID = c.baitTypeID, fishTypeId = c.fishTypeId, length = c.length, weight = c.weight }).ToList();
+                List<CatchFeed> myCatch = (from c in dataContext.Catches
+                                           join statuses in dataContext.UserStatuses on c.ID equals statuses.catchID
+                                           join zoneID in dataContext.Zones on c.zoneID equals zoneID.ID
+                                           join fishID in dataContext.FishTypes on c.fishTypeId equals fishID.ID
+                                           join baitID in dataContext.BaitTypes on c.baitTypeID equals baitID.ID
+                                           where statuses.userId == userId
+                                           select new CatchFeed { catchID = c.ID, zone = zoneID.zoneName, bait = baitID.name, fish = fishID.name, length = c.length, weight = c.weight }).ToList();
+
                 return myCatch;
             }
         }

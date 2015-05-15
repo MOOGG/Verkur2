@@ -5,17 +5,11 @@
 }
 
 <br />
-<span>
-    <span>
-        <img src="/Content/Images/logo.png" alt="Missing logo" height="100" width="100" />
-    </span>
-</span>
-<span class="pull-right">
-    <span>
-        @Html.ActionLink("Til baka", "Index", "Home", null, new { @class = "btn btn-info primary" })
-    </span>
-</span>
-<hr />
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
+
+<br />
 
 @*@if(User Er ekki að followa)*@
 
@@ -82,6 +76,20 @@
                                 <span class="imageContainer">
                                     <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
                                 </span>
+                            }
+                            
+                            @if (data.catchId != null)
+                            {
+                                foreach (var temp in Model.myCatchFeedList)
+                                {
+                                    if (data.catchId == temp.catchID)
+                                    {
+                                        <p>@temp.fish</p>
+                                        <p>@temp.bait</p>
+                                        <p>@temp.zone</p>
+                                        <p>@temp.length cm @temp.weight pund</p>
+                                    }
+                                }
                             }
                         </div>
                     </div>

@@ -28,9 +28,11 @@ namespace Veidibokin.Controllers
 
 			var statusList = new List<Feed>();
 			var followList = new List<FollowList>();
+            var catchList = new List<CatchFeed>();
             
 			statusList = myProfileRepo.ReturnProfileStatuses(id);
 			followList = myProfileRepo.ReturnFollowingList(id);
+            catchList = myProfileRepo.ReturnCatch(id);
             
             var userList = new List<string>();
 
@@ -44,6 +46,7 @@ namespace Veidibokin.Controllers
 			displayProfile.myFullNameList = followList;
 			displayProfile.userNameId = id;
             displayProfile.fullName = userList;
+            displayProfile.myCatchFeedList = catchList;
 
 			return View(displayProfile);
 		}
