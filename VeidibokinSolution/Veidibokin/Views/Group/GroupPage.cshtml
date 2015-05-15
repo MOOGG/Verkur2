@@ -27,20 +27,13 @@
                 
                 @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 <br />
-                <label for="photo"></label>
-<<<<<<< HEAD
+                 <label for="photo"></label>
+                 
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file", value="Mynd" })
                  
                 <br />
                  <div class="pull-left">
                     <input type="submit" class="btn btn-success" id="submit" value="Birta" />
-=======
-                @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
-
-                
-                <div class="pull-left">
-                    <input type="submit" class="btn btn-success margin-top id="submit" value="Birta" />
->>>>>>> 102a9bfe1fa4bed5ec84e6c7e73d2bb35cd4f1d2
                 </div>
             }
 

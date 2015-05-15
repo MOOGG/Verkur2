@@ -4,34 +4,15 @@
     ViewBag.Title = "ShowMemberRequests";
 }
 
-<h2>ShowMemberRequests</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>GroupViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.groupId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.groupId)
-                @Html.ValidationMessageFor(model => model.groupId)
-            </div>
-        </div>
-
-    </div>
-}
+<h2>Meðlimabeiðnir</h2>
 
 @foreach (var data in Model.myFullNameList)
 {
     <div>
         <p>
             @data.fullName
-            @Html.ActionLink("Samþykja", "AcceptRequest", "Group", new { @class = "btn btn-primary", groupId = @Model.groupId, userId = @data.userId }, null)
+            @Html.ActionLink("Samþykja", "AcceptRequest", "Group", new { @class = "btn btn-info primary", groupId = @Model.groupId, userId = @data.userId }, null)
+            @Html.ActionLink("Hafna", "DenyRequest", "Group", new { @class = "btn btn-info primary" }, null)
         </p>
     </div>
 }
