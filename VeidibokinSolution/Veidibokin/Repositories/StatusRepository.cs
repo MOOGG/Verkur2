@@ -202,6 +202,21 @@ namespace Veidibokin.Repositories
             }
         }
 
+        public List<CatchFeed> ReturnCatch()
+        {
+            using (var dataContext = new ApplicationDbContext())
+            {
+                List<CatchFeed> allCatches = (from c in dataContext.Catches
+                                           join zoneID in dataContext.Zones on c.zoneID equals zoneID.ID
+                                           join fishID in dataContext.FishTypes on c.fishTypeId equals fishID.ID
+                                           join baitID in dataContext.BaitTypes on c.baitTypeID equals baitID.ID
+                                           select new CatchFeed { catchID = c.ID, zone = zoneID.zoneName, bait = baitID.name, fish = fishID.name, length = c.length, weight = c.weight }).ToList();
+
+                return allCatches;
+            }
+        }
+
+
         public bool AreFollowers(string id, string otherId)
         {
             using (var dataContext = new ApplicationDbContext())

@@ -33,7 +33,7 @@ namespace Veidibokin.Controllers
 
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
             followList = myStatusRepo.ReturnFollowersList(userId);
-            catchList = myStatusRepo.ReturnCatch(userId);
+            catchList = myStatusRepo.ReturnCatch();
 
             UserStatusViewModel feedView = new UserStatusViewModel();
             
