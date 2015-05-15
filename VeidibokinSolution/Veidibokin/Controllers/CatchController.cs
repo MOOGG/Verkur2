@@ -14,7 +14,7 @@ namespace Veidibokin.Controllers
         [HttpGet]
         public ActionResult PostCatch()
         {
-            var viewModel = new UserStatusViewModel { /* Set properties here or load data for it */ };
+            var viewModel = new UserStatusViewModel();
             return View(viewModel);
         }
         
@@ -22,17 +22,24 @@ namespace Veidibokin.Controllers
         [HttpPost]
         public ActionResult PostCatch(UserStatusViewModel collection)
         {
-            int zoneID = collection.myCatch.zoneID;
-            int baitID = collection.myCatch.baitTypeID;
-            int fishID = collection.myCatch.fishTypeId;
-            double? length = collection.myCatch.length;
-            double? weight = collection.myCatch.weight;
+            if (ModelState.IsValid)
+            {
+                int zoneID = collection.myCatch.zoneID;
+                int baitID = collection.myCatch.baitTypeID;
+                int fishID = collection.myCatch.fishTypeId;
+                double? length = collection.myCatch.length;
+                double? weight = collection.myCatch.weight;
 
-            var myCatchRepo = new StatusRepository();
-            Catch newCatch = myCatchRepo.CatchToDB(zoneID, baitID, fishID, length, weight);
+                var myCatchRepo = new StatusRepository();
+                Catch newCatch = myCatchRepo.CatchToDB(zoneID, baitID, fishID, length, weight);
 
-            var catchId = newCatch.ID;
-            PostStatus(collection, catchId);
+                var catchId = newCatch.ID;
+                PostStatus(collection, catchId);
+            }
+            else
+            {
+                return View("error");
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -86,6 +93,16 @@ namespace Veidibokin.Controllers
             }
 
             return ZoneList;
+        }
+
+        public Catch GetMyCatch(int catchId)
+        {
+            var dataContext = new ApplicationDbContext();
+            var myRepo = new UserRepository<Catch>(dataContext);
+
+            Catch myCatch = myRepo.GetById(catchId);
+
+            return myCatch;
         }
 
     }

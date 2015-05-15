@@ -87,6 +87,12 @@
                                         <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
                                     </span>
                                 }
+                                @if (data.catchId != null)
+                                {
+                                    <p>@Html.DisplayFor(model => model.myCatch.Zone)</p>   
+                                    <p>@Html.DisplayFor(model => model.myCatch.fishTypeId)</p>
+                                    <p>@Html.DisplayFor(model => model.myCatch.baitTypeID)</p>
+                                }
                             </div>
                             <br />
                             <div class="float-left">

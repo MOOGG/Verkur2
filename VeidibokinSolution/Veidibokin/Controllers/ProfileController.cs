@@ -28,6 +28,10 @@ namespace Veidibokin.Controllers
 
 			var statusList = new List<Feed>();
 			var followList = new List<FollowList>();
+            
+			statusList = myProfileRepo.ReturnProfileStatuses(id);
+			followList = myProfileRepo.ReturnFollowingList(id);
+            
             var userList = new List<string>();
 
 			statusList = myProfileRepo.ReturnProfileStatuses(id);
@@ -73,39 +77,41 @@ namespace Veidibokin.Controllers
 				id = id
 			});
 		}
-		public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
+
+        [HttpGet]
+        public ActionResult PostStatus()
+        {
+            var viewModel = new UserStatusViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
 		{
-			string status = collection.myFeed.statusText.ToString();
-			HttpPostedFileBase file = collection.myPic;
-			string directory = @"~/Content/Images/";
-			string path = null;
-			string fileName = null;
+            string status = collection.myFeed.statusText.ToString();
+            HttpPostedFileBase file = collection.myPic;
+            string directory = @"~/Content/Images/";
+            string path = null;
+            string fileName = null;
 
-			if (String.IsNullOrEmpty(status))
-			{
-				return View("Error");
-			}
+            if (file != null && file.ContentLength > 0)
+            {
+                WebImage img = new WebImage(file.InputStream);
+                if (img.Width > 300)
+                    img.Resize(300, 300);
+                fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+                path = Path.Combine(Server.MapPath(directory), fileName);
+                img.Save(path);
+            }
 
-			if (file != null && file.ContentLength > 0)
-			{
-				WebImage img = new WebImage(file.InputStream);
-				if (img.Width > 300)
-					img.Resize(300, 300);
-				fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
-				path = Path.Combine(Server.MapPath(directory), fileName);
-				img.Save(path);
-			}
-			
-			var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
-			var myStatusRepo = new StatusRepository();
-			var isPublic = true;
+            var myStatusRepo = new StatusRepository();
+            var isPublic = true;
 
-			myStatusRepo.StatusToDB(status, userId, fileName, isPublic);
-
-			// hvaða view-i á ég að skila hér ???
-			return RedirectToAction("Index", "Home");
-			//return View("Index");
+            myStatusRepo.StatusToDB(status, userId, fileName, isPublic, catchId);
+            
+            return RedirectToAction("Index", "Home");
 		}
     }
 }
