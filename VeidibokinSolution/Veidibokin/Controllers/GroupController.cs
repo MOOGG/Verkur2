@@ -155,7 +155,5 @@ namespace Veidibokin.Controllers
                 id = groupId
             });
         }
-
-
     }
 }
