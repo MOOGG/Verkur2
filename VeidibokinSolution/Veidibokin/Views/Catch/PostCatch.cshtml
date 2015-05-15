@@ -15,10 +15,10 @@
     </span>
 </span>
 <hr />
-    <div class="statusContainer" id="statusform">
+    <div class="form" id="statusform">
         @using (Html.BeginForm("PostCatch", "Catch", new { id = Model.myCatch }, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.TextBoxFor(f => f.myFeed.statusText, new { @Value = "", @class = "UserStatus", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
+            @Html.TextBoxFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group", @id = "UserStatus", @name = "UserStatus", @placeholder = "Hvað liggur þér á hjarta?" })
             <br />
             <label for="photo"></label>
             @Html.TextBoxFor(f => f.myPic, new { type = "file" })
@@ -27,8 +27,8 @@
             @Html.DropDownListFor(f => f.myCatch.baitTypeID, Veidibokin.Controllers.CatchController.GetBaitTypeDropDown(),"Beita")
             @Html.DropDownListFor(f => f.myCatch.zoneID, Veidibokin.Controllers.CatchController.GetZoneDropDown(),"Staður")
             <br />
-            @Html.TextBoxFor(f => f.myCatch.length,  new { @Value = "", @class = "Catch", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
-            @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "", @class = "Catch", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
+            @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "", @class = "form-group", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
+            @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "", @class = "form-group", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
             <input type="submit" class="btn btn-primary" id="submit" value="Birta" />
         }
         <br />
