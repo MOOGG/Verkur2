@@ -142,11 +142,6 @@ namespace Veidibokin.Controllers
             return View(returnView);
         }
 
-        public ActionResult RequestGroupAccess()
-        {
-            return View();
-        }
-
         public ActionResult RequestGroupAccess(int groupId)
         {
             var myRepo = new GroupRepository();
