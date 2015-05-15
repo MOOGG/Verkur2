@@ -10,10 +10,10 @@
 <hr />
 
 <span class="pull-right">
-    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { groupId = @Model.groupId }, new { @class = "btn btn-primary" })
 </span>
 <span>
-    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { groupId = @Model.groupId }, new { @class = "btn btn-primary" })
 </span>
 
 <div class="row">
