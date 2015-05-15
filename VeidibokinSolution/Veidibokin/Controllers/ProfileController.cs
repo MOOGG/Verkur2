@@ -54,18 +54,21 @@ namespace Veidibokin.Controllers
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.OpenID = id;
+            displayProfile.isFollowing = true;
 
 			string yourId = id;
 			string otherId = User.Identity.GetUserId();
 
-			var myRepo = new StatusRepository();
-			myRepo.MakeFollowers(yourId, otherId);
-
+            if (!myProfileRepo.AreFollowers(id,otherId))
+		    {
+                var myRepo = new StatusRepository();
+                myRepo.MakeFollowers(otherId, id);
+		    }
+            
 			return RedirectToAction("ProfilePage", new
 			{
 				id = id
 			});
-			//return View(displayProfile.OpenID);
 		}
 		public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
 		{

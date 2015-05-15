@@ -11,19 +11,29 @@
 
 @*@if( User Er ekki í grúbbunni)*@
 <div>
+<<<<<<< HEAD
     @Html.ActionLink("Ganga í hóp", "joinGroup", "Group", null, new Dictionary<string, object> { { "class", "btn btn-primary" }})
 </div>
         
+=======
+    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new {@class = "btn btn-primary", id = @Model.groupId}, null)
+</div>
+<div>
+    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId },null)
+</div>
+
+>>>>>>> 192f8591e2218d6151793024c06dae8b6782cdfa
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
-             @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+             @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data"}))
              {
                 
                 @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 <br />
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
+                 
                 <br />
                 <span class="pull-right">
                     <input type="submit" class="btn btn-success" id="submit" value="Birta" />
@@ -35,9 +45,7 @@
             {
                 <ul id="list-no-style">
                     <li>
-
                         <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
-
                     </li>
                 </ul>
             }
