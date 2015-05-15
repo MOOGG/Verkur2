@@ -20,7 +20,6 @@ namespace Veidibokin.Repositories
     /// </summary>
     public class StatusRepository
     {
-      
         // StatusToDb býr til nýjan status og skráir hann niður í grunn.
         // Aðgerðin keyrir inn status án catchId ef catchId = null
         public int StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic, int? catchId)
