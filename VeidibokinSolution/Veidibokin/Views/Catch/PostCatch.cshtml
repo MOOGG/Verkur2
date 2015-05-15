@@ -12,7 +12,7 @@
     @using (Html.BeginForm("PostCatch", "Catch", new { id = Model.myCatch, @class = "form" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
-            <div class="">
+            <div>
                 @Html.TextAreaFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group textBoxStatus", @id = "Status", @name = "UserStatus", @placeholder = "Hvernig gekk veiðin?" })
             </div>
             <div>
@@ -24,15 +24,15 @@
                 @Html.DropDownListFor(f => f.myCatch.baitTypeID, Veidibokin.Controllers.CatchController.GetBaitTypeDropDown(), "Beita")
                 @Html.DropDownListFor(f => f.myCatch.zoneID, Veidibokin.Controllers.CatchController.GetZoneDropDown(), "Staður")
             </div>
-            <div class="">
-                @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "cm", @class = "form-group margin-top", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
-                @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "pund", @class = "", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
+            <div>
+                @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "", @class = "form-group margin-top", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
+                @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "", @class = "", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
             <div>
                 <input type="submit" class="btn btn-primary" id="submit" value="Skrá fisk" />
             </div>
             </div>
 
-                </div>
+        </div>
     }
 
 </div>
