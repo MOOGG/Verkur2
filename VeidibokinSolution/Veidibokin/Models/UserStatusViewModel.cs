@@ -8,6 +8,9 @@ using Veidibokin.Controllers;
 
 namespace Veidibokin.Models
 {
+    /// <summary>
+    /// Þetta ViewModel var notað við birtingar userstatusa
+    /// </summary>
     public class UserStatusViewModel
     {
         public List<Feed> myFeedList { get; set; }

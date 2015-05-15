@@ -23,7 +23,10 @@ namespace Veidibokin.Controllers
 {
     public class GroupController : Controller
     {
-        // GRÆJA lausn fyrir harðkóðun í þessum controller
+        /// <summary>
+        /// Hér er status sem gerður er inní hópum skrifaður niður í
+        /// grunn í viðeigandi töflu.
+        /// </summary>
 		[Authorize]
         [HttpPost]
         public ActionResult GroupPostStatus(GroupViewModel collection, int groupId)
@@ -61,6 +64,10 @@ namespace Veidibokin.Controllers
 			});
 		}
 
+        /// <summary>
+        /// Hér er hópasíða fyllt af viðeigandi efni (statusar, fylgjendur o.s.frv.),
+        /// n.tt. viewModel fyllt og skilað upp til View
+        /// </summary>
 		[Authorize]
 		public ActionResult GroupPage(int id)
 		{
@@ -78,12 +85,8 @@ namespace Veidibokin.Controllers
             var groupName = new List<string>();
             var description = new List<string>();
 
-            // kommenta hér út því þetta var tvítekið í kóða vegna merge... <---
-			//groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
-			//groupMembers = myGroupRepo.ReturnMembersList(id);
             groupName = myGroupRepo.ReturnGroupName(id);
             description = myGroupRepo.ReturnGroupDescription(id);
-
 
 			GroupViewModel displayGroup = new GroupViewModel();
 
@@ -94,10 +97,12 @@ namespace Veidibokin.Controllers
             displayGroup.groupName = groupName;
             displayGroup.description = description;
 
-
 			return View(displayGroup);
 		}
 
+        /// <summary>
+        /// Skilum upp tómu view til þess að koma í veg fyrir null villu
+        /// </summary>
         [HttpGet]
         public ActionResult CreateGroup()
         {
@@ -105,6 +110,9 @@ namespace Veidibokin.Controllers
             return View(emptyGroupModel);
         }
 
+        /// <summary>
+        /// Hér er hópur búinn til og skráður niður í grunn
+        /// </summary>
         [HttpPost]
         public ActionResult CreateGroup(GroupViewModel collection)
         {
@@ -140,7 +148,10 @@ namespace Veidibokin.Controllers
             });
         }
 
-        //public ActionResult ShowMemberRequests(int groupId)//, string userId)
+        /// <summary>
+        /// Fyllum viewmodel af þeim sem hafa óskað um inngöngu í hóp
+        /// og skilum því upp til view
+        /// </summary>
         public ActionResult ShowMemberRequests(int groupId)
         {
             var myRepo = new GroupRepository();
@@ -155,12 +166,18 @@ namespace Veidibokin.Controllers
             return View(returnView);
         }
 
+        /// <summary>
+        /// Virknin bakvið að óska um inngöngu í hóp. Notandi sem óskar um inngöngu er
+        /// skráður niður í GroupMembers töflu en þar er bool breyta sem ákvarðar
+        /// hvort notandi er meðlimur er ekki. Í upphafi er hún stillt sem false
+        /// </summary>
         public ActionResult RequestGroupAccess(int groupId)
         {
             var myRepo = new GroupRepository();
 
             string userId = User.Identity.GetUserId();
 
+            // IsMember athugar hvort notandi sé partur af hóp nú þegar
             if (!myRepo.IsMember(groupId, userId))
             {
                 myRepo.AddGroupMemberToDb(groupId, userId);
@@ -172,10 +189,13 @@ namespace Veidibokin.Controllers
             });
         }
 
+        /// <summary>
+        /// Hér er breytunni isMember breytt í true í GroupMember töflunni
+        /// </summary>
         public ActionResult AcceptRequest(int groupId, string userId)
         {
             var myRepo = new GroupRepository();
-            //string userId = User.Identity.GetUserId();
+
             myRepo.MakeMember(groupId, userId);
 
             return RedirectToAction("GroupPage", new
@@ -184,10 +204,13 @@ namespace Veidibokin.Controllers
             });
         }
 
-        public ActionResult DenyRequest(int groupId)
+        /// <summary>
+        /// Hér er notanda hafnað um inngöngu og hent útúr GroupMembers töflunni.
+        /// Ekki er búið að útfæra þessa virni að fullu, og virkar hún því ekki
+        /// </summary>
+        public ActionResult DenyRequest(int groupId, string userId)
         {
             var myRepo = new GroupRepository();
-            string userId = User.Identity.GetUserId();
             myRepo.DenyMemberReq(groupId, userId);
 
             return RedirectToAction("GroupPage", new

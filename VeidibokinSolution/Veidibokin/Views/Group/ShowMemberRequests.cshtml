@@ -1,25 +1,21 @@
 ﻿@model Veidibokin.Models.GroupViewModel
 
 @{
-    ViewBag.Title = "ShowMemberRequests";
+    ViewBag.Title = "Meðlimabeiðnir";
 }
 
-<h2>Meðlimabeiðnir</h2>
+<div class="margin-top">
+    @Html.Partial("_logo")
+</div>
 
 @foreach (var data in Model.myFullNameList)
 {
     <div>
         <p>
             @data.fullName
-            @Html.ActionLink("Samþykja", "AcceptRequest", "Group", new { @class = "btn btn-info primary", groupId = @Model.groupId, userId = @data.userId }, null)
-            @Html.ActionLink("Hafna", "DenyRequest", "Group", new { @class = "btn btn-info primary" }, null)
+            @Html.ActionLink("Samþykja", "AcceptRequest", "Group", new { groupId = @Model.groupId, userId = @data.userId }, new { @class = "btn btn-info primary"})
+            @Html.ActionLink("Hafna", "DenyRequest", "Group", new { @class = "btn btn-info primary" })
         </p>
     </div>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

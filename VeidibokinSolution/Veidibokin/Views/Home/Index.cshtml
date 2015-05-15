@@ -1,13 +1,13 @@
 ﻿@model Veidibokin.Models.UserStatusViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Fishfeed";
 }
 
 <!-- Hér er "Fish Feed" síðan sem birtist þegar notandinn er innskráður. -->
 <div class="margin-top">
     <a href="http://localhost:52592/">
-        <img src="~/Content/Images/logo.png" alt="Missing logo" height="50" width="50" />
+        <img src="/Content/Images/_logo.png" alt="Missing logo" height="50" width="300" />
     </a>
 </div>
 <div class="margin-bot">
@@ -21,8 +21,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-      
-        <div class="statusContainer margin-top-status" id="statusform">
+      <div class="statusContainer margin-top-status" id="statusform">
             @using (Html.BeginForm("PostStatus", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div>
@@ -99,7 +98,7 @@
                                 }
                             </div>
                             <br />
-                            <div class="float-left margin-to">
+                            <div class="float-left">
                                 <img src="/Content/Images/worm.png" alt="Missing worm" height="20" width="16" />
                                 <img src="/Content/Images/worm1.png" alt="Missing worm1" height="20" width="18" />
                                 <img src="/Content/Images/worm2.png" alt="Missing worm2" height="20" width="20" />

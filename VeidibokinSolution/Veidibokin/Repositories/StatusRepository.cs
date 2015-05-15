@@ -13,17 +13,22 @@ using System.Data.SqlClient;
 
 namespace Veidibokin.Repositories
 {
+    /// <summary>
+    /// Hér að neðan er StatusRepository-ið okkar sem sér um að sækja gögn úr grunni
+    /// og skila þeim frá sér á viðeigandi formi (list, int, etc). Einnig sér það um að
+    /// taka við gögnum frá Controller og búa til færslur í viðeigandi töflum
+    /// </summary>
     public class StatusRepository
     {
       
-        // Þessi aðgerð keyrir inn status án catchId ef catchId = null
+        // StatusToDb býr til nýjan status og skráir hann niður í grunn.
+        // Aðgerðin keyrir inn status án catchId ef catchId = null
         public int StatusToDB(string status, string thisuserid, string statusPicture, bool isPublic, int? catchId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
                 var myRepo = new UserRepository<UserStatus>(dataContext);
 
-                // held að það þurfi ekkert að tjekka hvort picture sé null því ef null þá verður statusPicture = null
                 var newStatus = new UserStatus()
                 {
                     statusText = status,
@@ -36,13 +41,14 @@ namespace Veidibokin.Repositories
 
                 myRepo.Insert(newStatus);
                 
-                //Debug.WriteLine(userStatusRepository.GetAll());
                 dataContext.SaveChanges();
 
 				return newStatus.ID;
             }
         }
 
+        // CatchToDB sér um að búa til nýjan fisk og skrá hann í viðeigandi töflu. Færibreyturnar
+        // length og weight meiga vera null
         public Catch CatchToDB(int zone, int fishType, int baitType, double? length, double? weight)
         {
             using (var dataContext = new ApplicationDbContext())
@@ -65,8 +71,8 @@ namespace Veidibokin.Repositories
                 return newCatch;
             }
         }
-   
 
+        // ReturnProfileStatuses sækir statusa ákveðins notenda og setur þá í lista
         public List<Feed> ReturnProfileStatuses(string userId)
         {
             var returnList = new List<Feed>();
@@ -78,25 +84,27 @@ namespace Veidibokin.Repositories
                                 select new { status = status.statusText, date = status.dateInserted, userId = status.userId, photo = status.photo, catchId = status.catchID });
 
                 List<Feed> fishfeed = (from users in dataContext.Users
-                                join status in statuses on users.Id equals status.userId
-                                orderby status.date descending
-                                select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo, catchId = status.catchId }).ToList();
+                                       join status in statuses on users.Id equals status.userId
+                                       orderby status.date descending
+                                       select new Feed { fullName = users.fullName, statusText = status.status, dateInserted = status.date, statusUserId = status.userId, statusPhoto = status.photo, catchId = status.catchId }).ToList();
                        
                 return fishfeed;
             }
         }
 
+        // ReturnUserName skilar nafni viðkomandi notanda
         public List<string> ReturnUserName(string userId)
         {
             using(var dataContext = new ApplicationDbContext())
             {
                 List<string> fullName = (from users in dataContext.Users
-                                           where (users.Id == userId)
-                                           select users.fullName).ToList();
+                                         where (users.Id == userId)
+                                         select users.fullName).ToList();
                 return fullName;
             }
         }
-        
+
+        // ReturnOwnStatuses skilar þínum eigin statusum og skilar þeim í lista
         public List<Feed> ReturnOwnStatuses(string userId)
         {
             var returnList = new List<Feed>();
@@ -115,10 +123,11 @@ namespace Veidibokin.Repositories
                 return fishfeed;
             }
         }
-        
+
+        // ReturnFeedStatuses skilar öllum þeim statusum frá þeim notendum sem þú ert að fylgja
+        // og skilar þeim í lista. Þeir eru svo birtir á heimasíðu þinni (feed page)
         public List<Feed> ReturnFeedStatuses(string userId)
         {
-
             using (var dataContext = new ApplicationDbContext())
             {
                 var following = (from f in dataContext.UserFollowers
@@ -138,23 +147,21 @@ namespace Veidibokin.Repositories
             }
         }
 
+        // ReturnFollowersList skilar lista yfir það fólk sem fylgir þér
         public List<FollowList> ReturnFollowersList(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
             {
-                
-               /* var followers = (from f in dataContext.UserFollowers
-                                 where f.followerID == userId
-                                 select f.userID);*/
                 var followersNames = (from user in dataContext.Users
                                       join followid in dataContext.UserFollowers on user.Id equals followid.userID
-                                     where followid.followerID == userId
-                                     select new FollowList {fullName = user.fullName, userId = user.Id}).ToList();
+                                      where followid.followerID == userId
+                                      select new FollowList {fullName = user.fullName, userId = user.Id}).ToList();
                
                 return followersNames;
             }
         }
 
+        // ReturnFollowingList skilar lista sem sýnir hverjum þú sem notandi ert að fylgja
         public List<FollowList> ReturnFollowingList(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
@@ -168,6 +175,7 @@ namespace Veidibokin.Repositories
             }
         }
 
+        // MakeFollowers skráir niður í UserFollowers, venslin þegar þú fylgir einnhverjum
         public void MakeFollowers(string myId, string otherId)
         {
             using (var dataContext = new ApplicationDbContext())
@@ -186,6 +194,7 @@ namespace Veidibokin.Repositories
             }
         }
 
+        // ReturnCatch skilar lista af fiskum sem einnhver notandi á
         public List<CatchFeed> ReturnCatch(string userId)
         {
             using (var dataContext = new ApplicationDbContext())
@@ -217,6 +226,9 @@ namespace Veidibokin.Repositories
         }
 
 
+
+        // AreFollowers athugar í UserFollowers töfluna hvort þú ert að fylgja einnhverjum nú þegar
+        // og skilar þá gildinu true.
         public bool AreFollowers(string id, string otherId)
         {
             using (var dataContext = new ApplicationDbContext())

@@ -16,6 +16,5 @@ namespace Veidibokin.Models
         public string groupName { get; set; }
         public string description { get; set; }
 
-        //public virtual Photo Photo { get; set; }
     }
 }

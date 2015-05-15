@@ -21,6 +21,9 @@ namespace Veidibokin.Controllers
 {
     public class ProfileController : Controller
     {
+        /// <summary>
+        /// ProfilePage birtir prófíl síðu notenda sem þú vilt skoða
+        /// </summary>
 		[Authorize]
 		public ActionResult ProfilePage(string id)
 		{
@@ -51,6 +54,9 @@ namespace Veidibokin.Controllers
 			return View(displayProfile);
 		}
 
+        /// <summary>
+        /// Follow útfærir virknina þegar þú sem notandi vilt "fylgja" öðrum notenda
+        /// </summary>
 		public ActionResult Follow(string id)
 		{
 			var statusList = new List<Feed>();
@@ -69,6 +75,8 @@ namespace Veidibokin.Controllers
 			string yourId = id;
 			string otherId = User.Identity.GetUserId();
 
+            // AreFollowers fallið athugar niður í grunn hvort notendur
+            // eru nú þegar að fylgja hvorum öðrum. Ef ekki þá skrifum við vensl í töflu
             if (!myProfileRepo.AreFollowers(id,otherId))
 		    {
                 var myRepo = new StatusRepository();
@@ -81,6 +89,10 @@ namespace Veidibokin.Controllers
 			});
 		}
 
+        /// <summary>
+        /// Skilar tómu view-i þegar index síðunni þinni er hlaðið inn til
+        /// þess að fá ekki null villu
+        /// </summary>
         [HttpGet]
         public ActionResult PostStatus()
         {
@@ -88,6 +100,9 @@ namespace Veidibokin.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Í PostStatus er status settur niður í grunn í viðeigandi töflu
+        /// </summary>
         [HttpPost]
         public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
 		{

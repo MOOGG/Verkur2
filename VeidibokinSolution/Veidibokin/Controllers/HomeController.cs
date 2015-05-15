@@ -21,6 +21,10 @@ namespace Veidibokin.Controllers
 {
 	public class HomeController : Controller
 	{
+        /// <summary>
+        /// Hér er index (heimasíðu) notenda fyllt af réttum upplýsingum
+        /// (statusar, fylgjendur o.s.frv)
+        /// </summary>
         [Authorize]
 		public ActionResult Index()
         {
