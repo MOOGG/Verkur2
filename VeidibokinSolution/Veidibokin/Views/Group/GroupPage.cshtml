@@ -11,12 +11,18 @@
 
 @*@if( User Er ekki í grúbbunni)*@
 <div>
+<<<<<<< HEAD
+    @Html.ActionLink("Ganga í hóp", "joinGroup", "Group", null, new Dictionary<string, object> { { "class", "btn btn-primary" }})
+</div>
+        
+=======
     @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new {@class = "btn btn-primary", id = @Model.groupId}, null)
 </div>
 <div>
     @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId },null)
 </div>
 
+>>>>>>> 192f8591e2218d6151793024c06dae8b6782cdfa
 <div class="row">
     <div class="col-md-4">
         <div class="statusContainer">
