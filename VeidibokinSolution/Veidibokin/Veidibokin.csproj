@@ -228,6 +228,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaitType.cs" />
     <Compile Include="Models\Catch.cs" />
+    <Compile Include="Models\CatchFeed.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\FishType.cs" />
