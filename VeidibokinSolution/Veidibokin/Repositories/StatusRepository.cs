@@ -67,21 +67,6 @@ namespace Veidibokin.Repositories
         }
    
 
-        
-        
-        
-        /*public byte[] returnImageFromDb(string userId)
-        {
-            byte[] returnPic = null;
-            using (var dataContext = new ApplicationDbContext())
-            {
-                var image = dataContext.UserStatuses.FirstOrDefault(i => i.userId == userId);
-                returnPic = image.photo;
-
-            }
-            return returnPic;
-        }*/
-
         public List<Feed> ReturnProfileStatuses(string userId)
         {
             var returnList = new List<Feed>();

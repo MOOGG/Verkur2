@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Veidibokin.Controllers.AccountController">
+    <Position X="11" Y="4.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Veidibokin.Controllers.AccountController.ChallengeResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAChACAAAAAAAAFgEgAABAABMKIAAAMRAAQgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Controllers.CatchController">
+    <Position X="4.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAIAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\CatchController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Controllers.GroupController">
+    <Position X="6.75" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQBAAAAAAAIAgAAAAAAAAAAAAAAAAQAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Controllers\GroupController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Controllers.HomeController">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Controllers.ProfileController">
+    <Position X="4.25" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Controllers\ProfileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Controllers.SearchController">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Controllers\SearchController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.LoginViewModel" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.RegisterViewModel" Collapsed="true">
+    <Position X="10.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAgCAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.GroupViewModel" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAggBAQAAAAAAACAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GroupViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.ProfileViewModel" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAggAAQAAACAAAAQABAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.SearchResultViewModel" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SearchResultViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Models.UserStatusViewModel" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAAAIAAIAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserStatusViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Repositories.GroupRepository">
+    <Position X="3.5" Y="11" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQgAAQAAAAAAAAAIAABAAAgAAAAAAAggAAAAA=</HashCode>
+      <FileName>Repositories\GroupRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Repositories.SearchRepository">
+    <Position X="7.5" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\SearchRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Repositories.StatusRepository">
+    <Position X="9.5" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAgAAAAAAAQAAgABAABAgAAAAAAAAAQAQAAEQ=</HashCode>
+      <FileName>Repositories\StatusRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Veidibokin.Repositories.UserRepository&lt;Tag&gt;" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEIAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.158" Collapsed="true" />
+  </Class>
+  <Interface Name="Veidibokin.Repositories.ParentRepository&lt;Tag&gt;">
+    <Position X="5.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repositories\ParentRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

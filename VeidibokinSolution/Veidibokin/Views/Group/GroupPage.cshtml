@@ -10,31 +10,40 @@
 </div>
 <hr />
 
-<div class="pull-right margin-bot">
-    <span>
-        @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
-    </span>
-</div>
-<div>
-    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
-</div>
+<span class="pull-right">
+    @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { groupId = @Model.groupId }, new { @class = "btn btn-primary" })
+</span>
+<span>
+    @Html.ActionLink("Ganga í hóp", "RequestGroupAccess", "Group", new { groupId = @Model.groupId }, new { @class = "btn btn-primary" })
+</span>
+
 
 <div class="row margin-top">
     <div class="col-md-4">
         <div class="statusContainer">
-            @using (Html.BeginForm("GroupPostStatus", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
 
+             @using (Html.BeginForm("GroupPostStatus", "Group", new {groupId = @Model.groupId}, FormMethod.Post, new { enctype = "multipart/form-data"}))
+             {
+                
                 @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 <br />
                 <label for="photo"></label>
+<<<<<<< HEAD
+                @Html.TextBoxFor(m => m.statusPicture, new { type = "file", value="Mynd" })
+                 
+                <br />
+                 <div class="pull-left">
+                    <input type="submit" class="btn btn-success" id="submit" value="Birta" />
+=======
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file" })
 
                 
                 <div class="pull-left">
                     <input type="submit" class="btn btn-success margin-top id="submit" value="Birta" />
+>>>>>>> 102a9bfe1fa4bed5ec84e6c7e73d2bb35cd4f1d2
                 </div>
             }
+
         </div>
         
     </div>

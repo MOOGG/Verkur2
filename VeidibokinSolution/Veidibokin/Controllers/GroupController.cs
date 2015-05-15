@@ -26,15 +26,13 @@ namespace Veidibokin.Controllers
         // GRÆJA lausn fyrir harðkóðun í þessum controller
 		[Authorize]
         [HttpPost]
-        public ActionResult GroupPostStatus(GroupViewModel collection)
+        public ActionResult GroupPostStatus(GroupViewModel collection, int groupId)
 		{
 			string status = collection.myFeed.statusText.ToString();
 			HttpPostedFileBase file = collection.statusPicture;
 			string directory = @"~/Content/Images/";
 			string path = null;
 			string fileName = null;
-		    int groupId = collection.groupId;
-            //bla = @Model.groupId
 
 			if (String.IsNullOrEmpty(status))
 			{
@@ -55,9 +53,6 @@ namespace Veidibokin.Controllers
 
 			var myGroupRepo = new GroupRepository();
 
-            // MUNA AÐ GRÆJA ÞETTA SVO ÞETTA SÉ EKKI HARÐKÓÐAÐ !!!!!!!
-			int currentGroupId = 1;
-
 			myGroupRepo.GroupStatusToDB(status, userId, fileName, groupId);
 
 			return RedirectToAction("GroupPage", new
@@ -73,22 +68,32 @@ namespace Veidibokin.Controllers
 
 			var groupStatusList = new List<GroupFeed>();
 			var groupMembers = new List<GroupMembersList>();
-            var groupName = new List<string>();
-            var description = new List<string>();
 
+            var requestMembers = new List<GroupMembersList>();
 
 			groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
 			groupMembers = myGroupRepo.ReturnMembersList(id);
+		    requestMembers = myGroupRepo.ReturnGroupRequestList(id);
+
+            var groupName = new List<string>();
+            var description = new List<string>();
+
+            // kommenta hér út því þetta var tvítekið í kóða vegna merge... <---
+			//groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
+			//groupMembers = myGroupRepo.ReturnMembersList(id);
             groupName = myGroupRepo.ReturnGroupName(id);
             description = myGroupRepo.ReturnGroupDescription(id);
+
 
 			GroupViewModel displayGroup = new GroupViewModel();
 
 			displayGroup.myFeedList = groupStatusList;
 			displayGroup.myFullNameList = groupMembers;
 		    displayGroup.groupId = id;
+
             displayGroup.groupName = groupName;
             displayGroup.description = description;
+
 
 			return View(displayGroup);
 		}
@@ -145,6 +150,7 @@ namespace Veidibokin.Controllers
             var returnView = new GroupViewModel();
 
             returnView.myFullNameList = listOfRequest;
+            returnView.groupId = groupId;
 
             return View(returnView);
         }
@@ -169,7 +175,7 @@ namespace Veidibokin.Controllers
         public ActionResult AcceptRequest(int groupId, string userId)
         {
             var myRepo = new GroupRepository();
-
+            //string userId = User.Identity.GetUserId();
             myRepo.MakeMember(groupId, userId);
 
             return RedirectToAction("GroupPage", new
@@ -178,10 +184,10 @@ namespace Veidibokin.Controllers
             });
         }
 
-        public ActionResult DenyRequest(int groupId, string userId)
+        public ActionResult DenyRequest(int groupId)
         {
             var myRepo = new GroupRepository();
-
+            string userId = User.Identity.GetUserId();
             myRepo.DenyMemberReq(groupId, userId);
 
             return RedirectToAction("GroupPage", new

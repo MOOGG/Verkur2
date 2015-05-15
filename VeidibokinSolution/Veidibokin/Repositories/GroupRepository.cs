@@ -31,11 +31,9 @@ namespace Veidibokin.Repositories
 		            photo = statusPicture,
 		        };
 
-                statusID = newStatus.ID;
-
 		        myUserRepo.Insert(newStatus);
-		        // ÞARF AÐ GERA SAVECHANGES TVISVAR ??? kemur einnhver villa þegar maður postar groupstatus
 		        dataContext.SaveChanges();
+                statusID = newStatus.ID;
 		    }
 
 		    using (var dataContext1 = new ApplicationDbContext())
@@ -179,20 +177,15 @@ namespace Veidibokin.Repositories
 	    {
 	        using (var dataContext = new ApplicationDbContext())
 	        {
-	            var myRepo = new UserRepository<GroupMember>(dataContext);
 
-	            List<GroupMember> makeMember = new List<GroupMember>();
+	           GroupMember makeMember = (from f in dataContext.GroupMembers
+	                where (f.groupID == groupId && f.userID == userId)
+	                select f).First();
 
-	            makeMember = (from f in dataContext.GroupMembers
-                              where f.groupID == groupId && f.userID == userId
-	                          select f).ToList();
+	            makeMember.memberStatus = true;
 
-	            foreach (var data in makeMember)
-	            {
-	                data.memberStatus = true;
-	            }
+                dataContext.SaveChanges();
 
-	            return;
 	        }
 	    }
 
@@ -209,6 +202,8 @@ namespace Veidibokin.Repositories
                             select f).ToList();
 
                 myRepo.Delete(denyMember[0]);
+
+	            dataContext.SaveChanges();
 	        }
 	    }
 
