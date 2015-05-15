@@ -63,7 +63,9 @@
     </div>
 
     <div class="col-md-8">
-        <h3>@Html.Label("Prófílsíðan þín:")</h3>
+
+        <h3>@Html.DisplayFor(model => @model.fullName[0])</h3>
+        
 
         @foreach (var data in Model.myFeedList)
         {

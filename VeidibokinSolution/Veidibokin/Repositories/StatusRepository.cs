@@ -100,6 +100,17 @@ namespace Veidibokin.Repositories
                 return fishfeed;
             }
         }
+
+        public List<string> ReturnUserName(string userId)
+        {
+            using(var dataContext = new ApplicationDbContext())
+            {
+                List<string> fullName = (from users in dataContext.Users
+                                           where (users.Id == userId)
+                                           select users.fullName).ToList();
+                return fullName;
+            }
+        }
         
         public List<Feed> ReturnOwnStatuses(string userId)
         {

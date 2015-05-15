@@ -48,7 +48,7 @@
                     {
                         <ul id="list-no-style">
                             <li>
-                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
+                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId, name = @data.fullName }, null)</b>
                             </li>
                         </ul>
                     }

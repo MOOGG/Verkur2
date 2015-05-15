@@ -32,12 +32,19 @@ namespace Veidibokin.Controllers
 			statusList = myProfileRepo.ReturnProfileStatuses(id);
 			followList = myProfileRepo.ReturnFollowingList(id);
             
+            var userList = new List<string>();
+
+			statusList = myProfileRepo.ReturnProfileStatuses(id);
+			followList = myProfileRepo.ReturnFollowingList(id);
+            userList = myProfileRepo.ReturnUserName(id);
+
 			ProfileViewModel displayProfile = new ProfileViewModel();
 
 			displayProfile.myFeedList = statusList;
 			displayProfile.myFullNameList = followList;
 			displayProfile.userNameId = id;
-			
+            displayProfile.fullName = userList;
+
 			return View(displayProfile);
 		}
 
@@ -71,29 +78,12 @@ namespace Veidibokin.Controllers
 			});
 		}
 
-<<<<<<< HEAD
         [HttpGet]
         public ActionResult PostStatus()
         {
             var viewModel = new UserStatusViewModel();
             return View(viewModel);
         }
-=======
-			if (file != null && file.ContentLength > 0)
-			{
-				WebImage img = new WebImage(file.InputStream);
-				if (img.Width > 300)
-					img.Resize(300, 300);
-				fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
-				path = Path.Combine(Server.MapPath(directory), fileName);
-				img.Save(path);
-			}
-			
-			var userId = User.Identity.GetUserId();
-
-			var myStatusRepo = new StatusRepository();
-			var isPublic = true;
->>>>>>> 95067058fe547dd1020fd4bb59f4298fa99e4359
 
         [HttpPost]
         public ActionResult PostStatus(UserStatusViewModel collection, int? catchId)
