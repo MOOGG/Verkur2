@@ -7,9 +7,14 @@ using Veidibokin.Models;
 
 namespace Veidibokin.Repositories
 {
+    /// <summary>
+    /// SearchRepository-ið sá um að skrá niður þau gögn og sækja úr grunni þau sem
+    /// tengdust virkninni að leita eftir user eða hóp
+    /// </summary>
     public class SearchRepository
     {
-    
+        // ReturnSearchResult skilar lista af leitarniðurstöðu, n.tt. leitar af notanda, hópi og svæði
+        // (3 töflum) og skilar niðurstöðum
         public List<SearchResult> ReturnSearchResult(string searchString)
         {
             var returnList = new List<SearchResult>();
