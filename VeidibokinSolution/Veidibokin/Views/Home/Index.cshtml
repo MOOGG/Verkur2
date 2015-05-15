@@ -48,7 +48,8 @@
                     {
                         <ul id="list-no-style">
                             <li>
-                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
+                                <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId, name = @data.fullName }, new { @class = "Links" })</b>
+
                             </li>
                         </ul>
                     }
@@ -85,6 +86,12 @@
                                     <span class="imageContainer">
                                         <img src="@Url.Content("~/Content/Images/" + data.statusPhoto)" alt="Image" />
                                     </span>
+                                }
+                                @if (data.catchId != null)
+                                {
+                                    <p>@Html.DisplayFor(model => model.myCatch.Zone)</p>   
+                                    <p>@Html.DisplayFor(model => model.myCatch.fishTypeId)</p>
+                                    <p>@Html.DisplayFor(model => model.myCatch.baitTypeID)</p>
                                 }
                             </div>
                             <br />

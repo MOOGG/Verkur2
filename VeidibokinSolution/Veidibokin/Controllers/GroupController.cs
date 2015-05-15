@@ -53,9 +53,6 @@ namespace Veidibokin.Controllers
 
 			var myGroupRepo = new GroupRepository();
 
-            // MUNA AÐ GRÆJA ÞETTA SVO ÞETTA SÉ EKKI HARÐKÓÐAÐ !!!!!!!
-			int currentGroupId = 1;
-
 			myGroupRepo.GroupStatusToDB(status, userId, fileName, groupId);
 
 			return RedirectToAction("GroupPage", new
@@ -71,18 +68,32 @@ namespace Veidibokin.Controllers
 
 			var groupStatusList = new List<GroupFeed>();
 			var groupMembers = new List<GroupMembersList>();
+
             var requestMembers = new List<GroupMembersList>();
 
 			groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
 			groupMembers = myGroupRepo.ReturnMembersList(id);
 		    requestMembers = myGroupRepo.ReturnGroupRequestList(id);
 
+            var groupName = new List<string>();
+            var description = new List<string>();
+
+            // kommenta hér út því þetta var tvítekið í kóða vegna merge... <---
+			//groupStatusList = myGroupRepo.ReturnGroupStatuses(id);
+			//groupMembers = myGroupRepo.ReturnMembersList(id);
+            groupName = myGroupRepo.ReturnGroupName(id);
+            description = myGroupRepo.ReturnGroupDescription(id);
+
+
 			GroupViewModel displayGroup = new GroupViewModel();
 
 			displayGroup.myFeedList = groupStatusList;
 			displayGroup.myFullNameList = groupMembers;
 		    displayGroup.groupId = id;
-		    displayGroup.groupStatusId = id;
+
+            displayGroup.groupName = groupName;
+            displayGroup.description = description;
+
 
 			return View(displayGroup);
 		}

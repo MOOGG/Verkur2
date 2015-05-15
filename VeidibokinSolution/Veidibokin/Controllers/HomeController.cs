@@ -29,9 +29,10 @@ namespace Veidibokin.Controllers
             var statusList = new List<Feed>();
             var userId = User.Identity.GetUserId();
             var followList = new List<FollowList>();
-
+            
             statusList = myStatusRepo.ReturnFeedStatuses(userId);
             followList = myStatusRepo.ReturnFollowersList(userId);
+            
 
             UserStatusViewModel feedView = new UserStatusViewModel();
             
