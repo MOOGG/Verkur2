@@ -9,7 +9,6 @@
 </div>
 <hr />
 
-<<<<<<< HEAD
 <span class="pull-right">
     @Html.ActionLink("Meðlimabeiðnir", "ShowMemberRequests", "Group", new { id = @Model.groupId }, new { @class = "btn btn-primary" })
 </span>
@@ -51,7 +50,8 @@
 
 
     <div class="col-md-8">
-        <h3>Hópsíða</h3>
+        <h3>@Html.DisplayFor(model => @model.groupName[0])</h3>
+        <h4>@Html.DisplayFor(model => @model.description[0])</h4>
 
         @foreach (var data in Model.myFeedList)
         {

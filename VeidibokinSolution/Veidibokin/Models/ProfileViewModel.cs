@@ -24,5 +24,4 @@ namespace Veidibokin.Models
         public string fullName { get; set; }
         public string userId { get; set; }
     }
-
 }
