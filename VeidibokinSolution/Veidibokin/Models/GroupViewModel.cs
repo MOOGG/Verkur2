@@ -16,7 +16,6 @@ namespace Veidibokin.Models
         public string testGroupID { get; set; }
         public List<string> groupName { get; set; }
         public List<string> description { get; set; }
-
 	}
 
 	public class GroupMembersList

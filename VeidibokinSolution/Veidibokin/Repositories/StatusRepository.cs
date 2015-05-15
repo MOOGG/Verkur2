@@ -176,8 +176,8 @@ namespace Veidibokin.Repositories
 
                 UserFollower followRelation = new UserFollower()
                 {
-                    userID = myId,
-                    followerID = otherId
+                    userID = otherId,
+                    followerID = myId
                 };
 
                 myRepo.Insert(followRelation);
