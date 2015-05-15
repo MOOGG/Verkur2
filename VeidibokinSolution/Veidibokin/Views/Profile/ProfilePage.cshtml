@@ -21,7 +21,7 @@
 
 <div>
 
-    @Html.ActionLink("Fylgja notanda", "Follow", "Profile", new { @class = "btn btn-primary", id = @Model.userNameId }, null)
+    @Html.ActionLink("Fylgja notanda", "Follow", "Profile", new { id = @Model.userNameId }, new { @class = "btn btn-primary"})
 
 </div>
 
@@ -52,9 +52,7 @@
                 {
                     <ul id="list-no-style">
                         <li>
-
-                            <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId }, null)</b>
-
+                            <b>@Html.ActionLink(@data.fullName, "ProfilePage", "Profile", new { Id = @data.userId, name = @data.fullName }, new { @class = "Links" })</b>
                         </li>
                     </ul>
                 }
