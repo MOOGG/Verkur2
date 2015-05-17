@@ -30,8 +30,8 @@
                     
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.myPic, new { type = "file", @class = "" })
-                
-                <input type="submit" class="btn btn-primary margin-top" id="submit" value="Birta" />
+
+                <input type="submit" class="btn btn-success margin-top" id="submit" value="Birta" />
             }
             <br />
             <div class="following">
@@ -57,7 +57,7 @@
     @Html.Partial("_WaitMessage")
 
     <div class="col-md-8" id="statuses">
-        <h3>@Html.Label("Fishfeed")</h3>
+        <h3>Fishfeed</h3>
 
         @foreach (var data in Model.myFeedList)
         {

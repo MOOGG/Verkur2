@@ -8,8 +8,15 @@ using Veidibokin.Repositories;
 
 namespace Veidibokin.Controllers
 {
+    /// <summary>
+    /// Þessi Controller erfir ProfileController 
+    /// </summary>
     public class CatchController : ProfileController
     {
+        /// <summary>
+        /// Þetta er HttpGet aðgerð sem skilar tómu Viewi
+        /// </summary>
+        
         [Authorize]
         [HttpGet]
         public ActionResult PostCatch()
@@ -17,7 +24,11 @@ namespace Veidibokin.Controllers
             var viewModel = new UserStatusViewModel();
             return View(viewModel);
         }
-        
+
+        /// <summary>
+        /// Þetta er HttpPost aðgerð sem tekur inn upplýsingar um veiddan fisk, og nota svo StatusRepository til að vista hann í grunninn
+        /// Í lokin er svo kallað í PostStatus aðgerðina í ProfileController þar sem upplýsingar um UserStatus
+        /// </summary>
         [Authorize]
         [HttpPost]
         public ActionResult PostCatch(UserStatusViewModel collection)
@@ -44,6 +55,9 @@ namespace Veidibokin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Hér er listi yfir fisktegundir sóttur
+        /// </summary>
         public static List<SelectListItem> GetFishTypeDropDown()
         {
             var dataContext = new ApplicationDbContext();
@@ -61,6 +75,9 @@ namespace Veidibokin.Controllers
             return FishTypeList;
         }
 
+        /// <summary>
+        /// Hér er listi yfir beitur sóttur
+        /// </summary>
         public static List<SelectListItem> GetBaitTypeDropDown()
         {
             var dataContext = new ApplicationDbContext();
@@ -78,6 +95,9 @@ namespace Veidibokin.Controllers
             return BaitTypeList;
         }
 
+        /// <summary>
+        /// Hér er listi yfir veiðisvæði sóttur
+        /// </summary>
         public static List<SelectListItem> GetZoneDropDown()
         {
             var dataContext = new ApplicationDbContext();
@@ -91,18 +111,8 @@ namespace Veidibokin.Controllers
             {
                 ZoneList.Add(new SelectListItem() { Text = temp.zoneName, Value = temp.ID.ToString() });
             }
-
+            
             return ZoneList;
-        }
-
-        public Catch GetMyCatch(int catchId)
-        {
-            var dataContext = new ApplicationDbContext();
-            var myRepo = new UserRepository<Catch>(dataContext);
-
-            Catch myCatch = myRepo.GetById(catchId);
-
-            return myCatch;
         }
 
     }

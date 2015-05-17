@@ -8,12 +8,13 @@
 </div>
 
 <hr />
-    <div class="form" id="statusform">
+<h3>Skrá fisk</h3>
+<div class="form">
     @using (Html.BeginForm("PostCatch", "Catch", new { id = Model.myCatch, @class = "form" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
             <div>
-                @Html.TextAreaFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group textBoxStatus", @id = "Status", @name = "UserStatus", @placeholder = "Hvernig gekk veiðin?" })
+                @Html.TextAreaFor(f => f.myFeed.statusText, new { @Value = "", @class = "form-group c", @id = "Status", @name = "UserStatus", @placeholder = "Hvernig gekk veiðin?" })
             </div>
             <div>
                 <label for="photo"></label>
@@ -27,11 +28,10 @@
             <div>
                 @Html.TextBoxFor(f => f.myCatch.length, new { @Value = "", @class = "form-group margin-top", @id = "Catch", @name = "Catch", @placeholder = "Cm" })
                 @Html.TextBoxFor(f => f.myCatch.weight, new { @Value = "", @class = "", @id = "Catch", @name = "Catch", @placeholder = "Pund" })
-            <div>
-                <input type="submit" class="btn btn-primary" id="submit" value="Skrá fisk" />
+                <div>
+                    <input type="submit" class="btn btn-success" id="submit" value="Skrá fisk" />
+                </div>
             </div>
-            </div>
-
         </div>
     }
 

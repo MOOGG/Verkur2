@@ -21,13 +21,15 @@
             @using (Html.BeginForm("GroupPostStatus", "Group", new { groupId = @Model.groupId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div>
-                    @Html.TextBoxFor(m => m.myFeed.statusText, new { @Value = "", @class = "Status", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
+                    @Html.TextAreaFor(m => m.myFeed.statusText, new { @Value = "", @class = "textBoxStatus", @name = "GroupStatus", @placeholder = "Setja innlegg í hóp?" })
                 </div>
 
+            <div>
                 <label for="photo"></label>
                 @Html.TextBoxFor(m => m.statusPicture, new { type = "file", value = "Mynd" })
+            <br />
+            </div>
 
-                <br />
                 <div>
                     <input type="submit" class="btn btn-success" id="submit" value="Birta" />
                 </div>
@@ -47,8 +49,8 @@
     </div>
 
         <div class="col-md-8 margin-bot">
-            <h4>@Html.DisplayFor(model => @model.groupName[0])</h4>
-            <h5>@Html.DisplayFor(model => @model.description[0])</h5>
+            <h5>@Html.DisplayFor(model => @model.groupName[0])</h5>
+            <h6>@Html.DisplayFor(model => @model.description[0])</h6>
 
             @foreach (var data in Model.myFeedList)
             {
