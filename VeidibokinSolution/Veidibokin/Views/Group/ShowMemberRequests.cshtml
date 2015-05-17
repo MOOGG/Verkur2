@@ -13,7 +13,7 @@
     <div>
         <p>
             @data.fullName
-            @Html.ActionLink("Samþykja", "AcceptRequest", "Group", new { groupId = @Model.groupId, userId = @data.userId }, new { @class = "btn btn-info primary"})
+            @Html.ActionLink("Samþykkja", "AcceptRequest", "Group", new { groupId = @Model.groupId, userId = @data.userId }, new { @class = "btn btn-info primary"})
             @Html.ActionLink("Hafna", "DenyRequest", "Group", new { @class = "btn btn-info primary" })
         </p>
     </div>
